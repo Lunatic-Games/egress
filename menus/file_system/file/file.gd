@@ -54,4 +54,4 @@ func decrypt_file():
 func score_bits():
 	$Button/Bits.bbcode_text = "[wave]" + String(bit_reward) + " bits gained"
 	$AnimationPlayer.play("gain_bits")
-	print("Gained ", bit_reward, " bits")
+	Hacker.gain_bits(bit_reward)

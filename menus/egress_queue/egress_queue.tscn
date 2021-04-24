@@ -12,7 +12,7 @@ font_data = ExtResource( 3 )
 [sub_resource type="Animation" id=2]
 resource_name = "load_program"
 tracks/0/type = "value"
-tracks/0/path = NodePath("AttackerSprite:position")
+tracks/0/path = NodePath("Attacker/AttackerSprite:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -21,10 +21,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( -149.249, 153.777 ), Vector2( 78.4938, 158.272 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 1, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("AttackerSprite:scale")
+tracks/1/path = NodePath("Attacker:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -33,24 +33,24 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 1, 1 ) ]
+"values": [ Vector2( -150, 153 ), Vector2( 78.5, 158.2 ) ]
 }
 
 [sub_resource type="Animation" id=3]
 tracks/0/type = "value"
-tracks/0/path = NodePath("DefenderSprite:position")
+tracks/0/path = NodePath("Defender/DefenderSprite:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3, 0.301 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 578.503, 163.317 ), Vector2( 343.269, 146.836 ), Vector2( 343.269, 146.836 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 1, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("DefenderSprite:scale")
+tracks/1/path = NodePath("Defender:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -59,7 +59,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 1, 1 ) ]
+"values": [ Vector2( 578.5, 163 ), Vector2( 343.2, 146.8 ) ]
 }
 
 [node name="EgressQueue" type="ColorRect" groups=[
@@ -80,17 +80,18 @@ attackers = [ ExtResource( 4 ) ]
 
 [node name="AttackerAttackTimer" type="Timer" parent="."]
 
-[node name="AttackerSprite" type="Sprite" parent="."]
-visible = false
-modulate = Color( 0.670588, 0.160784, 0.160784, 1 )
-position = Vector2( -149.249, 153.777 )
+[node name="Defender" type="Node2D" parent="."]
+position = Vector2( 578.5, 0 )
+
+[node name="DefenderSprite" type="Sprite" parent="Defender"]
+modulate = Color( 0.345098, 0.819608, 0.929412, 1 )
 scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 2 )
 
-[node name="DefenderSprite" type="Sprite" parent="."]
-visible = false
-modulate = Color( 0.345098, 0.819608, 0.929412, 1 )
-position = Vector2( 578.503, 163.317 )
+[node name="Attacker" type="Node2D" parent="."]
+
+[node name="AttackerSprite" type="Sprite" parent="Attacker"]
+modulate = Color( 0.670588, 0.160784, 0.160784, 1 )
 scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 2 )
 
