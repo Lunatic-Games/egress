@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/ui/VT323-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://menus/menu_label.tscn" type="PackedScene" id=2]
@@ -6,10 +6,31 @@
 [ext_resource path="res://assets/sfx/clack.wav" type="AudioStream" id=4]
 [ext_resource path="res://menus/main_menu/main_menu.gd" type="Script" id=5]
 
+[sub_resource type="Shader" id=6]
+code = "shader_type canvas_item;
+
+void fragment() {
+	float sd = 10.0;
+	float pi = 3.141592653;
+	float e = 2.71828;
+	float left = 1.0 / (2.0 * pi * pow(sd, 2));
+	vec4 sum = vec4(0.0);
+	for (float x = -8.0; x < 8.0; x += 2.0) {
+		for (float y = -8.0; y < 8.0; y += 2.0) {
+			vec4 value = texture(SCREEN_TEXTURE, SCREEN_UV + SCREEN_PIXEL_SIZE * vec2(x, y));
+			float p = -(pow(x, 2) + pow(y, 2)) / (2.0 * pow(sd, 2));
+			sum += value * left * pow(e, p);
+		}
+	}
+	COLOR = sum * 10.0 + texture(SCREEN_TEXTURE, SCREEN_UV);
+}
+"
+
+[sub_resource type="ShaderMaterial" id=7]
+shader = SubResource( 6 )
+
 [sub_resource type="DynamicFont" id=1]
 size = 128
-outline_size = 4
-outline_color = Color( 0.776471, 0.509804, 0.0470588, 0.270588 )
 font_data = ExtResource( 1 )
 
 [sub_resource type="Shader" id=2]
@@ -28,8 +49,8 @@ float rand(float value) {
 
 void fragment() {
 	vec2 xy = UV - 0.5;
-	float angle = tanh(xy.y / xy.x);
-	float sect = angle - mod(angle, 1.0 / float(bars));
+	float angle = atan(xy.y / xy.x);
+	float sect = angle - mod(angle, 3.14159 / float(bars));
 	float radius = inner_radius + rand(sect) * 0.3;
 	if (pow(xy.x, 2) + pow(xy.y, 2) < pow(radius, 2) &&
 			pow(xy.x, 2) + pow(xy.y, 2) > pow(inner_radius, 2)) {
@@ -42,9 +63,9 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id=3]
 shader = SubResource( 2 )
 shader_param/inner_radius = 0.129424
-shader_param/bars = 32
-shader_param/seed = 3.0
-shader_param/color = Color( 0.0470588, 0.780392, 0.027451, 1 )
+shader_param/bars = 64
+shader_param/seed = 16.0
+shader_param/color = Color( 0.780392, 0.556863, 0.027451, 1 )
 shader_param/offset = 0.111495
 
 [sub_resource type="Animation" id=4]
@@ -84,9 +105,18 @@ tracks/0/keys = {
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -1.0
-margin_bottom = 1.0
 script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource( 7 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -116,9 +146,6 @@ __meta__ = {
 [node name="BeginButton" parent="VBoxContainer" instance=ExtResource( 3 )]
 margin_right = 202.0
 focus_mode = 0
-custom_colors/font_color = Color( 0.0862745, 0.776471, 0.0470588, 1 )
-custom_colors/font_color_hover = Color( 0.054902, 1, 0, 1 )
-custom_colors/font_color_pressed = Color( 0.0313726, 0.513726, 0, 1 )
 enabled_focus_mode = 0
 text = "Begin Hack"
 
@@ -127,7 +154,6 @@ margin_top = 59.0
 margin_right = 202.0
 margin_bottom = 114.0
 focus_mode = 0
-custom_colors/font_color_pressed = Color( 0.0313726, 0.513726, 0, 1 )
 enabled_focus_mode = 0
 text = "Settings"
 
@@ -136,7 +162,6 @@ margin_top = 118.0
 margin_right = 202.0
 margin_bottom = 173.0
 focus_mode = 0
-custom_colors/font_color_pressed = Color( 0.0313726, 0.513726, 0, 1 )
 enabled_focus_mode = 0
 text = "Exit"
 
@@ -155,7 +180,6 @@ margin_right = 859.603
 margin_bottom = 476.204
 rect_rotation = 302.367
 rect_pivot_offset = Vector2( 150, 150 )
-color = Color( 0.0862745, 0.776471, 0.0470588, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -166,6 +190,7 @@ anims/anim = SubResource( 4 )
 
 [node name="PulsateAnimation" type="AnimationPlayer" parent="ColorRect"]
 anims/anim = SubResource( 5 )
+
 [connection signal="pressed" from="VBoxContainer/BeginButton" to="." method="_on_BeginButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_SettingsButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_ExitButton_pressed"]
