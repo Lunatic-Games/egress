@@ -14,23 +14,38 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="NewButton" type="Button" parent="."]
+[node name="Main" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="NewButton" type="Button" parent="Main"]
 anchor_right = 1.0
 margin_left = 8.0
 margin_top = 8.0
 margin_right = -8.0
-margin_bottom = -8.0
+margin_bottom = 31.0
 custom_fonts/font = SubResource( 1 )
 text = "NEW"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ProgramList" type="VBoxContainer" parent="."]
+[node name="ProgramList" type="VBoxContainer" parent="Main"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 43.0
+margin_bottom = 20.0
 custom_constants/separation = 25
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="EditCosmetics" type="Control" parent="."]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="EditStats" type="Control" parent="."]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
