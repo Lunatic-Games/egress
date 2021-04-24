@@ -9,6 +9,7 @@
 script = ExtResource( 1 )
 
 [node name="ExampleWindow" parent="WindowController" instance=ExtResource( 2 )]
-win_rect = Rect2( 0, 0, 400, 400 )
-win_name = "Example"
+margin_right = 400.0
+margin_bottom = 400.0
+win_name = "Window"
 source_path = "res://windows/example_win/example.tscn"
