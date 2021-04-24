@@ -9,7 +9,7 @@
 size = 96
 font_data = ExtResource( 3 )
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "load_program"
 tracks/0/type = "value"
 tracks/0/path = NodePath("AttackerSprite:position")
@@ -36,8 +36,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "load_program"
+[sub_resource type="Animation" id=3]
 tracks/0/type = "value"
 tracks/0/path = NodePath("DefenderSprite:position")
 tracks/0/interp = 1
@@ -128,10 +127,10 @@ __meta__ = {
 }
 
 [node name="AttackerAnimator" type="AnimationPlayer" parent="."]
-anims/load_program = SubResource( 3 )
+anims/load_program = SubResource( 2 )
 
 [node name="DefenderAnimator" type="AnimationPlayer" parent="."]
-anims/load_program = SubResource( 2 )
+anims/load_program = SubResource( 3 )
 
 [connection signal="timeout" from="DefenderAttackTimer" to="." method="_on_DefenderAttackTimer_timeout"]
 [connection signal="timeout" from="AttackerAttackTimer" to="." method="_on_AttackerAttackTimer_timeout"]
