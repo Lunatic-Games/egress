@@ -1,6 +1,12 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://menus/egress_queue/egress_queue.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://assets/ui/VT323-Regular.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 96
+font_data = ExtResource( 3 )
 
 [node name="EgressQueue" type="ColorRect" groups=[
 "egress",
@@ -13,3 +19,54 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="DefenderAttackTimer" type="Timer" parent="."]
+
+[node name="AttackerAttackTimer" type="Timer" parent="."]
+
+[node name="AttackerSprite" type="Sprite" parent="."]
+visible = false
+modulate = Color( 0.670588, 0.160784, 0.160784, 1 )
+position = Vector2( 73.9988, 159.77 )
+texture = ExtResource( 2 )
+
+[node name="DefenderSprite" type="Sprite" parent="."]
+visible = false
+modulate = Color( 0.345098, 0.819608, 0.929412, 1 )
+position = Vector2( 344.767, 164.816 )
+texture = ExtResource( 2 )
+
+[node name="AccessDenied" type="RichTextLabel" parent="."]
+visible = false
+modulate = Color( 0.619608, 0.14902, 0.14902, 1 )
+margin_left = 83.9053
+margin_top = 34.4611
+margin_right = 351.905
+margin_bottom = 230.461
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[center][shake]ACCESS DENIED[/shake]"
+text = "ACCESS DENIED"
+fit_content_height = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AccessGranted" type="RichTextLabel" parent="."]
+visible = false
+modulate = Color( 0.619608, 0.14902, 0.14902, 1 )
+margin_left = 83.9053
+margin_top = 34.4611
+margin_right = 351.905
+margin_bottom = 230.461
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[center][shake]ACCESS GRANTED[/shake]"
+text = "ACCESS GRANTED"
+fit_content_height = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="timeout" from="DefenderAttackTimer" to="." method="_on_DefenderAttackTimer_timeout"]
+[connection signal="timeout" from="AttackerAttackTimer" to="." method="_on_AttackerAttackTimer_timeout"]
