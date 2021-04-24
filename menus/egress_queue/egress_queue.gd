@@ -80,9 +80,9 @@ func break_attacker():
 func hack_successful(host_file):
 	emit_signal("decrypted", host_file)
 	
-	$DefenderSprite.visible = false
+	$Defender.visible = false
 	$DefenderAttackTimer.stop()
-	$AttackerSprite.visible = false
+	$Attacker.visible = false
 	$AttackerAttackTimer.stop()
 	
 	$AccessGranted.visible = true
@@ -93,7 +93,7 @@ func hack_successful(host_file):
 
 # Clear the defenders stats and prepare for the next one
 func defender_defeated():
-	$DefenderSprite.visible = false
+	$Defender.visible = false
 	$DefenderAttackTimer.stop()
 
 
@@ -106,21 +106,21 @@ func hack_failed():
 	hack_underway = false
 	
 	# Reset the programs
-	$DefenderSprite.visible = false
+	$Defender.visible = false
 	$DefenderAttackTimer.stop()
-	$AttackerSprite.visible = false
+	$Attacker.visible = false
 	$AttackerAttackTimer.stop()
 
 
 # Clear the defenders stats and prepare for the next one
 func attacker_defeated():
-	$AttackerSprite.visible = false
+	$Attacker.visible = false
 	$AttackerAttackTimer.stop()
 
 
 func instance_defender(program):
-	$DefenderSprite.visible = true
-	$DefenderSprite.modulate = program.color
+	$Defender.visible = true
+	$Defender/DefenderSprite.modulate = program.color
 	$DefenderAttackTimer.start(program.attack_rate)
 	
 	$DefenderAnimator.play('load_program')
@@ -129,8 +129,8 @@ func instance_defender(program):
 
 
 func instance_attacker(program):
-	$AttackerSprite.visible = true
-	$AttackerSprite.modulate = program.color
+	$Attacker.visible = true
+	$Attacker/AttackerSprite.modulate = program.color
 	$AttackerAttackTimer.start(program.attack_rate)
 	
 	$AttackerAnimator.play('load_program')
@@ -155,11 +155,15 @@ func _on_DefenderAttackTimer_timeout():
 	var bullets = defender_bullets.instance()
 	bullets.emitting = true
 	bullets.amount = current_defender.attack_value
-	$DefenderSprite.add_child(bullets)
+	$Defender.add_child(bullets)
+	
+	# Wait a given delay 1 second
+	yield(get_tree().create_timer(1), "timeout")
 	
 	# Damage the attacker
-	current_attacker.integrity -= current_defender.attack_value
-	scale_program(current_attacker, attackers[attacker_index].integrity, $AttackerSprite)
+	if (attacker_index < attackers.size()):
+		current_attacker.integrity -= current_defender.attack_value
+		scale_program(current_attacker, attackers[attacker_index].integrity, $Attacker/AttackerSprite)
 
 
 # Attack the current defender
@@ -169,11 +173,15 @@ func _on_AttackerAttackTimer_timeout():
 	var bullets = attacker_bullets.instance()
 	bullets.emitting = true
 	bullets.amount = current_attacker.attack_value
-	$AttackerSprite.add_child(bullets)
+	$Attacker.add_child(bullets)
 	
-	# Damage the defender
-	current_defender.integrity -= current_attacker.attack_value
-	scale_program(current_defender, defenders[defender_index].integrity, $DefenderSprite)
+	# Wait a given delay 1 second
+	yield(get_tree().create_timer(1), "timeout")
+	
+	# Damage the defender after waiting
+	if (defender_index < defenders.size()):
+		current_defender.integrity -= current_attacker.attack_value
+		scale_program(current_defender, defenders[defender_index].integrity, $Defender/DefenderSprite)
 
 
 func scale_program(program, max_integrity, visualizer):
