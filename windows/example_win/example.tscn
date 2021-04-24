@@ -1,0 +1,14 @@
+[gd_scene format=2]
+
+[node name="Example" type="Control"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_right = 185.0
+margin_bottom = 83.0
+text = "My window"
+__meta__ = {
+"_edit_use_anchors_": false
+}
