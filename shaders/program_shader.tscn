@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://shaders/program.shader" type="Shader" id=1]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 1 )
+shader_param/inner_radius = 0.129424
+shader_param/bars = 64
+shader_param/seed = 16.0
+shader_param/color = Color( 0.780392, 0.556863, 0.027451, 1 )
+shader_param/offset = 0.111495
+
+[node name="ProgramShader" type="ColorRect"]
+material = SubResource( 1 )
+margin_left = 600.0
+margin_top = 150.0
+margin_right = 900.0
+margin_bottom = 450.0
+rect_pivot_offset = Vector2( 150, 150 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
