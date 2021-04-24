@@ -9,7 +9,7 @@
 [sub_resource type="DynamicFont" id=1]
 size = 128
 outline_size = 4
-outline_color = Color( 0.0862745, 0.776471, 0.0470588, 0.270588 )
+outline_color = Color( 0.776471, 0.509804, 0.0470588, 0.270588 )
 font_data = ExtResource( 1 )
 
 [sub_resource type="Shader" id=2]
@@ -99,7 +99,7 @@ margin_top = -176.5
 margin_right = 315.0
 margin_bottom = -47.5
 custom_fonts/font = SubResource( 1 )
-custom_colors/font_color = Color( 0.0862745, 0.776471, 0.0470588, 1 )
+custom_colors/font_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
 text = "Egress"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -127,7 +127,6 @@ margin_top = 59.0
 margin_right = 202.0
 margin_bottom = 114.0
 focus_mode = 0
-custom_colors/font_color_hover = Color( 0.054902, 1, 0, 1 )
 custom_colors/font_color_pressed = Color( 0.0313726, 0.513726, 0, 1 )
 enabled_focus_mode = 0
 text = "Settings"
@@ -137,7 +136,6 @@ margin_top = 118.0
 margin_right = 202.0
 margin_bottom = 173.0
 focus_mode = 0
-custom_colors/font_color_hover = Color( 0.054902, 1, 0, 1 )
 custom_colors/font_color_pressed = Color( 0.0313726, 0.513726, 0, 1 )
 enabled_focus_mode = 0
 text = "Exit"
