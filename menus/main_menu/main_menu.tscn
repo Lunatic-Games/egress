@@ -1,44 +1,137 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/ui/VT323-Regular.ttf" type="DynamicFontData" id=1]
-
-[sub_resource type="Shader" id=3]
-code = "shader_type canvas_item;
-
-void fragment() {
-	//vec4 value = texture(TEXTURE, )
-	//vec4 up = texture(TEXTURE, UV + TEXTURE_PIXEL_SIZE * vec2(1, 0));
-	//COLOR = COLOR + up;
-}"
-
-[sub_resource type="ShaderMaterial" id=4]
-shader = SubResource( 3 )
+[ext_resource path="res://menus/menu_label.tscn" type="PackedScene" id=2]
+[ext_resource path="res://menus/menu_button.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/sfx/clack.wav" type="AudioStream" id=4]
+[ext_resource path="res://menus/main_menu/main_menu.gd" type="Script" id=5]
+[ext_resource path="res://shaders/screen_shader.tscn" type="PackedScene" id=6]
+[ext_resource path="res://shaders/program_shader.tscn" type="PackedScene" id=7]
 
 [sub_resource type="DynamicFont" id=1]
-size = 64
+size = 128
 font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "anim"
+length = 16.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 16 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "anim"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/inner_radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.1, 0.2 ]
+}
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="."]
-material = SubResource( 4 )
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -90.2979
-margin_top = -274.233
-margin_right = 65.7021
-margin_bottom = -209.233
-custom_fonts/font = SubResource( 1 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "Egress"
-align = 1
+[node name="ScreenShader" parent="." instance=ExtResource( 6 )]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_left = 50
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 50.0
+margin_right = 1024.0
+margin_bottom = 600.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="TitleLabel" parent="MarginContainer/VBoxContainer" instance=ExtResource( 2 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 139.0
+margin_right = 974.0
+margin_bottom = 268.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
+text = "Egress"
+align = 0
+
+[node name="Buttons" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 288.0
+margin_right = 974.0
+margin_bottom = 461.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BeginButton" parent="MarginContainer/VBoxContainer/Buttons" instance=ExtResource( 3 )]
+margin_right = 974.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Begin Hack"
+
+[node name="SettingsButton" parent="MarginContainer/VBoxContainer/Buttons" instance=ExtResource( 3 )]
+margin_top = 59.0
+margin_right = 974.0
+margin_bottom = 114.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Settings"
+
+[node name="ExitButton" parent="MarginContainer/VBoxContainer/Buttons" instance=ExtResource( 3 )]
+margin_top = 118.0
+margin_right = 974.0
+margin_bottom = 173.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Exit"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -10.0
+pitch_scale = 0.9
+autoplay = true
+bus = "Music"
+
+[node name="ProgramShader" parent="." instance=ExtResource( 7 )]
+
+[node name="SpinAnimation" type="AnimationPlayer" parent="ProgramShader"]
+autoplay = "anim"
+anims/anim = SubResource( 4 )
+
+[node name="PulsateAnimation" type="AnimationPlayer" parent="ProgramShader"]
+anims/anim = SubResource( 5 )
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/BeginButton" to="." method="_on_BeginButton_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/SettingsButton" to="." method="_on_SettingsButton_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/ExitButton" to="." method="_on_ExitButton_pressed"]
