@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/ui/VT323-Regular.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="Shader" id=3]
+code = "shader_type canvas_item;
+
+void fragment() {
+	//vec4 value = texture(TEXTURE, )
+	//vec4 up = texture(TEXTURE, UV + TEXTURE_PIXEL_SIZE * vec2(1, 0));
+	//COLOR = COLOR + up;
+}"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 64
+font_data = ExtResource( 1 )
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+material = SubResource( 4 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -90.2979
+margin_top = -274.233
+margin_right = 65.7021
+margin_bottom = -209.233
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Egress"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
