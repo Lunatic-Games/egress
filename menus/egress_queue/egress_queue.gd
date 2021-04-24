@@ -5,7 +5,9 @@ var attacker_stats = {}
 
 
 export (Array, Resource) var attackers = []
+onready var current_attacker
 onready var defenders = []
+onready var current_defender
 onready var hack_underway = false
 onready var defender_index = 0
 onready var attacker_index = 0
@@ -23,11 +25,11 @@ func _process(delta):
 	if (hack_underway):
 		
 		# Check to break a defending program
-		if (defenders[defender_index].integrity <= 0):
+		if (current_defender.integrity <= 0):
 			break_defender()
 		
 		# Check to break an attacking program
-		if (attackers[attacker_index].integrity <= 0):
+		if (current_attacker.integrity <= 0):
 			break_attacker()
 
 
@@ -40,6 +42,7 @@ func begin_hack():
 	if (attackers.size() <= 0):
 		hack_failed()
 		hack_underway = false
+		
 	else:
 		# TODO CLEAR THE ATTACKER AND DEFENDER
 		instance_attacker(attackers[attacker_index])
@@ -78,7 +81,9 @@ func hack_successful(host_file):
 	$DefenderAttackTimer.stop()
 	$AttackerSprite.visible = false
 	$AttackerAttackTimer.stop()
+	
 	hack_underway = false
+	defenders = []
 
 
 # Clear the defenders stats and prepare for the next one
@@ -90,6 +95,9 @@ func defender_defeated():
 # Signal to the file that the hack was successful
 func hack_failed():
 	print("Hacked")
+	
+	defenders = []
+	hack_underway = false
 
 
 # Clear the defenders stats and prepare for the next one
@@ -102,12 +110,17 @@ func instance_defender(program):
 	$DefenderSprite.visible = true
 	$DefenderSprite.modulate = program.color
 	$DefenderAttackTimer.start(program.attack_rate)
+	
+	current_defender = defenders[defender_index].duplicate()
+	print(program)
 
 
 func instance_attacker(program):
 	$AttackerSprite.visible = true
 	$AttackerSprite.modulate = program.color
 	$AttackerAttackTimer.start(program.attack_rate)
+	
+	current_attacker = attackers[attacker_index].duplicate()
 
 
 func queue_defender(program, id):
@@ -126,13 +139,12 @@ func _on_DefenderAttackTimer_timeout():
 	# Spawn bullet generator
 	var bullets = defender_bullets.instance()
 	bullets.emitting = true
-	bullets.amount = defenders[defender_index].attack_value
+	bullets.amount = current_defender.attack_value
 	$DefenderSprite.add_child(bullets)
 	
 	# Damage the attacker
-	attackers[attacker_index].integrity -= defenders[defender_index].attack_value
+	current_attacker.integrity -= current_defender.attack_value
 
-	# TODO Emit particles
 
 # Attack the current defender
 func _on_AttackerAttackTimer_timeout():
@@ -140,10 +152,8 @@ func _on_AttackerAttackTimer_timeout():
 	# Spawn bullet generator
 	var bullets = attacker_bullets.instance()
 	bullets.emitting = true
-	bullets.amount = attackers[attacker_index].attack_value
+	bullets.amount = current_attacker.attack_value
 	$AttackerSprite.add_child(bullets)
 	
-	# Damage the attacker
-	defenders[defender_index].integrity -= attackers[attacker_index].attack_value
-
-	# TODO Emit particles
+	# Damage the defender
+	current_defender.integrity -= current_attacker.attack_value
