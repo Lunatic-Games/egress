@@ -7,6 +7,8 @@
 font_data = ExtResource( 2 )
 
 [node name="Window" type="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
 script = ExtResource( 1 )
 __meta__ = {
@@ -14,16 +16,16 @@ __meta__ = {
 }
 
 [node name="WindowBar" type="ColorRect" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_right = 1.0
+margin_bottom = 41.0
 color = Color( 0.262745, 0.262745, 0.262745, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="WindowName" type="RichTextLabel" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_right = 1.0
+margin_bottom = 41.0
 custom_fonts/normal_font = SubResource( 1 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 text = "window name"
@@ -32,5 +34,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Content" type="CanvasLayer" parent="."]
-layer = 2
+[node name="Content" type="Control" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
