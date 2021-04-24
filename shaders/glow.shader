@@ -1,7 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=2]
-
-[sub_resource type="Shader" id=6]
-code = "shader_type canvas_item;
+shader_type canvas_item;
 
 void fragment() {
 	float sd = 10.0;
@@ -9,16 +6,12 @@ void fragment() {
 	float e = 2.71828;
 	float left = 1.0 / (2.0 * pi * pow(sd, 2));
 	vec4 sum = vec4(0.0);
-	for (float x = -8.0; x < 8.0; x += 2.0) {
-		for (float y = -8.0; y < 8.0; y += 2.0) {
+	for (float x = -8.0; x < 8.0; x += 4.0) {
+		for (float y = -8.0; y < 8.0; y += 4.0) {
 			vec4 value = texture(SCREEN_TEXTURE, SCREEN_UV + SCREEN_PIXEL_SIZE * vec2(x, y));
 			float p = -(pow(x, 2) + pow(y, 2)) / (2.0 * pow(sd, 2));
 			sum += value * left * pow(e, p);
 		}
 	}
-	COLOR = sum * 10.0 + texture(SCREEN_TEXTURE, SCREEN_UV);
+	COLOR = sum * 32.0 + texture(SCREEN_TEXTURE, SCREEN_UV);
 }
-"
-
-[resource]
-shader = SubResource( 6 )
