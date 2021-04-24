@@ -3,7 +3,8 @@
 [node name="FileSystem" type="ColorRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -698.0
+margin_right = -677.0
+margin_bottom = -271.0
 color = Color( 0.00784314, 0.733333, 0.309804, 1 )
 __meta__ = {
 "_edit_use_anchors_": false

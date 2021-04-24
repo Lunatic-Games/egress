@@ -12,4 +12,4 @@ script = ExtResource( 1 )
 margin_right = 400.0
 margin_bottom = 400.0
 win_name = "Window"
-source_path = "res://windows/example_win/example.tscn"
+source_path = "res://menus/file_system/file_systems.tscn"

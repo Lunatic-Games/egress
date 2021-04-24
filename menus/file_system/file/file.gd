@@ -1,5 +1,6 @@
 extends Control
 
+export (String) var file_name
 export (bool) var encrypted = false
 export (int) var id
 
@@ -16,7 +17,8 @@ onready var egress_queue = get_tree().get_nodes_in_group("egress")[0]
 
 
 func _ready():
-	egress_queue.connect("decrypted", self, "score_bits")
+	$Button.text = file_name
+	egress_queue.connect("decrypted", self, "check_id")
 
 
 
@@ -25,17 +27,24 @@ func _on_Button_pressed():
 	# If encrypted instance program in queue
 	if (encrypted && egress_queue.is_free()):
 		egress_queue.instance_program(trap, integrity, attack_rate, attack_value, type, id)
-	else:
-		pass
+	elif (! encrypted):
+		score_bits()
+		queue_free()
 
 
 func check_id(id):
 	
 	# if the program for this file was defeated
 	if (self.id == id):
-		# Give the user bits
-		score_bits(bit_reward)
+		# decrypt the file
+		decrypt_file()
 
 
-func score_bits(bits):
-	print("Gained ", bits, " bits")
+
+func decrypt_file():
+	encrypted = false
+	$Button.text = $Button.text + " (decrypted)"
+
+
+func score_bits():
+	print("Gained ", bit_reward, " bits")
