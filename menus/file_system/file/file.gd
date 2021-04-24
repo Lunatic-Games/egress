@@ -5,6 +5,7 @@ export (bool) var encrypted = false
 export (int) var id
 export (int) var bit_reward = 0
 
+
 # Vars for generating the program
 export (Array, Resource) var programs
 

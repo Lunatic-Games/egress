@@ -71,6 +71,7 @@ func break_attacker():
 
 # Signal to the file that the hack was successful
 func hack_successful(host_file):
+	print("Hacked")
 	emit_signal("decrypted", host_file)
 	
 	$DefenderSprite.visible = false
@@ -88,7 +89,7 @@ func defender_defeated():
 
 # Signal to the file that the hack was successful
 func hack_failed():
-	pass
+	print("Hacked")
 
 
 # Clear the defenders stats and prepare for the next one
