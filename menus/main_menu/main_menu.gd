@@ -2,6 +2,10 @@ extends Control
 
 
 
+func _ready():
+	$MarginContainer/VBoxContainer/Buttons/BeginButton.grab_focus()
+
+
 func _on_BeginButton_pressed():
 	pass # Replace with function body.
 
