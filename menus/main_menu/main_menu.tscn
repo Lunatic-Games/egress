@@ -12,7 +12,7 @@
 size = 128
 font_data = ExtResource( 1 )
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 resource_name = "anim"
 length = 16.0
 loop = true
@@ -29,7 +29,7 @@ tracks/0/keys = {
 "values": [ 0.0, 360.0 ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=3]
 resource_name = "anim"
 length = 4.0
 loop = true
@@ -127,10 +127,10 @@ bus = "Music"
 
 [node name="SpinAnimation" type="AnimationPlayer" parent="ProgramShader"]
 autoplay = "anim"
-anims/anim = SubResource( 4 )
+anims/anim = SubResource( 2 )
 
 [node name="PulsateAnimation" type="AnimationPlayer" parent="ProgramShader"]
-anims/anim = SubResource( 5 )
+anims/anim = SubResource( 3 )
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/BeginButton" to="." method="_on_BeginButton_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/SettingsButton" to="." method="_on_SettingsButton_pressed"]

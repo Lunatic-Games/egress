@@ -1,6 +1,8 @@
 extends Control
 
 
-func set_appearance(color, text):
-	$HBoxContainer/Label.text = text
-	$HBoxContainer/CenterContainer/icon.modulate = color
+var p
+
+func init(p):
+	pass
+	#$HBoxContainer/ProgramShader.modulate(p.color)

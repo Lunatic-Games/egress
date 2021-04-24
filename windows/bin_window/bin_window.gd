@@ -19,7 +19,6 @@ func update_list():
 		$Main/ProgramList.remove_child(child)
 	for program in program_list:
 		var entry = program_button_res.instance()
-		entry.set_appearance(program.color, "New")
 		$Main/ProgramList.add_child(entry)
 
 func update_editors(p):
@@ -30,6 +29,7 @@ func new_button():
 		print("You have reached the maximum number of programs.")
 		return
 	var p = program_res.new()
+	p.color = Color.cyan
 	#Add program to list and begin editing it
 	program_list.append(p)
 	update_editors(p)
