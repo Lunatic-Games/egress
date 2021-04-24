@@ -6,6 +6,7 @@
 
 [node name="AttackerParticle" type="Particles2D"]
 emitting = false
+lifetime = 0.2
 one_shot = true
 explosiveness = 0.79
 process_material = ExtResource( 1 )

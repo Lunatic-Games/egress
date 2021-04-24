@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://menus/file_system/file/file.tscn" type="PackedScene" id=1]
 [ext_resource path="res://programs/Walls/wall1.tres" type="Resource" id=2]
+[ext_resource path="res://programs/Breakers/breaker2.tres" type="Resource" id=3]
 
 [node name="FileSystem" type="ColorRect"]
 anchor_right = 1.0
@@ -48,4 +49,4 @@ margin_bottom = 40.0
 file_name = "suck_my_ass"
 id = 1
 bit_reward = 15
-programs = [ ExtResource( 2 ), ExtResource( 2 ) ]
+programs = [ ExtResource( 2 ), ExtResource( 2 ), ExtResource( 3 ) ]

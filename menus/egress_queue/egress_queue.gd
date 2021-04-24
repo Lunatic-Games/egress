@@ -1,10 +1,11 @@
 extends ColorRect
 
+export (Array, Resource) var attackers = []
+
 var defender_stats = {}
 var attacker_stats = {}
 
 
-export (Array, Resource) var attackers = []
 onready var current_attacker
 onready var defenders = []
 onready var current_defender
@@ -34,6 +35,9 @@ func _process(delta):
 
 
 func begin_hack():
+	$AccessDenied.visible = false
+	$AccessGranted.visible = false
+	
 	hack_underway = true
 	defender_index = 0
 	attacker_index = 0
@@ -74,13 +78,14 @@ func break_attacker():
 
 # Signal to the file that the hack was successful
 func hack_successful(host_file):
-	print("Hacked")
 	emit_signal("decrypted", host_file)
 	
 	$DefenderSprite.visible = false
 	$DefenderAttackTimer.stop()
 	$AttackerSprite.visible = false
 	$AttackerAttackTimer.stop()
+	
+	$AccessGranted.visible = true
 	
 	hack_underway = false
 	defenders = []
@@ -96,8 +101,15 @@ func defender_defeated():
 func hack_failed():
 	print("Hacked")
 	
+	$AccessDenied.visible = true
 	defenders = []
 	hack_underway = false
+	
+	# Reset the programs
+	$DefenderSprite.visible = false
+	$DefenderAttackTimer.stop()
+	$AttackerSprite.visible = false
+	$AttackerAttackTimer.stop()
 
 
 # Clear the defenders stats and prepare for the next one
@@ -111,14 +123,17 @@ func instance_defender(program):
 	$DefenderSprite.modulate = program.color
 	$DefenderAttackTimer.start(program.attack_rate)
 	
+	$DefenderAnimator.play('load_program')
+	
 	current_defender = defenders[defender_index].duplicate()
-	print(program)
 
 
 func instance_attacker(program):
 	$AttackerSprite.visible = true
 	$AttackerSprite.modulate = program.color
 	$AttackerAttackTimer.start(program.attack_rate)
+	
+	$AttackerAnimator.play('load_program')
 	
 	current_attacker = attackers[attacker_index].duplicate()
 
@@ -144,6 +159,7 @@ func _on_DefenderAttackTimer_timeout():
 	
 	# Damage the attacker
 	current_attacker.integrity -= current_defender.attack_value
+	scale_program(current_attacker, attackers[attacker_index].integrity, $AttackerSprite)
 
 
 # Attack the current defender
@@ -157,3 +173,15 @@ func _on_AttackerAttackTimer_timeout():
 	
 	# Damage the defender
 	current_defender.integrity -= current_attacker.attack_value
+	scale_program(current_defender, defenders[defender_index].integrity, $DefenderSprite)
+
+
+func scale_program(program, max_integrity, visualizer):
+
+	var value = float(program.integrity) / float(max_integrity)
+	if (value < 0):
+		value = 0
+	
+	var scaled = Vector2(value, value)
+	print("New scale", scaled)
+	visualizer.scale = scaled
