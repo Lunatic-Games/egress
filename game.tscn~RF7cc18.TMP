@@ -8,21 +8,21 @@
 [node name="WindowController" type="Node2D" parent="."]
 script = ExtResource( 1 )
 
-[node name="Egress" parent="WindowController" instance=ExtResource( 2 )]
-margin_left = 400.293
-margin_top = 6.46448
-margin_right = 1016.29
-margin_bottom = 366.464
-win_name = "Egress Queue"
-source_path = "res://menus/egress_queue/egress_queue.tscn"
-
 [node name="Explorer" parent="WindowController" instance=ExtResource( 2 )]
 margin_left = 8.8284
 margin_top = 7.0
 margin_right = 395.828
 margin_bottom = 367.0
 win_name = "File Explorer"
-source_path = "res://menus/file_system/file_systems.tscn"
+source_path = "res://windows/example_win/example.tscn"
+
+[node name="Egress" parent="WindowController" instance=ExtResource( 2 )]
+margin_left = 400.293
+margin_top = 6.46448
+margin_right = 1016.29
+margin_bottom = 366.464
+win_name = "Egress Queue"
+source_path = "res://windows/example_win/example.tscn"
 
 [node name="Ingress" parent="WindowController" instance=ExtResource( 2 )]
 margin_left = 401.0
