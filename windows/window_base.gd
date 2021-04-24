@@ -16,9 +16,5 @@ func _ready():
 	$WindowBar.rect_size = Vector2(self.rect_size.x-2*BAR_MARGIN, BAR_HEIGHT)
 	var content_source = load(source_path)
 	content = content_source.instance()
-	content.rect_position = Vector2(0, BAR_HEIGHT)
-	#content.rect_size = Vector2(win_rect.size.x, win_rect.size.y - BAR_HEIGHT)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+	content.rect_position = Vector2(BAR_MARGIN, BAR_HEIGHT + 2*BAR_MARGIN)
+	$Content.add_child(content)
