@@ -16,5 +16,8 @@ func _ready():
 	$WindowBar.rect_size = Vector2(self.rect_size.x-2*BAR_MARGIN, BAR_HEIGHT)
 	var content_source = load(source_path)
 	content = content_source.instance()
-	content.rect_position = Vector2(BAR_MARGIN, BAR_HEIGHT + 2*BAR_MARGIN)
+	content.margin_top = BAR_HEIGHT + 2*BAR_MARGIN
+	content.margin_bottom = -BAR_MARGIN
+	content.margin_left = BAR_MARGIN
+	content.margin_right = -BAR_MARGIN
 	$Content.add_child(content)
