@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/ui/VT323-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://menus/menu_label.tscn" type="PackedScene" id=2]
@@ -11,6 +11,75 @@ size = 128
 outline_size = 4
 outline_color = Color( 0.0862745, 0.776471, 0.0470588, 0.270588 )
 font_data = ExtResource( 1 )
+
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
+
+uniform float inner_radius : hint_range(0, 0.5);
+uniform int bars : hint_range(2, 256);
+uniform float seed;
+uniform vec4 color : hint_color;
+uniform float offset;
+
+// https://stackoverflow.com/questions/4200224/random-noise-functions-for-glsl
+float rand(float value) {
+	return fract(sin(dot(vec2(value, seed), vec2(12.9898,78.233))) * 43758.5453);
+}
+
+void fragment() {
+	vec2 xy = UV - 0.5;
+	float angle = tanh(xy.y / xy.x);
+	float sect = angle - mod(angle, 1.0 / float(bars));
+	float radius = inner_radius + rand(sect) * 0.3;
+	if (pow(xy.x, 2) + pow(xy.y, 2) < pow(radius, 2) &&
+			pow(xy.x, 2) + pow(xy.y, 2) > pow(inner_radius, 2)) {
+		COLOR = color;
+	} else {
+		COLOR = vec4(0.0);
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+shader_param/inner_radius = 0.129424
+shader_param/bars = 32
+shader_param/seed = 3.0
+shader_param/color = Color( 0.0470588, 0.780392, 0.027451, 1 )
+shader_param/offset = 0.111495
+
+[sub_resource type="Animation" id=4]
+resource_name = "anim"
+length = 16.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 16 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "anim"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/inner_radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.1, 0.2 ]
+}
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -47,6 +116,7 @@ __meta__ = {
 [node name="BeginButton" parent="VBoxContainer" instance=ExtResource( 3 )]
 margin_right = 202.0
 focus_mode = 0
+custom_colors/font_color = Color( 0.0862745, 0.776471, 0.0470588, 1 )
 custom_colors/font_color_hover = Color( 0.054902, 1, 0, 1 )
 custom_colors/font_color_pressed = Color( 0.0313726, 0.513726, 0, 1 )
 enabled_focus_mode = 0
@@ -78,6 +148,26 @@ volume_db = -10.0
 pitch_scale = 0.9
 autoplay = true
 bus = "Music"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource( 3 )
+margin_left = 559.603
+margin_top = 176.204
+margin_right = 859.603
+margin_bottom = 476.204
+rect_rotation = 302.367
+rect_pivot_offset = Vector2( 150, 150 )
+color = Color( 0.0862745, 0.776471, 0.0470588, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SpinAnimation" type="AnimationPlayer" parent="ColorRect"]
+autoplay = "anim"
+anims/anim = SubResource( 4 )
+
+[node name="PulsateAnimation" type="AnimationPlayer" parent="ColorRect"]
+anims/anim = SubResource( 5 )
 [connection signal="pressed" from="VBoxContainer/BeginButton" to="." method="_on_BeginButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_SettingsButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_ExitButton_pressed"]
