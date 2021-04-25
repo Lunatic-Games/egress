@@ -243,6 +243,7 @@ margin_right = 124.0
 margin_bottom = 124.0
 
 [node name="DefenderName" type="RichTextLabel" parent="Defender"]
+self_modulate = Color( 1, 1, 1, 0 )
 margin_left = -108.488
 margin_top = 120.224
 margin_right = 117.512
