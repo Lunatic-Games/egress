@@ -3,6 +3,16 @@ extends Control
 
 const MAX_PROGRAMS = 5
 const TEXT_EDIT_CHAR_LIMIT = 15
+const COLOR_REF = {
+	"Orange": Color.orange,
+	"Yellow": Color.yellow,
+	"Green": Color.green,
+	"Blue": Color.blue,
+	"White": Color.white,
+	"Pink": Color.pink,
+	"Red": Color.red,
+	"Purple": Color.purple
+}
 
 onready var program_button_res = load("res://windows/bin_window/program_button.tscn")
 onready var program_res = load("res://programs/PROGRAM.gd")
@@ -37,6 +47,9 @@ func update_list():
 func update_editors(p):
 	text_edit_content = p.name
 	$EditCosmetics/Columns/Rows/NameEdit.text = text_edit_content
+	for button in get_tree().get_nodes_in_group("ColorButton"):
+		button.modulate = COLOR_REF[button.name]
+		button.connect("button_down", self, "color_button", [button.name])
 
 func new_button():
 	if program_list.size() >= MAX_PROGRAMS:
@@ -54,6 +67,7 @@ func next_button():
 
 func done_button():
 	update_list()
+	program_in_edit = null
 	transition_to("main")
 
 func transition_to(menu):
@@ -68,7 +82,11 @@ func transition_to(menu):
 		$EditStats.visible = true
 	else:
 		print("ERROR - menu not found:", menu)
-		
+
+func color_button(color):
+	if program_in_edit:
+		program_in_edit.color = COLOR_REF[color]
+
 func handle_text_edit_change():
 	var new_text = $EditCosmetics/Columns/Rows/NameEdit.text
 	if new_text.length() >= TEXT_EDIT_CHAR_LIMIT:
