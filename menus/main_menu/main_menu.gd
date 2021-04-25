@@ -28,7 +28,7 @@ func _on_VolumeSlider_value_changed(value):
 
 
 func _on_BeginButton_pressed():
-	get_tree().change_scene("res://game.tscn")
+	var _ret = get_tree().change_scene("res://game.tscn")
 
 
 func _on_ConfigButton_pressed():
@@ -51,7 +51,6 @@ func _on_ExitButton_pressed():
 func _on_FullscreenButton_pressed():
 	OS.window_fullscreen = true
 	
-	var exit_fullscreen_button = config_container.get_node("VBoxContainer/ExitFullscreenButton")
 	exit_fullscreen_button.visible = true
 	exit_fullscreen_button.grab_focus()
 	exit_fullscreen_button.focus_neighbour_top = config_button.get_path()
@@ -64,7 +63,6 @@ func _on_FullscreenButton_pressed():
 func _on_ExitFullscreenButton_pressed():
 	OS.window_fullscreen = false
 	
-	var fullscreen_button = config_container.get_node("VBoxContainer/FullscreenButton")
 	fullscreen_button.visible = true
 	fullscreen_button.grab_focus()
 	fullscreen_button.focus_neighbour_top = config_button.get_path()

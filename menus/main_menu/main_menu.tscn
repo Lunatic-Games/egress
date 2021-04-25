@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/ui/VT323-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://menus/menu_label.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://shaders/screen_shader.tscn" type="PackedScene" id=6]
 [ext_resource path="res://shaders/program_shader.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/ui/slider_grabber.png" type="Texture" id=8]
+[ext_resource path="res://menus/mouse.tscn" type="PackedScene" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 128
@@ -167,6 +168,8 @@ bus = "Music"
 modulate = Color( 0.776471, 0.564706, 0.0470588, 1 )
 margin_left = 64.0
 margin_right = 364.0
+
+[node name="Mouse" parent="." instance=ExtResource( 9 )]
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/BeginButton" to="." method="_on_BeginButton_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/ConfigButton" to="." method="_on_ConfigButton_pressed"]
