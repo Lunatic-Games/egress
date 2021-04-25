@@ -1,8 +1,25 @@
-[gd_scene load_steps=5 format=2]
+
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://windows/bin_window/program_button.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://shaders/program_shader.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/ui/VT323-Regular.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="Animation" id=2]
+resource_name = "rect_rotate"
+length = 16.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 16 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 3 )
@@ -21,25 +38,28 @@ anchor_right = 1.0
 anchor_bottom = 0.5
 margin_top = -7.0
 margin_bottom = 7.0
-custom_constants/separation = 25
+custom_constants/separation = 10
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer"]
-margin_left = 478.0
-margin_right = 478.0
-margin_bottom = 17.0
+[node name="ProgramShader" parent="HBoxContainer" instance=ExtResource( 2 )]
+margin_left = 461.0
+margin_top = 0.0
+margin_right = 511.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+rect_pivot_offset = Vector2( 25, 25 )
 
-[node name="icon" type="Sprite" parent="HBoxContainer/CenterContainer"]
-scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 2 )
-centered = false
+[node name="SpinAnimation" type="AnimationPlayer" parent="HBoxContainer/ProgramShader"]
+autoplay = "rect_rotate"
+anims/rect_rotate = SubResource( 2 )
 
 [node name="Label" type="Label" parent="HBoxContainer"]
-margin_left = 503.0
-margin_right = 545.0
-margin_bottom = 17.0
+margin_left = 521.0
+margin_top = 16.0
+margin_right = 563.0
+margin_bottom = 33.0
 custom_fonts/font = SubResource( 1 )
 text = "Program"

@@ -14,23 +14,58 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="NewButton" type="Button" parent="."]
+[node name="Main" type="Control" parent="."]
+visible = false
 anchor_right = 1.0
-margin_left = 8.0
-margin_top = 8.0
-margin_right = -8.0
-margin_bottom = -8.0
+anchor_bottom = 1.0
+
+[node name="NewButton" type="Button" parent="Main"]
+anchor_right = 1.0
+margin_bottom = 23.0
 custom_fonts/font = SubResource( 1 )
 text = "NEW"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ProgramList" type="VBoxContainer" parent="."]
+[node name="ProgramList" type="VBoxContainer" parent="Main"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 43.0
+margin_bottom = 20.0
 custom_constants/separation = 25
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EditCosmetics" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="NextButton" type="Button" parent="EditCosmetics"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -23.0
+custom_fonts/font = SubResource( 1 )
+text = "NEXT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EditStats" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="DoneButton" type="Button" parent="EditStats"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -23.0
+custom_fonts/font = SubResource( 1 )
+text = "DONE"
 __meta__ = {
 "_edit_use_anchors_": false
 }
