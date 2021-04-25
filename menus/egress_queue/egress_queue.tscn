@@ -222,32 +222,40 @@ __meta__ = {
 }
 
 [node name="AccessDenied" type="RichTextLabel" parent="."]
-modulate = Color( 0.619608, 0.14902, 0.14902, 1 )
+modulate = Color( 0.776471, 0.564706, 0.0470588, 1 )
 self_modulate = Color( 1, 1, 1, 0 )
-margin_left = 83.9053
-margin_top = 34.4611
-margin_right = 351.905
-margin_bottom = 230.461
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -136.5
+margin_top = -147.0
+margin_right = 136.5
+margin_bottom = 147.0
 custom_fonts/normal_font = SubResource( 2 )
 bbcode_enabled = true
-bbcode_text = "[center][shake]ACCESS DENIED[/shake]"
-text = "ACCESS DENIED"
+bbcode_text = "[shake][center]DENIED[/center][/shake]"
+text = "DENIED"
 fit_content_height = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="AccessGranted" type="RichTextLabel" parent="."]
-modulate = Color( 0.25098, 0.878431, 0.196078, 1 )
+modulate = Color( 0.776471, 0.564706, 0.0470588, 1 )
 self_modulate = Color( 1, 1, 1, 0 )
-margin_left = 83.9053
-margin_top = 34.4611
-margin_right = 351.905
-margin_bottom = 230.461
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -134.0
+margin_top = -147.0
+margin_right = 134.0
+margin_bottom = 147.0
 custom_fonts/normal_font = SubResource( 2 )
 bbcode_enabled = true
-bbcode_text = "[center][shake]ACCESS GRANTED[/shake]"
-text = "ACCESS GRANTED"
+bbcode_text = "[shake][center]GRANTED[/center][/shake]"
+text = "GRANTED"
 fit_content_height = true
 __meta__ = {
 "_edit_use_anchors_": false
