@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/ui/VT323-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://menus/menu_label.tscn" type="PackedScene" id=2]
@@ -7,44 +7,19 @@
 [ext_resource path="res://menus/main_menu/main_menu.gd" type="Script" id=5]
 [ext_resource path="res://shaders/screen_shader.tscn" type="PackedScene" id=6]
 [ext_resource path="res://shaders/program_shader.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/ui/slider_grabber.png" type="Texture" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 128
 font_data = ExtResource( 1 )
 
-[sub_resource type="Animation" id=2]
-resource_name = "anim"
-length = 16.0
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:rect_rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 16 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0.0, 360.0 ]
-}
+[sub_resource type="StyleBoxTexture" id=5]
+texture = ExtResource( 8 )
+region_rect = Rect2( 0, 0, 0, 4 )
 
-[sub_resource type="Animation" id=3]
-resource_name = "anim"
-length = 4.0
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:material:shader_param/inner_radius")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 2.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0.1, 0.2 ]
-}
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=7]
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -59,6 +34,7 @@ __meta__ = {
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+custom_constants/margin_top = 150
 custom_constants/margin_left = 50
 __meta__ = {
 "_edit_use_anchors_": false
@@ -66,10 +42,10 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 margin_left = 50.0
+margin_top = 150.0
 margin_right = 1024.0
 margin_bottom = 600.0
 custom_constants/separation = 20
-alignment = 1
 
 [node name="TitleLabel" parent="MarginContainer/VBoxContainer" instance=ExtResource( 2 )]
 anchor_left = 0.0
@@ -77,44 +53,112 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 139.0
+margin_top = 0.0
 margin_right = 974.0
-margin_bottom = 268.0
+margin_bottom = 129.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
 text = "Egress"
 align = 0
 
 [node name="Buttons" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 288.0
+margin_top = 149.0
 margin_right = 974.0
-margin_bottom = 461.0
-alignment = 1
+margin_bottom = 322.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="BeginButton" parent="MarginContainer/VBoxContainer/Buttons" instance=ExtResource( 3 )]
 margin_right = 974.0
-focus_mode = 0
-enabled_focus_mode = 0
-text = "Begin Hack"
+custom_colors/font_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
+text = "Launch"
 
-[node name="SettingsButton" parent="MarginContainer/VBoxContainer/Buttons" instance=ExtResource( 3 )]
+[node name="ConfigButton" parent="MarginContainer/VBoxContainer/Buttons" instance=ExtResource( 3 )]
 margin_top = 59.0
 margin_right = 974.0
 margin_bottom = 114.0
-focus_mode = 0
-enabled_focus_mode = 0
-text = "Settings"
+text = "Config"
 
-[node name="ExitButton" parent="MarginContainer/VBoxContainer/Buttons" instance=ExtResource( 3 )]
+[node name="ConfigContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Buttons"]
+visible = false
+margin_top = 118.0
+margin_right = 974.0
+margin_bottom = 208.0
+custom_constants/margin_top = -10
+custom_constants/margin_left = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Buttons/ConfigContainer"]
+margin_left = 40.0
+margin_top = -10.0
+margin_right = 974.0
+margin_bottom = 90.0
+custom_constants/separation = -10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FullscreenButton" parent="MarginContainer/VBoxContainer/Buttons/ConfigContainer/VBoxContainer" instance=ExtResource( 3 )]
+margin_right = 934.0
+focus_neighbour_top = NodePath("../../../ConfigButton")
+focus_neighbour_bottom = NodePath("../VolumeSliderContainer/MarginContainer/VolumeSlider")
+custom_colors/font_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
+text = "Fullscreen"
+
+[node name="ExitFullscreenButton" parent="MarginContainer/VBoxContainer/Buttons/ConfigContainer/VBoxContainer" instance=ExtResource( 3 )]
+visible = false
+margin_top = 45.0
+margin_right = 934.0
+margin_bottom = 100.0
+focus_neighbour_top = NodePath("../../../ConfigButton")
+focus_neighbour_bottom = NodePath("../VolumeSliderContainer/MarginContainer/VolumeSlider")
+custom_colors/font_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
+text = "Exit Fullscreen"
+
+[node name="VolumeSliderContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Buttons/ConfigContainer/VBoxContainer"]
+margin_top = 45.0
+margin_right = 934.0
+margin_bottom = 100.0
+
+[node name="VolumeLabel" parent="MarginContainer/VBoxContainer/Buttons/ConfigContainer/VBoxContainer/VolumeSliderContainer" instance=ExtResource( 3 )]
+margin_right = 126.0
+custom_colors/font_color_hover = Color( 0.945098, 0.705882, 0.129412, 1 )
+custom_colors/font_color_pressed = Color( 0.945098, 0.705882, 0.129412, 1 )
+toggle_mode = true
+text = "Volume"
+arrow_char = false
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Buttons/ConfigContainer/VBoxContainer/VolumeSliderContainer"]
+margin_left = 130.0
+margin_right = 230.0
+margin_bottom = 55.0
+custom_constants/margin_top = 10
+
+[node name="VolumeSlider" type="HSlider" parent="MarginContainer/VBoxContainer/Buttons/ConfigContainer/VBoxContainer/VolumeSliderContainer/MarginContainer"]
+modulate = Color( 0.776471, 0.564706, 0.0470588, 1 )
+margin_top = 10.0
+margin_right = 100.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_vertical = 1
+custom_icons/grabber_disabled = ExtResource( 8 )
+custom_icons/grabber_highlight = ExtResource( 8 )
+custom_icons/grabber = ExtResource( 8 )
+custom_styles/slider = SubResource( 5 )
+custom_styles/grabber_area_highlight = SubResource( 6 )
+custom_styles/grabber_area = SubResource( 7 )
+
+[node name="Line2D" type="Line2D" parent="MarginContainer/VBoxContainer/Buttons/ConfigContainer"]
+position = Vector2( 15.1074, -6.20413 )
+points = PoolVector2Array( 0, 0, 0, 25, 20, 25, 0, 25, 0, 70, 20, 70 )
+width = 4.0
+default_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
+
+[node name="TerminateButton" parent="MarginContainer/VBoxContainer/Buttons" instance=ExtResource( 3 )]
 margin_top = 118.0
 margin_right = 974.0
 margin_bottom = 173.0
-focus_mode = 0
-enabled_focus_mode = 0
-text = "Exit"
+text = "Terminate"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
@@ -124,14 +168,16 @@ autoplay = true
 bus = "Music"
 
 [node name="ProgramShader" parent="." instance=ExtResource( 7 )]
-
-[node name="SpinAnimation" type="AnimationPlayer" parent="ProgramShader"]
-autoplay = "anim"
-anims/anim = SubResource( 2 )
-
-[node name="PulsateAnimation" type="AnimationPlayer" parent="ProgramShader"]
-anims/anim = SubResource( 3 )
-
+modulate = Color( 0.776471, 0.564706, 0.0470588, 1 )
+margin_left = 64.0
+margin_right = 364.0
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/BeginButton" to="." method="_on_BeginButton_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/SettingsButton" to="." method="_on_SettingsButton_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/ExitButton" to="." method="_on_ExitButton_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/ConfigButton" to="." method="_on_ConfigButton_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/ConfigContainer/VBoxContainer/FullscreenButton" to="." method="_on_FullscreenButton_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/ConfigContainer/VBoxContainer/ExitFullscreenButton" to="." method="_on_ExitFullscreenButton_pressed"]
+[connection signal="focus_entered" from="MarginContainer/VBoxContainer/Buttons/ConfigContainer/VBoxContainer/VolumeSliderContainer/MarginContainer/VolumeSlider" to="." method="_on_VolumeSlider_focus_entered"]
+[connection signal="focus_exited" from="MarginContainer/VBoxContainer/Buttons/ConfigContainer/VBoxContainer/VolumeSliderContainer/MarginContainer/VolumeSlider" to="." method="_on_VolumeSlider_focus_exited"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/Buttons/ConfigContainer/VBoxContainer/VolumeSliderContainer/MarginContainer/VolumeSlider" to="." method="_on_VolumeSlider_focus_entered"]
+[connection signal="mouse_exited" from="MarginContainer/VBoxContainer/Buttons/ConfigContainer/VBoxContainer/VolumeSliderContainer/MarginContainer/VolumeSlider" to="." method="_on_VolumeSlider_focus_exited"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/Buttons/ConfigContainer/VBoxContainer/VolumeSliderContainer/MarginContainer/VolumeSlider" to="." method="_on_VolumeSlider_value_changed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/TerminateButton" to="." method="_on_ExitButton_pressed"]

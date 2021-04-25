@@ -4,18 +4,25 @@
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 1 )
-shader_param/inner_radius = 0.129424
+shader_param/inner_radius = 0.1
+shader_param/min_length = 0.259
+shader_param/max_length = 0.4
 shader_param/bars = 64
 shader_param/seed = 16.0
-shader_param/color = Color( 0.780392, 0.556863, 0.027451, 1 )
-shader_param/offset = 0.111495
+shader_param/rotation_speed = 0.2
+shader_param/pulsate_speed = 1.0
+shader_param/pulsate_strength = 0.1
 
 [node name="ProgramShader" type="ColorRect"]
 material = SubResource( 1 )
-margin_left = 600.0
-margin_top = 150.0
-margin_right = 900.0
-margin_bottom = 450.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -150.0
+margin_top = -150.0
+margin_right = 150.0
+margin_bottom = 150.0
 rect_pivot_offset = Vector2( 150, 150 )
 __meta__ = {
 "_edit_use_anchors_": false

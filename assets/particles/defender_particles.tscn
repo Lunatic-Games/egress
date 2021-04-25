@@ -4,8 +4,9 @@
 [ext_resource path="res://assets/particles/attack_particle.png" type="Texture" id=2]
 [ext_resource path="res://assets/particles/attacker_particles.gd" type="Script" id=3]
 
-[node name="AttackerParticle" type="Particles2D"]
+[node name="DefenderParticle" type="Particles2D"]
 emitting = false
+lifetime = 0.3
 one_shot = true
 explosiveness = 0.79
 process_material = ExtResource( 1 )

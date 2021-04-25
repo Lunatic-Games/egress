@@ -33,7 +33,7 @@ func _on_Button_pressed():
 			
 	elif (! encrypted):
 		score_bits()
-		queue_free()
+		$Button.disabled = true
 
 
 func check_id(id):
@@ -46,9 +46,12 @@ func check_id(id):
 
 
 func decrypt_file():
-	encrypted = false
-	$Button.text = $Button.text.substr(0, $Button.text.length() - 10) + ".decrypted"
+	if (encrypted):
+		encrypted = false
+		$Button.text = $Button.text.substr(0, $Button.text.length() - 10) + ".decrypted"
 
 
 func score_bits():
-	print("Gained ", bit_reward, " bits")
+	$Button/Bits.bbcode_text = "[wave]" + String(bit_reward) + " bits gained"
+	$AnimationPlayer.play("gain_bits")
+	Hacker.gain_bits(bit_reward)

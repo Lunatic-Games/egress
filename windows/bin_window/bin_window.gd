@@ -1,5 +1,6 @@
 extends Control
 
+
 const MAX_PROGRAMS = 5
 
 onready var program_button_res = load("res://windows/bin_window/program_button.tscn")
