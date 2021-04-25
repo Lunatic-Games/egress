@@ -7,6 +7,7 @@ class_name program
 export (String) var name
 export (bool) var trap = false
 export (int) var integrity
+export (int) var max_integrity
 export (float) var attack_rate
 export (int) var attack_value
 export (String) var type = "neutral"
