@@ -2,18 +2,22 @@ extends Control
 
 
 const MAX_PROGRAMS = 5
+const TEXT_EDIT_CHAR_LIMIT = 15
 
 onready var program_button_res = load("res://windows/bin_window/program_button.tscn")
 onready var program_res = load("res://programs/PROGRAM.gd")
 
 var program_list = []
+var text_edit_content = ""
 
 func _ready():
 	#update_list()
 	$Main/NewButton.connect("button_down", self, "new_button")
 	$EditCosmetics/NextButton.connect("button_down", self, "next_button")
 	$EditStats/DoneButton.connect("button_down", self, "done_button")
+	$EditCosmetics/Columns/Rows/NameEdit.connect("text_changed", self, "handle_text_edit_change")
 	transition_to("main")
+
 
 func edit_program(p):
 	update_editors(p)
@@ -61,3 +65,12 @@ func transition_to(menu):
 		$EditStats.visible = true
 	else:
 		print("ERROR - menu not found:", menu)
+		
+func handle_text_edit_change():
+	var new_text = $EditCosmetics/Columns/Rows/NameEdit.text
+	if new_text.length() >= TEXT_EDIT_CHAR_LIMIT:
+		var cursor_column = $EditCosmetics/Columns/Rows/NameEdit.cursor_get_column()
+		$EditCosmetics/Columns/Rows/NameEdit.text = text_edit_content
+		$EditCosmetics/Columns/Rows/NameEdit.cursor_set_column(cursor_column - 1)
+	else:
+		text_edit_content = new_text
