@@ -4,15 +4,14 @@
 [ext_resource path="res://menus/file_system/file/file.gd" type="Script" id=2]
 [ext_resource path="res://menus/menu_button.tscn" type="PackedScene" id=3]
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=1]
 size = 32
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 1 )
 
-[sub_resource type="Animation" id=2]
-resource_name = "gain_bits"
+[sub_resource type="Animation" id=3]
 length = 1.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Button/Bits:rect_scale")
@@ -81,7 +80,7 @@ encrypted = true
 [node name="Button" parent="." instance=ExtResource( 3 )]
 margin_right = 181.0
 margin_bottom = 39.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 1 )
 text = "File_name.txt"
 
 [node name="Bits" type="RichTextLabel" parent="Button"]
@@ -91,7 +90,7 @@ margin_top = 1.88776
 margin_right = 422.832
 margin_bottom = 41.8878
 rect_scale = Vector2( 1e-05, 1e-05 )
-custom_fonts/normal_font = SubResource( 1 )
+custom_fonts/normal_font = SubResource( 2 )
 bbcode_enabled = true
 bbcode_text = "100 bits gained"
 text = "100 bits gained"
@@ -101,6 +100,6 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/gain_bits = SubResource( 2 )
+anims/gain_bits = SubResource( 3 )
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
