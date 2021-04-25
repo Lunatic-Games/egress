@@ -20,7 +20,6 @@ __meta__ = {
 }
 
 [node name="Main" type="Control" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 
@@ -36,8 +35,8 @@ __meta__ = {
 [node name="ProgramList" type="VBoxContainer" parent="Main"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 43.0
-margin_bottom = 20.0
+margin_top = 71.0
+margin_bottom = 59.0
 custom_constants/separation = 60
 __meta__ = {
 "_edit_use_anchors_": false
@@ -97,7 +96,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TypeSelect" type="PanelContainer" parent="EditCosmetics/Columns"]
+[node name="TypeSelect" type="Control" parent="EditCosmetics/Columns"]
 margin_left = 629.0
 margin_right = 1024.0
 margin_bottom = 567.0
@@ -106,10 +105,8 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 0.63
 
 [node name="ColorRect" type="ColorRect" parent="EditCosmetics/Columns/TypeSelect"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 388.0
-margin_bottom = 560.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 color = Color( 0.262745, 0.262745, 0.262745, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
