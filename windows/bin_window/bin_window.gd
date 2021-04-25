@@ -36,6 +36,7 @@ func new_button():
 		return
 	var p = program_res.new()
 	p.color = Color.cyan
+	p.name = "example"
 	#Add program to list and begin editing it
 	program_list.append(p)
 	update_editors(p)
