@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/ui/VT323-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://menus/menu_label.tscn" type="PackedScene" id=2]
@@ -20,40 +20,6 @@ region_rect = Rect2( 0, 0, 0, 4 )
 [sub_resource type="StyleBoxEmpty" id=6]
 
 [sub_resource type="StyleBoxEmpty" id=7]
-
-[sub_resource type="Animation" id=2]
-resource_name = "anim"
-length = 16.0
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:rect_rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 16 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0.0, 360.0 ]
-}
-
-[sub_resource type="Animation" id=3]
-resource_name = "anim"
-length = 4.0
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:material:shader_param/inner_radius")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 2.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0.1, 0.2 ]
-}
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -202,13 +168,9 @@ autoplay = true
 bus = "Music"
 
 [node name="ProgramShader" parent="." instance=ExtResource( 7 )]
-
-[node name="SpinAnimation" type="AnimationPlayer" parent="ProgramShader"]
-autoplay = "anim"
-anims/anim = SubResource( 2 )
-
-[node name="PulsateAnimation" type="AnimationPlayer" parent="ProgramShader"]
-anims/anim = SubResource( 3 )
+modulate = Color( 0.776471, 0.564706, 0.0470588, 1 )
+margin_left = 64.0
+margin_right = 364.0
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/BeginButton" to="." method="_on_BeginButton_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/ConfigButton" to="." method="_on_ConfigButton_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/ConfigContainer/VBoxContainer/FullscreenButton" to="." method="_on_FullscreenButton_pressed"]
