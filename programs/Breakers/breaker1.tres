@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
+name = "br3aker.1"
 trap = false
 integrity = 4
 attack_rate = 1.0

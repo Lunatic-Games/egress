@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
+name = "Ice"
 trap = false
 integrity = 8
 attack_rate = 2.5

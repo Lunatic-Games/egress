@@ -23,7 +23,7 @@ signal decrypted
 func _process(delta):
 	
 	# If a hack is happening
-	if (hack_underway):
+	if (hack_underway && ! ($HackSuccessful.is_playing() || $HackFailed.is_playing())):
 		
 		# Check to break a defending program
 		if (current_defender.integrity <= 0):
@@ -35,8 +35,6 @@ func _process(delta):
 
 
 func begin_hack():
-	$AccessDenied.visible = false
-	$AccessGranted.visible = false
 	
 	hack_underway = true
 	defender_index = 0
@@ -45,7 +43,6 @@ func begin_hack():
 	# If there are no attackers
 	if (attackers.size() <= 0):
 		hack_failed()
-		hack_underway = false
 		
 	else:
 		# TODO CLEAR THE ATTACKER AND DEFENDER
@@ -80,15 +77,12 @@ func break_attacker():
 func hack_successful(host_file):
 	emit_signal("decrypted", host_file)
 	
-	$Defender.visible = false
+	# Stop attacking
 	$DefenderAttackTimer.stop()
-	$Attacker.visible = false
 	$AttackerAttackTimer.stop()
 	
-	$AccessGranted.visible = true
-	
-	hack_underway = false
-	defenders = []
+	print("Playing hack_success")
+	$HackSuccessful.play("hack_success")
 
 
 # Clear the defenders stats and prepare for the next one
@@ -99,18 +93,12 @@ func defender_defeated():
 
 # Signal to the file that the hack was successful
 func hack_failed():
-	print("Hacked")
-	
-	$AccessDenied.visible = true
-	defenders = []
-	hack_underway = false
 	
 	# Reset the programs
-	$Defender.visible = false
 	$DefenderAttackTimer.stop()
-	$Attacker.visible = false
 	$AttackerAttackTimer.stop()
-
+	
+	$HackFailed.play("hack_failed")
 
 # Clear the defenders stats and prepare for the next one
 func attacker_defeated():
@@ -119,21 +107,25 @@ func attacker_defeated():
 
 
 func instance_defender(program):
-	$Defender.visible = true
+	$Defender/DefenderSprite.visible = true
+	$Defender/DefenderSprite.rect_scale = Vector2(1,1)
 	$Defender/DefenderSprite.modulate = program.color
 	$DefenderAttackTimer.start(program.attack_rate)
-	
 	$DefenderAnimator.play('load_program')
+	$Defender.visible = true
 	
 	current_defender = defenders[defender_index].duplicate()
 
 
 func instance_attacker(program):
-	$Attacker.visible = true
+	$Attacker/AttackerSprite.visible = true
+	$Attacker/AttackerSprite.rect_scale = Vector2(1,1)
 	$Attacker/AttackerSprite.modulate = program.color
+	$Attacker/AttackerName.bbcode_text = "[center][shake]" + String(program.name)
 	$AttackerAttackTimer.start(program.attack_rate)
 	
 	$AttackerAnimator.play('load_program')
+	$Attacker.visible = true
 	
 	current_attacker = attackers[attacker_index].duplicate()
 
@@ -158,7 +150,7 @@ func _on_DefenderAttackTimer_timeout():
 	$Defender.add_child(bullets)
 	
 	# Wait a given delay 1 second
-	yield(get_tree().create_timer(1), "timeout")
+	yield(get_tree().create_timer(0.45), "timeout")
 	
 	# Damage the attacker
 	if (attacker_index < attackers.size()):
@@ -176,7 +168,7 @@ func _on_AttackerAttackTimer_timeout():
 	$Attacker.add_child(bullets)
 	
 	# Wait a given delay 1 second
-	yield(get_tree().create_timer(1), "timeout")
+	yield(get_tree().create_timer(0.45), "timeout")
 	
 	# Damage the defender after waiting
 	if (defender_index < defenders.size()):
@@ -192,4 +184,16 @@ func scale_program(program, max_integrity, visualizer):
 	
 	var scaled = Vector2(value, value)
 	print("New scale", scaled)
-	visualizer.scale = scaled
+	visualizer.rect_scale = scaled
+
+
+# Allow another hack
+func _on_HackSuccessful_animation_finished(anim_name):
+	print("Animation Finished")
+	hack_underway = false
+	defenders = []
+
+
+func _on_HackFailed_animation_finished(anim_name):
+	hack_underway = false
+	defenders = []

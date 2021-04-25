@@ -4,6 +4,7 @@ extends Resource
 class_name program
 
 # Vars for generating the program
+export (String) var name
 export (bool) var trap = false
 export (int) var integrity
 export (float) var attack_rate
