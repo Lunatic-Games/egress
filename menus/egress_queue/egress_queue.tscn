@@ -15,7 +15,7 @@ size = 96
 font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=3]
-size = 32
+size = 50
 font_data = ExtResource( 3 )
 
 [sub_resource type="Animation" id=4]
@@ -243,7 +243,6 @@ margin_right = 124.0
 margin_bottom = 124.0
 
 [node name="DefenderName" type="RichTextLabel" parent="Defender"]
-self_modulate = Color( 1, 1, 1, 0 )
 margin_left = -108.488
 margin_top = 120.224
 margin_right = 117.512
@@ -267,14 +266,12 @@ scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 2 )
 
 [node name="AttackerSprite" parent="Attacker" instance=ExtResource( 5 )]
-self_modulate = Color( 1, 1, 1, 0 )
 margin_left = -125.086
 margin_top = -127.086
 margin_right = 124.914
 margin_bottom = 122.914
 
 [node name="AttackerName" type="RichTextLabel" parent="Attacker"]
-self_modulate = Color( 1, 1, 1, 0 )
 margin_left = -110.0
 margin_top = 120.224
 margin_right = 116.0
@@ -309,7 +306,6 @@ __meta__ = {
 }
 
 [node name="AccessGranted" type="RichTextLabel" parent="."]
-modulate = Color( 0.776471, 0.564706, 0.0470588, 1 )
 self_modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.5
 anchor_top = 0.5
@@ -320,6 +316,7 @@ margin_top = -147.0
 margin_right = 134.0
 margin_bottom = 147.0
 custom_fonts/normal_font = SubResource( 2 )
+custom_colors/default_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
 bbcode_enabled = true
 bbcode_text = "[shake][center]GRANTED[/center][/shake]"
 text = "GRANTED"
@@ -329,7 +326,6 @@ __meta__ = {
 }
 
 [node name="BitsGained" type="RichTextLabel" parent="AccessGranted"]
-modulate = Color( 0.776471, 0.564706, 0.0470588, 1 )
 self_modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.5
 anchor_top = 0.5
@@ -340,6 +336,7 @@ margin_top = 0.785339
 margin_right = 135.414
 margin_bottom = 294.785
 custom_fonts/normal_font = SubResource( 3 )
+custom_colors/default_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
 bbcode_enabled = true
 bbcode_text = "[shake][center]GRANTED[/center][/shake]"
 text = "GRANTED"
