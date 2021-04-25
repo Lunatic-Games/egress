@@ -13,3 +13,4 @@ export (int) var attack_value
 export (String) var type = "neutral"
 export (Color) var color
 var host_file
+var bits

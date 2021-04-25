@@ -56,7 +56,7 @@ func break_defender():
 	# Progress to the next defender
 	if (defender_index >= defenders.size()):
 		print("Defenders: ", defenders)
-		hack_successful(defenders[0].host_file)
+		hack_successful(defenders[0].host_file, defenders[0].bits)
 	else:
 		defender_defeated()
 		instance_defender(defenders[defender_index])
@@ -75,7 +75,7 @@ func break_attacker():
 
 
 # Signal to the file that the hack was successful
-func hack_successful(host_file):
+func hack_successful(host_file, bits_gained):
 	emit_signal("decrypted", host_file)
 	
 	# Stop attacking
@@ -83,7 +83,9 @@ func hack_successful(host_file):
 	$AttackerAttackTimer.stop()
 	
 	print("Playing hack_success")
+	$AccessGranted/BitsGained.bbcode_text = "[shake][center]+" + String(bits_gained) + " bits![/center][/shake]"
 	$HackSuccessful.play("hack_success")
+	Hacker.gain_bits(bits_gained)
 
 
 # Clear the defenders stats and prepare for the next one
@@ -116,6 +118,7 @@ func instance_defender(program):
 		$Defender/DefenderSprite.visible = true
 		$Defender/DefenderSprite.rect_scale = Vector2(1,1)
 		$Defender/DefenderSprite.modulate = program.color
+		$Defender/DefenderName.bbcode_text = "[center][shake]" + String(program.name)
 		$DefenderAttackTimer.start(program.attack_rate)
 		$DefenderAnimator.play('load_program')
 		$Defender.visible = true
@@ -144,8 +147,9 @@ func instance_attacker(program):
 	current_attacker = attackers[attacker_index].duplicate()
 
 
-func queue_defender(program, id):
+func queue_defender(program, id, bits_gained):
 	program.host_file = id
+	program.bits = bits_gained
 	defenders.push_back(program)
 
 

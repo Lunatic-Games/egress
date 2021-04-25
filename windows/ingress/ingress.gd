@@ -95,6 +95,7 @@ func instance_attacker(program):
 	$DefenderAnimator.play('load_program')
 	$Defender/DefenderSprite.rect_scale = Vector2(1,1)
 	$Defender/DefenderSprite.modulate = program.color
+	$Defender/DefenderName.bbcode_text = "[center][shake]" + String(program.name)
 	$DefenderAttackTimer.start(program.attack_rate)
 	$Defender.visible = true
 	$Defender/DefenderSprite.visible = true

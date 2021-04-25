@@ -26,11 +26,10 @@ func _on_Button_pressed():
 	# If encrypted instance program in queue
 	if (encrypted && egress_queue.is_free()):
 		for program in programs:
-			egress_queue.queue_defender(program, id)
+			egress_queue.queue_defender(program, id, bit_reward)
 		egress_queue.begin_hack()
 		
 	elif (! encrypted):
-		score_bits()
 		$Button.disabled = true
 		$Button.remove_arrow()
 
