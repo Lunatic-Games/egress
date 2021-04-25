@@ -15,11 +15,16 @@ func _ready():
 	$EditStats/DoneButton.connect("button_down", self, "done_button")
 	transition_to("main")
 
+func edit_program(p):
+	update_editors(p)
+	transition_to("cosmetics")
+
 func update_list():
 	for child in $Main/ProgramList.get_children():
 		$Main/ProgramList.remove_child(child)
 	for program in program_list:
 		var entry = program_button_res.instance()
+		entry.init(program)
 		$Main/ProgramList.add_child(entry)
 
 func update_editors(p):

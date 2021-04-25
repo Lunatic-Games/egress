@@ -1,11 +1,10 @@
-
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://windows/bin_window/program_button.gd" type="Script" id=1]
 [ext_resource path="res://shaders/program_shader.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/ui/VT323-Regular.ttf" type="DynamicFontData" id=3]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "rect_rotate"
 length = 16.0
 tracks/0/type = "value"
@@ -21,7 +20,7 @@ tracks/0/keys = {
 "values": [ 0.0, 360.0 ]
 }
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 3 )
 
 [node name="Program" type="Control"]
@@ -44,22 +43,47 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="EditButton" type="Button" parent="HBoxContainer"]
+margin_left = 396.0
+margin_right = 416.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 20, 20 )
+align = 0
+
 [node name="ProgramShader" parent="HBoxContainer" instance=ExtResource( 2 )]
-margin_left = 461.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 426.0
 margin_top = 0.0
-margin_right = 511.0
+margin_right = 476.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 50, 50 )
 rect_pivot_offset = Vector2( 25, 25 )
 
 [node name="SpinAnimation" type="AnimationPlayer" parent="HBoxContainer/ProgramShader"]
 autoplay = "rect_rotate"
-anims/rect_rotate = SubResource( 2 )
+anims/rect_rotate = SubResource( 1 )
 
 [node name="Label" type="Label" parent="HBoxContainer"]
-margin_left = 521.0
+margin_left = 486.0
 margin_top = 16.0
-margin_right = 563.0
+margin_right = 528.0
 margin_bottom = 33.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "Program"
+
+[node name="EgressButton" type="Button" parent="HBoxContainer"]
+margin_left = 538.0
+margin_right = 578.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 40, 40 )
+text = "E"
+
+[node name="IngressButton" type="Button" parent="HBoxContainer"]
+margin_left = 588.0
+margin_right = 628.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 40, 40 )
+text = "I"
