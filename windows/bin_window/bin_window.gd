@@ -9,6 +9,7 @@ onready var program_res = load("res://programs/PROGRAM.gd")
 
 var program_list = []
 var text_edit_content = ""
+var program_in_edit = null
 
 func _ready():
 	#update_list()
@@ -21,6 +22,7 @@ func _ready():
 
 func edit_program(p):
 	update_editors(p)
+	program_in_edit = p
 	transition_to("cosmetics")
 
 func update_list():
@@ -30,9 +32,11 @@ func update_list():
 		var entry = program_button_res.instance()
 		entry.init(program)
 		$Main/ProgramList.add_child(entry)
+	text_edit_content = ""
 
 func update_editors(p):
-	pass
+	text_edit_content = p.name
+	$EditCosmetics/Columns/Rows/NameEdit.text = text_edit_content
 
 func new_button():
 	if program_list.size() >= MAX_PROGRAMS:
@@ -40,13 +44,12 @@ func new_button():
 		return
 	var p = program_res.new()
 	p.color = Color.cyan
-	p.name = "example"
 	#Add program to list and begin editing it
 	program_list.append(p)
-	update_editors(p)
-	transition_to("cosmetics")
+	edit_program(p)
 
 func next_button():
+	program_in_edit.name = text_edit_content
 	transition_to("stats")
 
 func done_button():
