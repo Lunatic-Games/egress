@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://windows/window_controller.gd" type="Script" id=1]
 [ext_resource path="res://windows/window_base.tscn" type="PackedScene" id=2]
 [ext_resource path="res://shaders/screen_shader.tscn" type="PackedScene" id=3]
+[ext_resource path="res://menus/file_viewer/file_viewer.tscn" type="PackedScene" id=4]
 [ext_resource path="res://menus/mouse.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Shader" id=1]
@@ -75,7 +76,13 @@ margin_bottom = 591.0
 win_name = "/bin/"
 source_path = "res://windows/bin_window/bin_window.tscn"
 
-[node name="Mouse" parent="WindowController" instance=ExtResource( 5 )]
+[node name="CanvasLayer" type="CanvasLayer" parent="WindowController"]
+layer = 0
+
+[node name="Mouse" parent="WindowController/CanvasLayer" instance=ExtResource( 5 )]
+pause_mode = 2
+
+[node name="FileViewer" parent="WindowController" instance=ExtResource( 4 )]
 
 [node name="ScreenShader" parent="." instance=ExtResource( 3 )]
 

@@ -1,16 +1,17 @@
 extends Control
 
 export (String) var file_name
+export (String, MULTILINE) var decrypted_text
 export (bool) var encrypted = false
 export (int) var id
 export (int) var bit_reward = 0
-
 
 # Vars for generating the program
 export (Array, Resource) var programs
 
 onready var egress_queue = get_tree().get_nodes_in_group("egress")[0]
 
+var opened = false
 
 func _ready():
 	if (encrypted):
@@ -29,10 +30,11 @@ func _on_Button_pressed():
 			egress_queue.queue_defender(program, id)
 			egress_queue.begin_hack()
 			
-	elif (! encrypted):
-		score_bits()
-		$Button.disabled = true
-		$Button.remove_arrow()
+	elif (!encrypted):
+		if not opened:
+			score_bits()
+		get_tree().call_group("file_viewer", "view", file_name + ".decrypted",
+			decrypted_text)
 
 
 func check_id(id):

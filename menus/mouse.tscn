@@ -6,4 +6,5 @@
 [node name="Mouse" type="Sprite"]
 modulate = Color( 0.776471, 0.564706, 0.0470588, 1 )
 texture = ExtResource( 2 )
+offset = Vector2( 9, 9 )
 script = ExtResource( 1 )
