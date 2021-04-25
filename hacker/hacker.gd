@@ -8,9 +8,10 @@ onready var weak_against = {
 }
 
 onready var strong_against = {
-	"breaker": "hybrid",
-	"wall": "breaker",
-	"hybrid": "wall"
+	"breaker": "wall",
+	"wall": "hybrid",
+	"hybrid": "breaker",
+	"neutral": "none"
 }
 
 onready var trace = 0.0

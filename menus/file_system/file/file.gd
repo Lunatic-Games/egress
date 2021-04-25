@@ -27,8 +27,8 @@ func _on_Button_pressed():
 	if (encrypted && egress_queue.is_free()):
 		for program in programs:
 			egress_queue.queue_defender(program, id)
-			egress_queue.begin_hack()
-			
+		egress_queue.begin_hack()
+		
 	elif (! encrypted):
 		score_bits()
 		$Button.disabled = true
