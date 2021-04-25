@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://windows/ingress/ingress.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -12,7 +12,7 @@ size = 32
 font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 96
+size = 192
 font_data = ExtResource( 3 )
 
 [sub_resource type="Animation" id=3]
@@ -26,7 +26,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( -150, 153 ), Vector2( 149.6, 153 ) ]
+"values": [ Vector2( -150, 75 ), Vector2( 149.6, 75.088 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Attacker/AttackerSprite:self_modulate")
@@ -64,7 +64,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 578.5, 163 ), Vector2( 442.088, 153 ) ]
+"values": [ Vector2( 578.5, 75 ), Vector2( 442.088, 75 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Defender/DefenderSprite:self_modulate")
@@ -80,106 +80,51 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id=5]
-length = 2.0
+resource_name = "player_damaged"
 tracks/0/type = "value"
-tracks/0/path = NodePath("AccessGranted:self_modulate")
+tracks/0/path = NodePath("DangerOverlay:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3, 0.5, 0.7, 0.9, 1.1, 1.6, 1.9 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.784314 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.784314 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.137255 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Attacker/AttackerSprite:self_modulate")
+tracks/1/path = NodePath("Danger:self_modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Attacker/AttackerName:self_modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
-
-[sub_resource type="Animation" id=6]
-length = 2.0
-tracks/0/type = "value"
-tracks/0/path = NodePath("AccessDenied:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3, 0.5, 0.7, 0.9, 1.1, 1.6, 1.9 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.784314 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.784314 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Defender/DefenderSprite:self_modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Attacker/AttackerName:self_modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.137255 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
 [node name="Ingress" type="ColorRect" groups=[
-"egress",
+"ingress",
 ]]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 605.224
-margin_top = 298.264
-margin_right = -3.77551
-margin_bottom = -4.73572
 color = Color( 1, 1, 1, 0 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-attackers = [ ExtResource( 4 ) ]
-defenders = [ ExtResource( 6 ) ]
+attackers = [ ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ) ]
+defenders = [ ExtResource( 4 ) ]
 
 [node name="DefenderAttackTimer" type="Timer" parent="."]
 
 [node name="AttackerAttackTimer" type="Timer" parent="."]
 
 [node name="Defender" type="Node2D" parent="."]
-position = Vector2( 442.088, 153 )
+position = Vector2( 578.5, 75 )
 
 [node name="DefenderSprite_old" type="Sprite" parent="Defender"]
 visible = false
@@ -189,13 +134,14 @@ texture = ExtResource( 2 )
 
 [node name="DefenderSprite" parent="Defender" instance=ExtResource( 5 )]
 self_modulate = Color( 1, 1, 1, 0 )
-margin_left = -126.0
-margin_top = -126.0
-margin_right = 124.0
-margin_bottom = 124.0
+margin_left = -75.0576
+margin_top = -76.0541
+margin_right = 74.9424
+margin_bottom = 73.9459
+rect_pivot_offset = Vector2( 75.1226, 75.2043 )
 
 [node name="Attacker" type="Node2D" parent="."]
-position = Vector2( 149.6, 153 )
+position = Vector2( -150, 75 )
 
 [node name="AttackerSprite_old" type="Sprite" parent="Attacker"]
 visible = false
@@ -205,17 +151,18 @@ texture = ExtResource( 2 )
 
 [node name="AttackerSprite" parent="Attacker" instance=ExtResource( 5 )]
 self_modulate = Color( 1, 1, 1, 0 )
-margin_left = -125.086
-margin_top = -127.086
-margin_right = 124.914
-margin_bottom = 122.914
+margin_left = -74.1435
+margin_top = -76.1436
+margin_right = 75.8565
+margin_bottom = 73.8564
+rect_pivot_offset = Vector2( 73.0282, 75.2938 )
 
 [node name="AttackerName" type="RichTextLabel" parent="Attacker"]
 self_modulate = Color( 1, 1, 1, 0 )
 margin_left = -110.0
-margin_top = 120.224
+margin_top = 67.224
 margin_right = 116.0
-margin_bottom = 160.224
+margin_bottom = 107.224
 custom_fonts/normal_font = SubResource( 1 )
 bbcode_enabled = true
 bbcode_text = "[center][shake]Borus"
@@ -225,33 +172,32 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AccessDenied" type="RichTextLabel" parent="."]
-modulate = Color( 0.619608, 0.14902, 0.14902, 1 )
+[node name="DangerOverlay" type="ColorRect" parent="."]
+modulate = Color( 0.619608, 0.14902, 0.14902, 0.180392 )
 self_modulate = Color( 1, 1, 1, 0 )
-margin_left = 83.9053
-margin_top = 34.4611
-margin_right = 351.905
-margin_bottom = 230.461
-custom_fonts/normal_font = SubResource( 2 )
-bbcode_enabled = true
-bbcode_text = "[center][shake]ACCESS DENIED[/shake]"
-text = "ACCESS DENIED"
-fit_content_height = true
+margin_left = 288.501
+margin_top = 67.4593
+margin_right = 328.501
+margin_bottom = 107.459
+rect_scale = Vector2( 15.0933, -4.57894 )
+rect_pivot_offset = Vector2( 20.4512, 20.6682 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AccessGranted" type="RichTextLabel" parent="."]
-modulate = Color( 0.25098, 0.878431, 0.196078, 1 )
+[node name="Danger" type="RichTextLabel" parent="."]
+modulate = Color( 0.619608, 0.14902, 0.14902, 1 )
 self_modulate = Color( 1, 1, 1, 0 )
-margin_left = 83.9053
-margin_top = 34.4611
-margin_right = 351.905
-margin_bottom = 230.461
+margin_left = 245.149
+margin_top = -20.6682
+margin_right = 343.149
+margin_bottom = 173.332
 custom_fonts/normal_font = SubResource( 2 )
 bbcode_enabled = true
-bbcode_text = "[center][shake]ACCESS GRANTED[/shake]"
-text = "ACCESS GRANTED"
+bbcode_text = "[center][shake]![/shake]"
+text = "!"
 fit_content_height = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -263,13 +209,8 @@ anims/load_program = SubResource( 3 )
 [node name="DefenderAnimator" type="AnimationPlayer" parent="."]
 anims/load_program = SubResource( 4 )
 
-[node name="HackSuccessful" type="AnimationPlayer" parent="."]
-anims/hack_success = SubResource( 5 )
-
-[node name="HackFailed" type="AnimationPlayer" parent="."]
-anims/hack_failed = SubResource( 6 )
+[node name="Damaged" type="AnimationPlayer" parent="."]
+anims/player_damaged = SubResource( 5 )
 
 [connection signal="timeout" from="DefenderAttackTimer" to="." method="_on_DefenderAttackTimer_timeout"]
 [connection signal="timeout" from="AttackerAttackTimer" to="." method="_on_AttackerAttackTimer_timeout"]
-[connection signal="animation_finished" from="HackSuccessful" to="." method="_on_HackSuccessful_animation_finished"]
-[connection signal="animation_finished" from="HackFailed" to="." method="_on_HackFailed_animation_finished"]

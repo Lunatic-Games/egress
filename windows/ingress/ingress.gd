@@ -2,7 +2,7 @@ extends ColorRect
 
 export (Array, Resource) var attackers = []
 export (Array, Resource) var defenders = []
-export (float) var hacker_dmg_reduction = 10
+export (float) var hacker_dmg_reduction = 3.5
 
 
 var defender_stats = {}
@@ -36,64 +36,69 @@ func _process(delta):
 
 
 func break_defender():
-	defender_index += 1
+	
+	# Clear the defender
+	defender_defeated()
 	
 	# Progress to the next defender
-	if (defender_index >= defenders.size()):
-		pass
-	else:
-		defender_defeated()
-		instance_defender(defenders[defender_index])
+	if (defenders.size() > 0):
+		instance_defender(defenders.pop_front())
 
 
 func break_attacker():
-	attacker_index += 1
-	# TODO CLEAR THE DEFENDER
 	
-	# Progress to the next defender
-	if (attacker_index >= attackers.size()):
-		pass
-	else:
-		attacker_defeated()
-		instance_attacker(attackers[attacker_index])
+	# Clear the attacker
+	attacker_defeated()
+	
+	# Progress to the next attacker
+	if (attackers.size() > 0):
+		instance_attacker(attackers.pop_front())
 
 
 
 # Clear the defenders stats and prepare for the next one
 func defender_defeated():
-	$Defender.visible = false
-	$DefenderAttackTimer.stop()
+	$Attacker.visible = false
+	$AttackerAttackTimer.stop()
+	current_defender = null
 
 
 
 # Clear the defenders stats and prepare for the next one
 func attacker_defeated():
-	$Attacker.visible = false
-	$AttackerAttackTimer.stop()
+	$Defender.visible = false
+	$DefenderAttackTimer.stop()
+	current_attacker = null
 
 
 func instance_defender(program):
-	$Defender/DefenderSprite.visible = true
-	$Defender/DefenderSprite.rect_scale = Vector2(1,1)
-	$Defender/DefenderSprite.modulate = program.color
-	$DefenderAttackTimer.start(program.attack_rate)
-	$DefenderAnimator.play('load_program')
-	$Defender.visible = true
 	
-	current_defender = program.duplicate()
-
-
-func instance_attacker(program):
-	$Attacker/AttackerSprite.visible = true
+	# This code has been swapped but not renamed due to time limit
+	$AttackerAnimator.play('load_program')
+	
 	$Attacker/AttackerSprite.rect_scale = Vector2(1,1)
 	$Attacker/AttackerSprite.modulate = program.color
 	$Attacker/AttackerName.bbcode_text = "[center][shake]" + String(program.name)
 	$AttackerAttackTimer.start(program.attack_rate)
 	
-	$AttackerAnimator.play('load_program')
 	$Attacker.visible = true
+	$Attacker/AttackerSprite.visible = true
+	
+	current_defender = program.duplicate()
+
+
+func instance_attacker(program):
+	
+	# This code has been swapped but not renamed due to time limit
+	$DefenderAnimator.play('load_program')
+	$Defender/DefenderSprite.rect_scale = Vector2(1,1)
+	$Defender/DefenderSprite.modulate = program.color
+	$DefenderAttackTimer.start(program.attack_rate)
+	$Defender.visible = true
+	$Defender/DefenderSprite.visible = true
 	
 	current_attacker = program.duplicate()
+
 
 
 func queue_defender(program, id):
@@ -106,42 +111,54 @@ func is_free():
 	return ! hack_underway
 
 
-# attack the current attacker
+# attack the current defender
 func _on_DefenderAttackTimer_timeout():
 	
+	# THIS CODE HAS ALSO BEEN SWAPPED TO DEFENDER DUE TO TIME LIMIT
 	# Spawn bullet generator
 	var bullets = defender_bullets.instance()
 	bullets.emitting = true
-	bullets.amount = current_defender.attack_value
+	bullets.amount = current_attacker.attack_value
 	$Defender.add_child(bullets)
 	
 	# Wait a given delay 1 second
 	yield(get_tree().create_timer(0.45), "timeout")
 	
 	# Damage the attacker
-	if (current_attacker):
-		current_attacker.integrity -= current_defender.attack_value
-		scale_program(current_attacker, current_attacker.max_integrity, $Attacker/AttackerSprite)
+	if (current_defender):
+		current_defender.integrity -= current_attacker.attack_value
+		if (current_defender.integrity <= 0):
+			break_defender()
+		
+		# If defender still exists
+		if (current_defender):
+			scale_program(current_defender, current_defender.max_integrity, $Attacker/AttackerSprite)
+	else:
+		player_damaged()
 
 
 # Attack the current defender
 func _on_AttackerAttackTimer_timeout():
-
-	# Spawn bullet generator
-	var bullets = attacker_bullets.instance()
-	bullets.emitting = true
-	bullets.amount = current_attacker.attack_value
-	$Attacker.add_child(bullets)
-	
-	# Wait a given delay 1 second
-	yield(get_tree().create_timer(0.45), "timeout")
 	
 	# Damage the defender after waiting
-	if (current_defender):
-		current_defender.integrity -= current_attacker.attack_value
-		scale_program(current_defender, current_defender.max_integrity, $Defender/DefenderSprite)
-	else:
-		Hacker.gain_trace(current_attacker.attack_value / hacker_dmg_reduction)
+	if (current_attacker):
+		# THIS CODE HAS ALSO BEEN SWAPPED TO DEFENDER DUE TO TIME LIMIT
+		# Spawn bullet generator
+		var bullets = attacker_bullets.instance()
+		bullets.emitting = true
+		bullets.amount = current_defender.attack_value
+		$Attacker.add_child(bullets)
+	
+		# Wait a given delay 1 second
+		yield(get_tree().create_timer(0.45), "timeout")
+		current_attacker.integrity -= current_defender.attack_value
+		
+		if (current_attacker.integrity <= 0):
+			break_attacker()
+		
+		# Scale the program to show damage
+		if (current_attacker):
+			scale_program(current_attacker, current_attacker.max_integrity, $Defender/DefenderSprite)
 
 
 func scale_program(program, max_integrity, visualizer):
@@ -153,3 +170,9 @@ func scale_program(program, max_integrity, visualizer):
 	var scaled = Vector2(value, value)
 	print("New scale", scaled)
 	visualizer.rect_scale = scaled
+
+
+func player_damaged():
+	Hacker.gain_trace(float(current_attacker.attack_value) / float(hacker_dmg_reduction))
+	if (! $Damaged.is_playing()):
+		$Damaged.play("player_damaged")

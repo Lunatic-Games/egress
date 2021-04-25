@@ -30,7 +30,7 @@ margin_top = 373.0
 margin_right = 1017.0
 margin_bottom = 595.0
 win_name = "Ingress Tracker"
-source_path = "res://windows/example_win/example.tscn"
+source_path = "res://windows/ingress/ingress.tscn"
 
 [node name="Bin" parent="WindowController" instance=ExtResource( 2 )]
 margin_left = 8.12134
