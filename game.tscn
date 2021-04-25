@@ -58,7 +58,7 @@ margin_top = 6.46448
 margin_right = 1016.29
 margin_bottom = 366.464
 win_name = "egress_queue.vis"
-source_path = "res://menus/egress_queue/egress_queue.tscn"
+source_path = "res://windows/egress_queue/egress_queue.tscn"
 
 [node name="Explorer" parent="WindowController" instance=ExtResource( 2 )]
 margin_left = 8.8284
@@ -66,7 +66,7 @@ margin_top = 7.0
 margin_right = 395.828
 margin_bottom = 367.0
 win_name = "directory"
-source_path = "res://menus/file_system/file_systems.tscn"
+source_path = "res://windows/file_system/file_systems.tscn"
 
 [node name="Bin" parent="WindowController" instance=ExtResource( 2 )]
 margin_left = 8.12134

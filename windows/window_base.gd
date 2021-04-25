@@ -5,7 +5,7 @@ const BAR_MARGIN = 4
 const TEXT_MARGIN = Vector2(8, 8)
 
 export(String) var win_name
-export(String) var source_path
+export(String, FILE, "*.tscn") var source_path
 
 var content
 
