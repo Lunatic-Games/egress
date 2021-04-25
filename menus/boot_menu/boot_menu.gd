@@ -22,8 +22,7 @@ const lunatic_output = """
  ====
 ==  LUNATIC
 ==   GAMES
- ====
-"""
+ ===="""
 
 const people_output = """
 |- Joe "Holeboi" Zlonicky
@@ -31,23 +30,27 @@ const people_output = """
 |- Noah "Joe" Jacobsen
 |- Bella "Ignored me" Granillo-Bastien
 |_ Davis "Richard" Carlson
-
 """
 
 func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	yield(blink(2), "completed")
 	yield(type_line("initialize \n", 0.5), "completed")
-	yield(add_line("intializing", 0.5), "completed")
+	yield(add_line("intializing", 0.75), "completed")
 	yield(type_line("...\n", 0.5), "completed")
 	yield(add_line(fdisk_output, 1.0), "completed")
 	yield(add_line(godot_output, 1.0), "completed")
-	yield(add_line(lunatic_output, 1.5), "completed")
-	yield(add_line(people_output, 1.5), "completed")
+	for line in lunatic_output.split("\n"):
+		yield(add_line(line + "\n", 0.5), "completed")
+	yield(get_tree().create_timer(0.5), "timeout")
+	for line in people_output.split("\n"):
+		yield(add_line(line + "\n", 0.5), "completed")
+	yield(get_tree().create_timer(0.5), "timeout")
 	yield(add_line("LG:/> "), "completed")
-	yield(blink(4), "completed")
+	yield(blink(3), "completed")
 	yield(type_line("run main_menu\n", 0.5), "completed")
-	yield(type_line("...\n", 0.5), "completed")
-	get_tree().change_scene("res://menus/main_menu/main_menu.tscn")
+	yield(type_line("...\n", 1.0), "completed")
+	var _ret = get_tree().change_scene("res://menus/main_menu/main_menu.tscn")
 
 func blink(n):
 	for i in n:
