@@ -4,7 +4,7 @@
 [ext_resource path="res://windows/window_base.tscn" type="PackedScene" id=2]
 [ext_resource path="res://shaders/screen_shader.tscn" type="PackedScene" id=3]
 
-[sub_resource type="Shader" id=2]
+[sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
 
 uniform float radius = 8.0;
@@ -29,8 +29,8 @@ void fragment() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id=3]
-shader = SubResource( 2 )
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
 shader_param/radius = 8.0
 shader_param/step_size = 4.0
 shader_param/sd = 10.0
@@ -63,8 +63,8 @@ margin_left = 401.0
 margin_top = 373.0
 margin_right = 1017.0
 margin_bottom = 595.0
-win_name = "ingress_tracker.vis"
-source_path = "res://windows/example_win/example.tscn"
+win_name = "Ingress Tracker"
+source_path = "res://windows/ingress/ingress.tscn"
 
 [node name="Bin" parent="WindowController" instance=ExtResource( 2 )]
 margin_left = 8.12134
@@ -77,6 +77,6 @@ source_path = "res://windows/bin_window/bin_window.tscn"
 [node name="ScreenShader" parent="." instance=ExtResource( 3 )]
 
 [node name="ColorRect" parent="ScreenShader/GlowShader" index="0"]
-material = SubResource( 3 )
+material = SubResource( 2 )
 
 [editable path="ScreenShader"]

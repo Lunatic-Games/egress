@@ -7,6 +7,7 @@ script = ExtResource( 1 )
 name = "Ice"
 trap = false
 integrity = 8
+max_integrity = 8
 attack_rate = 2.5
 attack_value = 1
 type = "neutral"

@@ -13,8 +13,8 @@ onready var strong_against = {
 	"hybrid": "wall"
 }
 
-onready var trace = 0
-onready var max_trace = 100
+onready var trace = 0.0
+onready var max_trace = 100.0
 onready var bits = 0
 
 
@@ -24,7 +24,8 @@ func gain_bits(bits):
 
 func gain_trace(trace):
 	self.trace += trace
-	if (trace >= max_trace):
+	print("Trace at ", self.trace, "%")
+	if (self.trace >= max_trace):
 		print("GAME OVER")
 
 
