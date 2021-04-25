@@ -96,25 +96,19 @@ __meta__ = {
 
 [node name="BeginButton" parent="MarginContainer/VBoxContainer/Buttons" instance=ExtResource( 3 )]
 margin_right = 974.0
-focus_mode = 0
-enabled_focus_mode = 0
-text = "Begin Hack"
+text = "Launch"
 
 [node name="SettingsButton" parent="MarginContainer/VBoxContainer/Buttons" instance=ExtResource( 3 )]
 margin_top = 59.0
 margin_right = 974.0
 margin_bottom = 114.0
-focus_mode = 0
-enabled_focus_mode = 0
-text = "Settings"
+text = "Config"
 
 [node name="ExitButton" parent="MarginContainer/VBoxContainer/Buttons" instance=ExtResource( 3 )]
 margin_top = 118.0
 margin_right = 974.0
 margin_bottom = 173.0
-focus_mode = 0
-enabled_focus_mode = 0
-text = "Exit"
+text = "Terminate"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
