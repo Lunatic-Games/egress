@@ -13,7 +13,6 @@ onready var egress_queue = get_tree().get_nodes_in_group("egress")[0]
 
 
 func _ready():
-	
 	if (encrypted):
 		$Button.text = file_name + ".encrypted"
 	else:
@@ -24,7 +23,6 @@ func _ready():
 
 
 func _on_Button_pressed():
-	
 	# If encrypted instance program in queue
 	if (encrypted && egress_queue.is_free()):
 		for program in programs:
@@ -34,6 +32,7 @@ func _on_Button_pressed():
 	elif (! encrypted):
 		score_bits()
 		$Button.disabled = true
+		$Button.remove_arrow()
 
 
 func check_id(id):

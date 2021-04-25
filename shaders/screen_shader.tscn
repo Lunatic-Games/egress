@@ -1,16 +1,40 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://shaders/warp.shader" type="Shader" id=1]
-[ext_resource path="res://shaders/glow.shader" type="Shader" id=2]
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 1 )
 shader_param/margin = 5.0
 shader_param/strength = Vector2( 10, 1 )
 shader_param/background_color = Color( 0, 0, 0, 1 )
 
-[sub_resource type="ShaderMaterial" id=1]
-shader = ExtResource( 2 )
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
+
+uniform float radius = 8.0;
+uniform float step_size = 4.0;
+uniform float sd = 10.0;
+uniform float additive_strength = 24.0;
+uniform float center_strength = 1.0;
+
+void fragment() {
+	float pi = 3.141592653;
+	float e = 2.71828;
+	float left = 1.0 / (2.0 * pi * pow(sd, 2));
+	vec4 sum = vec4(0.0);
+	for (float x = -radius; x <= radius; x += step_size) {
+		for (float y = -radius; y <= radius; y += step_size) {
+			vec4 value = texture(SCREEN_TEXTURE, SCREEN_UV + SCREEN_PIXEL_SIZE * vec2(x, y));
+			float p = -(pow(x, 2) + pow(y, 2)) / (2.0 * pow(sd, 2));
+			sum += value * left * pow(e, p);
+		}
+	}
+	COLOR = sum * additive_strength + texture(SCREEN_TEXTURE, SCREEN_UV) * center_strength;
+}
+"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
 shader_param/radius = 8.0
 shader_param/step_size = 4.0
 shader_param/sd = 10.0
@@ -22,7 +46,7 @@ shader_param/center_strength = 1.0
 [node name="CRTShader" type="CanvasLayer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="CRTShader"]
-material = SubResource( 2 )
+material = SubResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -33,7 +57,7 @@ __meta__ = {
 [node name="GlowShader" type="CanvasLayer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="GlowShader"]
-material = SubResource( 1 )
+material = SubResource( 3 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
