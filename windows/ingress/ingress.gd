@@ -155,7 +155,7 @@ func _on_DefenderAttackTimer_timeout():
 					$Attacker.add_child(stress)
 				
 		else:
-			player_damaged()
+			player_damaged(damage)
 
 
 # Attack the current defender
@@ -210,7 +210,7 @@ func scale_program(program, max_integrity, visualizer):
 	visualizer.rect_scale = scaled
 
 
-func player_damaged():
-	Hacker.gain_trace(float(current_attacker.attack_value) / float(hacker_dmg_reduction))
+func player_damaged(damage):
+	Hacker.gain_trace(float(damage) / float(hacker_dmg_reduction))
 	if (! $Damaged.is_playing()):
 		$Damaged.play("player_damaged")
