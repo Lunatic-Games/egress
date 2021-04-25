@@ -18,7 +18,7 @@ func _ready():
 		$Button.text = file_name + ".encrypted"
 	else:
 		$Button.text = file_name
-	
+
 	egress_queue.connect("decrypted", self, "check_id")
 
 
@@ -27,18 +27,16 @@ func _on_Button_pressed():
 	# If encrypted instance program in queue
 	if (encrypted && egress_queue.is_free()):
 		for program in programs:
-			egress_queue.queue_defender(program, id)
-			egress_queue.begin_hack()
-			
+			egress_queue.queue_defender(program, id, bit_reward)
+		egress_queue.begin_hack()
+
 	elif (!encrypted):
-		if not opened:
-			score_bits()
 		get_tree().call_group("file_viewer", "view", file_name + ".decrypted",
 			decrypted_text)
 
 
 func check_id(id):
-	
+
 	# if the program for this file was defeated
 	if (self.id == id):
 		# decrypt the file

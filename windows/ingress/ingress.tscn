@@ -1,11 +1,10 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://windows/ingress/ingress.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 [ext_resource path="res://assets/ui/VT323-Regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://programs/Breakers/breaker2.tres" type="Resource" id=4]
 [ext_resource path="res://shaders/program_shader.tscn" type="PackedScene" id=5]
-[ext_resource path="res://programs/Walls/wall1.tres" type="Resource" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -52,6 +51,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Defender/DefenderName:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=4]
 tracks/0/type = "value"
@@ -73,6 +84,18 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Defender/DefenderName:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
@@ -116,7 +139,6 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-attackers = [ ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ) ]
 defenders = [ ExtResource( 4 ) ]
 
 [node name="DefenderAttackTimer" type="Timer" parent="."]
@@ -131,6 +153,22 @@ visible = false
 modulate = Color( 0.345098, 0.819608, 0.929412, 1 )
 scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 2 )
+
+[node name="DefenderName" type="RichTextLabel" parent="Defender"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = -107.963
+margin_top = 77.9148
+margin_right = 118.037
+margin_bottom = 117.915
+rect_pivot_offset = Vector2( 110.783, -1.24854 )
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[center][shake]Borus"
+text = "Borus"
+fit_content_height = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="DefenderSprite" parent="Defender" instance=ExtResource( 5 )]
 self_modulate = Color( 1, 1, 1, 0 )

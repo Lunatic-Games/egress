@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://menus/file_system/file/file.tscn" type="PackedScene" id=1]
 [ext_resource path="res://programs/Walls/wall1.tres" type="Resource" id=2]
 [ext_resource path="res://programs/Breakers/breaker2.tres" type="Resource" id=3]
+[ext_resource path="res://programs/Hybrids/pooh_bear.tres" type="Resource" id=4]
 
 [node name="FileSystem" type="ColorRect"]
 anchor_right = 1.0
@@ -31,7 +32,7 @@ margin_top = 0.0
 margin_right = 347.0
 margin_bottom = 39.0
 file_name = "file_one"
-encrypted = false
+programs = [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 4 ) ]
 
 [node name="File2" parent="DepthOne" instance=ExtResource( 1 )]
 anchor_right = 0.0

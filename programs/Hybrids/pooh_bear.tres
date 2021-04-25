@@ -4,11 +4,11 @@
 
 [resource]
 script = ExtResource( 1 )
-name = "Ice"
-trap = false
-integrity = 8
-max_integrity = 8
-attack_rate = 2.5
+name = "pooh_bear"
+trap = true
+integrity = 1
+max_integrity = 1
+attack_rate = 0.5
 attack_value = 1
-type = "wall"
-color = Color( 0.603922, 0.784314, 0.992157, 1 )
+type = "hybrid"
+color = Color( 0.14902, 0.0352941, 0.0156863, 1 )
