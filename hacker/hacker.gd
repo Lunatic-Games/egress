@@ -34,7 +34,7 @@ func gain_trace(trace):
 	self.trace += trace
 	print("Trace at ", self.trace, "%")
 	if (self.trace >= max_trace):
-		print("GAME OVER")
+		lose_game()
 
 
 func set_points():
@@ -49,3 +49,16 @@ func weak_against(type):
 
 func strong_against(type):
 	return strong_against[type]
+
+
+func win_game():
+	# Toggle visible
+	var overlay = get_tree().get_nodes_in_group("win")[0]
+	overlay.visible = true
+	get_tree().paused = true
+
+func lose_game():
+	# Toggle Visible
+	var overlay = get_tree().get_nodes_in_group("lose")[0]
+	overlay.visible = true
+	get_tree().paused = true

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://programs/PROGRAM.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+name = "pk_v1"
+trap = true
+integrity = 100
+max_integrity = 100
+attack_rate = 1.0
+attack_value = 100
+recharge_rate = 0
+integrity_points = 0
+max_integrity_points = 0
+attack_rate_points = 0.0
+attack_value_points = 0
+recharge_rate_points = 0
+type = "breaker"
+color = Color( 0.219608, 0.858824, 0.427451, 1 )

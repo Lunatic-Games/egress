@@ -304,8 +304,8 @@ margin_right = 388.251
 margin_bottom = 558.579
 
 [node name="MenuLabel" parent="WindowController/IngressTutorial/ColorRect/MarginContainer" index="0"]
-margin_right = 325.0
-margin_bottom = 154.0
+margin_right = 324.0
+margin_bottom = 153.0
 text = "The Ingress window shows viruses that are attacking you on the right. You may want to leave defenders there to prevent being traced."
 
 [node name="ReadTutorial" parent="WindowController" instance=ExtResource( 10 )]
