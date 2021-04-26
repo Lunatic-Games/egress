@@ -17,7 +17,7 @@ func edit_button():
 	controller.edit_program(p)
 	
 func egress_button():
-	print("Moving program [", p.name, "] to egress...")
+	print("Moving [", p.type, "] program [", p.name, "] to egress...")
 	
 func ingress_button():
-	print("Moving program [", p.name, "] to ingress...")
+	print("Moving [", p.type, "] program [", p.name, "] to ingress...")

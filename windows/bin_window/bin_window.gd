@@ -20,13 +20,31 @@ onready var program_res = load("res://programs/PROGRAM.gd")
 var program_list = []
 var text_edit_content = ""
 var program_in_edit = null
+var max_points = 0
+var remaining_points = 0
 
 func _ready():
-	#update_list()
-	$Main/NewButton.connect("button_down", self, "new_button")
+	# Set up transition buttons
+	$Main/Rows/NewButton.connect("button_down", self, "new_button")
 	$EditCosmetics/NextButton.connect("button_down", self, "next_button")
-	$EditStats/DoneButton.connect("button_down", self, "done_button")
+	$EditStats/Rows/DoneButton.connect("button_down", self, "done_button")
 	$EditCosmetics/Columns/Rows/NameEdit.connect("text_changed", self, "handle_text_edit_change")
+	
+	# Set up color buttons
+	for button in get_tree().get_nodes_in_group("ColorButton"):
+		button.modulate = COLOR_REF[button.name]
+		button.connect("button_down", self, "color_button", [button.name])
+		
+	# Set up type buttons
+	for button in get_tree().get_nodes_in_group("TypeButton"):
+		button.connect("button_down", self, "type_button", [button.name])
+
+	# Set up stat buttons
+	max_points = 5 # Get from hacker.gd
+	remaining_points = max_points
+	for roller in $EditStats/Rows/GroupColumns/StatColumns.get_children():
+		roller.connect("update_stat", self, "read_roller", [roller])
+
 	transition_to("main")
 
 
@@ -36,21 +54,25 @@ func edit_program(p):
 	transition_to("cosmetics")
 
 func update_list():
-	for child in $Main/ProgramList.get_children():
-		$Main/ProgramList.remove_child(child)
+	for child in $Main/Rows/ScrollContainer/ProgramList.get_children():
+		$Main/Rows/ScrollContainer/ProgramList.remove_child(child)
 	for program in program_list:
 		var entry = program_button_res.instance()
 		entry.init(program)
-		$Main/ProgramList.add_child(entry)
+		$Main/Rows/ScrollContainer/ProgramList.add_child(entry)
 	text_edit_content = ""
 
 func update_editors(p):
 	text_edit_content = p.name
 	$EditCosmetics/Columns/Rows/NameEdit.text = text_edit_content
-	for button in get_tree().get_nodes_in_group("ColorButton"):
-		button.modulate = COLOR_REF[button.name]
-		button.connect("button_down", self, "color_button", [button.name])
+	update_rollers()
 
+func update_rollers():
+	for roller in $EditStats/Rows/GroupColumns/StatColumns.get_children():
+		roller.max_value = max_points
+		roller.remaining = remaining_points
+
+# Transition buttons
 func new_button():
 	if program_list.size() >= MAX_PROGRAMS:
 		print("You have reached the maximum number of programs.")
@@ -83,9 +105,14 @@ func transition_to(menu):
 	else:
 		print("ERROR - menu not found:", menu)
 
+# Editor buttons
 func color_button(color):
 	if program_in_edit:
 		program_in_edit.color = COLOR_REF[color]
+		
+func type_button(type):
+	if program_in_edit:
+		program_in_edit.type = type.to_lower()
 
 func handle_text_edit_change():
 	var new_text = $EditCosmetics/Columns/Rows/NameEdit.text
@@ -95,3 +122,12 @@ func handle_text_edit_change():
 		$EditCosmetics/Columns/Rows/NameEdit.cursor_set_column(cursor_column - 1)
 	else:
 		text_edit_content = new_text
+
+func read_roller(roller):
+	var stat = roller.stat_name
+	var value = roller.cur_value
+	var diff = program_in_edit.get(stat) - value
+	print("STAT: ", stat, " DIFF:", diff)
+	remaining_points += diff
+	update_rollers()
+	program_in_edit.set(stat, value)
