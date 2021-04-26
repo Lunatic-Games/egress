@@ -1,10 +1,13 @@
 extends Control
 
 
-var p
 onready var controller = get_tree().get_nodes_in_group("BinWindowController")[0]
 onready var ingress = get_tree().get_nodes_in_group("ingress")[0]
 onready var egress = get_tree().get_nodes_in_group("egress")[0]
+
+var p
+var allow_edit = true
+var deployed = false
 
 func init(program_struct):
 	p = program_struct
@@ -16,27 +19,63 @@ func init(program_struct):
 
 
 func edit_button():
-	controller.edit_program(p, true)
+	if (allow_edit):
+		controller.edit_program(p, true)
+	else:
+		_do_recharge()
 	
 func egress_button():
 	if ($HBoxContainer/EgressButton.pressed):
 		#print("Dequeueing [", p.name, "] from egress...")
-		egress.dequeue_attacker(p)
+		if (deployed):
+			egress.dequeue_attacker(p)
+			deployed = false
+			allow_edit = true
+		else:
+			$HBoxContainer/EgressButton.pressed = false
 	else:
 		#print("Queueing [", p.name, "] to egress...")
-		egress.queue_attacker(p)
-	
+		if (not deployed):
+			egress.queue_attacker(p)
+			deployed = true
+			allow_edit = false
+		else:
+			$HBoxContainer/EgressButton.pressed = true
 func ingress_button():
 	if ($HBoxContainer/IngressButton.pressed):
 		#print("Dequeueing [", p.name, "] from ingress...")
-		ingress.dequeue_defender(p)
+		if (deployed):
+			ingress.dequeue_defender(p)
+			deployed = false
+			allow_edit = true
+		else:
+			$HBoxContainer/IngressButton.pressed = false
 	else:
 		#print("Queueing [", p.name, "] to ingress...")
-		ingress.defenders.push_back(p)
+		if (not deployed):
+			ingress.defenders.push_back(p)
+			deployed = true
+			allow_edit = false
+		else:
+			$HBoxContainer/IngressButton.pressed = true
 
 func reset_egress_button():
 	pass
 	
 func reset_ingress_button(program):
 	if (program.name == p.name):
-		$HBoxContainer/IngressButton.pressed = false
+		_do_recharge()
+
+func _do_recharge():
+	$RechargeOverlay.visible = true
+	$HBoxContainer/IngressButton.pressed = true
+	$HBoxContainer/EgressButton.pressed = true
+	allow_edit = false
+	
+	yield(get_tree().create_timer(p.recharge_rate), "timeout")
+	
+	$RechargeOverlay.visible = false
+	$HBoxContainer/IngressButton.pressed = false
+	$HBoxContainer/EgressButton.pressed = false
+	allow_edit = true
+	deployed = false

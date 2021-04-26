@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://windows/bin_window/program_button.gd" type="Script" id=1]
 [ext_resource path="res://shaders/program_shader.tscn" type="PackedScene" id=2]
@@ -30,6 +30,9 @@ font_data = ExtResource( 3 )
 [sub_resource type="StyleBoxEmpty" id=4]
 
 [sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="DynamicFont" id=6]
+font_data = ExtResource( 3 )
 
 [node name="Program" type="Control"]
 anchor_right = 1.0
@@ -121,3 +124,30 @@ custom_colors/font_color_hover = Color( 0.0784314, 0.0588235, 0.027451, 1 )
 custom_colors/font_color_pressed = Color( 0.0784314, 0.0588235, 0.027451, 1 )
 toggle_mode = true
 text = "Ingress"
+
+[node name="RechargeOverlay" type="ColorRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -27.5
+margin_right = 512.0
+margin_bottom = 27.5
+grow_horizontal = 2
+rect_min_size = Vector2( 1024, 50 )
+size_flags_horizontal = 7
+size_flags_vertical = 7
+color = Color( 0, 0, 0, 0.8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="RechargeOverlay"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+custom_fonts/font = SubResource( 6 )
+text = "RECHARGING..."
+align = 1
+valign = 1

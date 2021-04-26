@@ -103,6 +103,7 @@ func new_button():
 		print("You have reached the maximum number of programs.")
 		return
 	var p = program_res.new()
+	p.init_stat_points()
 	p.color = Color.white
 	for button in get_tree().get_nodes_in_group("ColorButton"):
 		button.pressed = false
