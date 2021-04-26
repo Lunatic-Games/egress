@@ -161,12 +161,8 @@ func is_free():
 func _on_DefenderAttackTimer_timeout():
 	
 	# Spawn bullet generator
-	for i in current_defender.attack_value:
-		var particle = attack_particle.instance()
-		$Defender.add_child(particle)
-		particle.global_position = $Defender.global_position
-		particle.destination = $Attacker.global_position
-	
+	spawn_attack_particles(current_defender.attack_value, 
+		current_defender.color, $Defender, $Attacker)
 	
 	# Calculate the damage to be done
 	var damage
@@ -198,11 +194,8 @@ func _on_DefenderAttackTimer_timeout():
 func _on_AttackerAttackTimer_timeout():
 
 	# Spawn bullet generator
-	for i in range(current_attacker.attack_value):
-		var particle = attack_particle.instance()
-		$Attacker.add_child(particle)
-		particle.global_position = $Attacker.global_position
-		particle.destination = $Defender.global_position
+	spawn_attack_particles(current_attacker.attack_value, current_attacker.color,
+		$Attacker, $Defender)
 	
 	# Calculate the damage to be done
 	var damage
@@ -230,6 +223,18 @@ func _on_AttackerAttackTimer_timeout():
 			$Defender.add_child(stress)
 
 
+# Copied for engress and ingress
+func spawn_attack_particles(n, color, attacker, defender):
+	var flip_particle = false
+	for i in range(current_attacker.attack_value * 2):
+		var particle = attack_particle.instance()
+		attacker.add_child(particle)
+		particle.global_position = attacker.global_position
+		particle.destination = defender.global_position
+		particle.begin(flip_particle)
+		particle.modulate = color
+		flip_particle = !flip_particle
+		
 func scale_program(program, max_integrity, visualizer):
 
 	var value = float(program.integrity) / float(max_integrity)
@@ -237,13 +242,11 @@ func scale_program(program, max_integrity, visualizer):
 		value = 0
 	
 	var scaled = Vector2(value, value)
-	print("New scale", scaled)
 	visualizer.rect_scale = scaled
 
 
 # Allow another hack
 func _on_HackSuccessful_animation_finished(anim_name):
-	print("Animation Finished")
 	hack_underway = false
 	defenders = []
 

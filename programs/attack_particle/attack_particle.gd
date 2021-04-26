@@ -11,18 +11,18 @@ var direction: Vector2
 var tangent: Vector2
 var height = min_height
 var passed_time = 0.0
-var flipped = false
 var trajectory: Curve
 
 func _ready():
 	randomize()
+
+func begin(flipped=false):
 	start = global_position
-	flipped = randi() % 2 == 0
 	direction = (destination - start).normalized()
 	tangent = direction.tangent()
-	height = rand_range(min_height, max_height)
 	if flipped:
 		tangent *= -1
+	height = rand_range(min_height, max_height)
 	trajectory = trajectories[randi() % len(trajectories)]
 
 func _physics_process(delta):
@@ -30,3 +30,5 @@ func _physics_process(delta):
 	var ratio = min(passed_time, time) / time
 	var offset = tangent * trajectory.interpolate(ratio) * height
 	global_position = start.linear_interpolate(destination, ratio) + offset
+	if ratio >= 1.0:
+		queue_free()

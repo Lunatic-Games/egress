@@ -16,8 +16,7 @@ onready var hack_underway = false
 onready var defender_index = 0
 onready var attacker_index = 0
 
-onready var attacker_bullets = preload("res://assets/particles/attacker_particles.tscn")
-onready var defender_bullets = preload("res://assets/particles/defender_particles.tscn")
+onready var attack_particle = preload("res://programs/attack_particle/attack_particle.tscn")
 onready var distress_particles = preload("res://assets/particles/distress_particles.tscn")
 
 
@@ -120,11 +119,8 @@ func _on_DefenderAttackTimer_timeout():
 	if (current_attacker):
 		# THIS CODE HAS ALSO BEEN SWAPPED TO DEFENDER DUE TO TIME LIMIT
 		# Spawn bullet generator
-		var bullets = defender_bullets.instance()
-		bullets.emitting = true
-		bullets.amount = current_attacker.attack_value
-		$Defender.add_child(bullets)
-		
+		spawn_attack_particles(current_attacker.attack_value,
+			current_attacker.color, $Defender, $Attacker)
 		
 		# Calculate the damage to be done
 		var damage
@@ -165,11 +161,8 @@ func _on_AttackerAttackTimer_timeout():
 	if (current_attacker):
 		# THIS CODE HAS ALSO BEEN SWAPPED TO DEFENDER DUE TO TIME LIMIT
 		# Spawn bullet generator
-		var bullets = attacker_bullets.instance()
-		bullets.emitting = true
-		bullets.amount = current_defender.attack_value
-		$Attacker.add_child(bullets)
-	
+		spawn_attack_particles(current_defender.attack_value, current_defender.color,
+			$Attacker, $Defender)
 	
 		# Calculate the damage to be done
 		var damage
@@ -199,6 +192,18 @@ func _on_AttackerAttackTimer_timeout():
 				$Defender.add_child(stress)
 
 
+func spawn_attack_particles(n, color, attacker, defender):
+	var flip_particle = false
+	for i in range(current_attacker.attack_value * 2):
+		var particle = attack_particle.instance()
+		attacker.add_child(particle)
+		particle.global_position = attacker.global_position
+		particle.destination = defender.global_position
+		particle.begin(flip_particle)
+		particle.modulate = color
+		flip_particle = !flip_particle
+
+
 func scale_program(program, max_integrity, visualizer):
 
 	var value = float(program.integrity) / float(max_integrity)
@@ -206,7 +211,6 @@ func scale_program(program, max_integrity, visualizer):
 		value = 0
 	
 	var scaled = Vector2(value, value)
-	print("New scale", scaled)
 	visualizer.rect_scale = scaled
 
 

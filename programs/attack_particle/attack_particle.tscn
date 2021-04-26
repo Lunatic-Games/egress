@@ -34,12 +34,13 @@ scale_curve = SubResource( 6 )
 color_ramp = SubResource( 8 )
 
 [node name="AttackParticle" type="Sprite"]
-modulate = Color( 1, 0.678431, 0, 1 )
 position = Vector2( 260.411, 255.921 )
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
 trajectories = [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ) ]
 time = 0.45
+min_height = 50.0
+max_height = 150.0
 destination = Vector2( 800, 255 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
@@ -47,3 +48,5 @@ amount = 16
 local_coords = false
 process_material = SubResource( 4 )
 texture = ExtResource( 1 )
+
+[node name="Tween" type="Tween" parent="."]
