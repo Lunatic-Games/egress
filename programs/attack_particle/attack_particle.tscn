@@ -1,0 +1,49 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://assets/particles/attack_particle.png" type="Texture" id=1]
+[ext_resource path="res://programs/attack_particle/attack_particle.gd" type="Script" id=2]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 0 ), 0.0, 1.55372, 0, 0, Vector2( 0.164894, 0.436364 ), 2.6751, 2.6751, 0, 0, Vector2( 1, 0 ), -2.2488, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0, 0 ), 0.0, 5.75394, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 0 ), 0.0, 6.02455, 0, 0, Vector2( 0.12234, 0.896591 ), 0.598182, 0.598182, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=7]
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0.282353 )
+
+[sub_resource type="GradientTexture" id=8]
+gradient = SubResource( 7 )
+
+[sub_resource type="Curve" id=5]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=6]
+curve = SubResource( 5 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.7
+scale_curve = SubResource( 6 )
+color_ramp = SubResource( 8 )
+
+[node name="AttackParticle" type="Sprite"]
+modulate = Color( 1, 0.678431, 0, 1 )
+position = Vector2( 260.411, 255.921 )
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+trajectories = [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ) ]
+time = 0.45
+destination = Vector2( 800, 255 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+amount = 16
+local_coords = false
+process_material = SubResource( 4 )
+texture = ExtResource( 1 )
