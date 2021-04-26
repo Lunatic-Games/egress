@@ -8,6 +8,7 @@ class_name program
 export (String) var name
 export (bool) var trap = false
 export (int) var integrity
+export (int) var max_integrity
 export (float) var attack_rate
 export (int) var attack_value
 export (int) var recharge_rate
@@ -36,3 +37,4 @@ func set(prop, value):
 
 func total():
 	return integrity + attack_rate + attack_value + recharge_rate
+var bits

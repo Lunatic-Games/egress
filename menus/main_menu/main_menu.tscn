@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/ui/VT323-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://menus/menu_label.tscn" type="PackedScene" id=2]
@@ -8,18 +8,19 @@
 [ext_resource path="res://shaders/screen_shader.tscn" type="PackedScene" id=6]
 [ext_resource path="res://shaders/program_shader.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/ui/slider_grabber.png" type="Texture" id=8]
+[ext_resource path="res://menus/mouse.tscn" type="PackedScene" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 128
 font_data = ExtResource( 1 )
 
-[sub_resource type="StyleBoxTexture" id=5]
+[sub_resource type="StyleBoxTexture" id=2]
 texture = ExtResource( 8 )
 region_rect = Rect2( 0, 0, 0, 4 )
 
-[sub_resource type="StyleBoxEmpty" id=6]
+[sub_resource type="StyleBoxEmpty" id=3]
 
-[sub_resource type="StyleBoxEmpty" id=7]
+[sub_resource type="StyleBoxEmpty" id=4]
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -71,7 +72,6 @@ __meta__ = {
 
 [node name="BeginButton" parent="MarginContainer/VBoxContainer/Buttons" instance=ExtResource( 3 )]
 margin_right = 974.0
-custom_colors/font_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
 text = "Launch"
 
 [node name="ConfigButton" parent="MarginContainer/VBoxContainer/Buttons" instance=ExtResource( 3 )]
@@ -102,7 +102,6 @@ __meta__ = {
 margin_right = 934.0
 focus_neighbour_top = NodePath("../../../ConfigButton")
 focus_neighbour_bottom = NodePath("../VolumeSliderContainer/MarginContainer/VolumeSlider")
-custom_colors/font_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
 text = "Fullscreen"
 
 [node name="ExitFullscreenButton" parent="MarginContainer/VBoxContainer/Buttons/ConfigContainer/VBoxContainer" instance=ExtResource( 3 )]
@@ -112,7 +111,6 @@ margin_right = 934.0
 margin_bottom = 100.0
 focus_neighbour_top = NodePath("../../../ConfigButton")
 focus_neighbour_bottom = NodePath("../VolumeSliderContainer/MarginContainer/VolumeSlider")
-custom_colors/font_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
 text = "Exit Fullscreen"
 
 [node name="VolumeSliderContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Buttons/ConfigContainer/VBoxContainer"]
@@ -122,7 +120,6 @@ margin_bottom = 100.0
 
 [node name="VolumeLabel" parent="MarginContainer/VBoxContainer/Buttons/ConfigContainer/VBoxContainer/VolumeSliderContainer" instance=ExtResource( 3 )]
 margin_right = 126.0
-custom_colors/font_color_hover = Color( 0.945098, 0.705882, 0.129412, 1 )
 custom_colors/font_color_pressed = Color( 0.945098, 0.705882, 0.129412, 1 )
 toggle_mode = true
 text = "Volume"
@@ -144,9 +141,9 @@ size_flags_vertical = 1
 custom_icons/grabber_disabled = ExtResource( 8 )
 custom_icons/grabber_highlight = ExtResource( 8 )
 custom_icons/grabber = ExtResource( 8 )
-custom_styles/slider = SubResource( 5 )
-custom_styles/grabber_area_highlight = SubResource( 6 )
-custom_styles/grabber_area = SubResource( 7 )
+custom_styles/slider = SubResource( 2 )
+custom_styles/grabber_area_highlight = SubResource( 3 )
+custom_styles/grabber_area = SubResource( 4 )
 
 [node name="Line2D" type="Line2D" parent="MarginContainer/VBoxContainer/Buttons/ConfigContainer"]
 position = Vector2( 15.1074, -6.20413 )
@@ -171,6 +168,9 @@ bus = "Music"
 modulate = Color( 0.776471, 0.564706, 0.0470588, 1 )
 margin_left = 64.0
 margin_right = 364.0
+
+[node name="Mouse" parent="." instance=ExtResource( 9 )]
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/BeginButton" to="." method="_on_BeginButton_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/ConfigButton" to="." method="_on_ConfigButton_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/ConfigContainer/VBoxContainer/FullscreenButton" to="." method="_on_FullscreenButton_pressed"]

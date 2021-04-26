@@ -1,8 +1,8 @@
 
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://menus/egress_queue/egress_queue.tscn" type="PackedScene" id=1]
-[ext_resource path="res://menus/file_system/file/file.tscn" type="PackedScene" id=2]
+[ext_resource path="res://windows/egress_queue/egress_queue.tscn" type="PackedScene" id=1]
+[ext_resource path="res://windows/file_system/file/file.tscn" type="PackedScene" id=2]
 [ext_resource path="res://programs/Walls/wall1.tres" type="Resource" id=3]
 
 

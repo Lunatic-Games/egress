@@ -1,26 +1,17 @@
-
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/ui/VT323-Regular.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://menus/file_system/file/file.gd" type="Script" id=2]
+[ext_resource path="res://windows/file_system/file/file.gd" type="Script" id=2]
+[ext_resource path="res://menus/menu_button.tscn" type="PackedScene" id=3]
 
-[sub_resource type="StyleBoxEmpty" id=1]
-
-[sub_resource type="StyleBoxEmpty" id=2]
-
-[sub_resource type="StyleBoxEmpty" id=3]
-
-[sub_resource type="StyleBoxEmpty" id=4]
-
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=1]
 size = 32
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 1 )
 
-[sub_resource type="Animation" id=7]
-resource_name = "gain_bits"
+[sub_resource type="Animation" id=3]
 length = 1.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Button/Bits:rect_scale")
@@ -74,8 +65,10 @@ tracks/3/keys = {
 [node name="File" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -0.707092
-margin_bottom = -0.707092
+margin_top = -1.0
+margin_right = -752.0
+margin_bottom = -562.0
+rect_min_size = Vector2( 0, 39 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 2 )
@@ -84,21 +77,11 @@ __meta__ = {
 }
 encrypted = true
 
-[node name="Button" type="Button" parent="."]
-margin_right = 12.0
-margin_bottom = 20.0
-focus_mode = 0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_styles/hover = SubResource( 1 )
-custom_styles/pressed = SubResource( 2 )
-custom_styles/disabled = SubResource( 3 )
-custom_styles/normal = SubResource( 4 )
-custom_fonts/font = SubResource( 5 )
-text = "> Example file.txt"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Button" parent="." instance=ExtResource( 3 )]
+margin_right = 181.0
+margin_bottom = 39.0
+custom_fonts/font = SubResource( 1 )
+text = "File_name.txt"
 
 [node name="Bits" type="RichTextLabel" parent="Button"]
 self_modulate = Color( 1, 1, 1, 0.5 )
@@ -107,7 +90,7 @@ margin_top = 1.88776
 margin_right = 422.832
 margin_bottom = 41.8878
 rect_scale = Vector2( 1e-05, 1e-05 )
-custom_fonts/normal_font = SubResource( 6 )
+custom_fonts/normal_font = SubResource( 2 )
 bbcode_enabled = true
 bbcode_text = "100 bits gained"
 text = "100 bits gained"
@@ -117,6 +100,6 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/gain_bits = SubResource( 7 )
+anims/gain_bits = SubResource( 3 )
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

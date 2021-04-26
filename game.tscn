@@ -1,28 +1,48 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://windows/window_controller.gd" type="Script" id=1]
 [ext_resource path="res://windows/window_base.tscn" type="PackedScene" id=2]
+[ext_resource path="res://shaders/screen_shader.tscn" type="PackedScene" id=3]
+[ext_resource path="res://menus/file_viewer/file_viewer.tscn" type="PackedScene" id=4]
+[ext_resource path="res://menus/mouse.tscn" type="PackedScene" id=5]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform float radius = 8.0;
+uniform float step_size = 4.0;
+uniform float sd = 10.0;
+uniform float additive_strength = 24.0;
+uniform float center_strength = 1.0;
+
+void fragment() {
+	float pi = 3.141592653;
+	float e = 2.71828;
+	float left = 1.0 / (2.0 * pi * pow(sd, 2));
+	vec4 sum = vec4(0.0);
+	for (float x = -radius; x <= radius; x += step_size) {
+		for (float y = -radius; y <= radius; y += step_size) {
+			vec4 value = texture(SCREEN_TEXTURE, SCREEN_UV + SCREEN_PIXEL_SIZE * vec2(x, y));
+			float p = -(pow(x, 2) + pow(y, 2)) / (2.0 * pow(sd, 2));
+			sum += value * left * pow(e, p);
+		}
+	}
+	COLOR = sum * additive_strength + texture(SCREEN_TEXTURE, SCREEN_UV) * center_strength;
+}
+"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/radius = 8.0
+shader_param/step_size = 4.0
+shader_param/sd = 10.0
+shader_param/additive_strength = 14.0
+shader_param/center_strength = 1.0
 
 [node name="Game" type="Node2D"]
 
 [node name="WindowController" type="Node2D" parent="."]
 script = ExtResource( 1 )
-
-[node name="Egress" parent="WindowController" instance=ExtResource( 2 )]
-margin_left = 400.293
-margin_top = 6.46448
-margin_right = 1016.29
-margin_bottom = 366.464
-win_name = "Egress Queue"
-source_path = "res://menus/egress_queue/egress_queue.tscn"
-
-[node name="Explorer" parent="WindowController" instance=ExtResource( 2 )]
-margin_left = 8.8284
-margin_top = 7.0
-margin_right = 395.828
-margin_bottom = 367.0
-win_name = "File Explorer"
-source_path = "res://menus/file_system/file_systems.tscn"
 
 [node name="Ingress" parent="WindowController" instance=ExtResource( 2 )]
 margin_left = 401.0
@@ -30,12 +50,43 @@ margin_top = 373.0
 margin_right = 1017.0
 margin_bottom = 595.0
 win_name = "Ingress Tracker"
-source_path = "res://windows/example_win/example.tscn"
+source_path = "res://windows/ingress/ingress.tscn"
+
+[node name="Egress" parent="WindowController" instance=ExtResource( 2 )]
+margin_left = 400.293
+margin_top = 6.46448
+margin_right = 1016.29
+margin_bottom = 366.464
+win_name = "egress_queue.vis"
+source_path = "res://windows/egress_queue/egress_queue.tscn"
+
+[node name="Explorer" parent="WindowController" instance=ExtResource( 2 )]
+margin_left = 8.8284
+margin_top = 7.0
+margin_right = 395.828
+margin_bottom = 367.0
+win_name = "directory"
+source_path = "res://windows/file_system/file_systems.tscn"
 
 [node name="Bin" parent="WindowController" instance=ExtResource( 2 )]
 margin_left = 8.12134
 margin_top = 374.0
 margin_right = 395.121
 margin_bottom = 591.0
-win_name = "bin/"
+win_name = "/bin/"
 source_path = "res://windows/bin_window/bin_window.tscn"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="WindowController"]
+layer = 0
+
+[node name="Mouse" parent="WindowController/CanvasLayer" instance=ExtResource( 5 )]
+pause_mode = 2
+
+[node name="FileViewer" parent="WindowController" instance=ExtResource( 4 )]
+
+[node name="ScreenShader" parent="." instance=ExtResource( 3 )]
+
+[node name="ColorRect" parent="ScreenShader/GlowShader" index="0"]
+material = SubResource( 2 )
+
+[editable path="ScreenShader"]

@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/particles/distress_particle.tres" type="Material" id=1]
+[ext_resource path="res://assets/particles/attack_particle.png" type="Texture" id=2]
+[ext_resource path="res://assets/particles/attacker_particles.gd" type="Script" id=3]
+
+[node name="DistressParticle" type="Particles2D"]
+emitting = false
+amount = 15
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.68
+process_material = ExtResource( 1 )
+texture = ExtResource( 2 )
+script = ExtResource( 3 )

@@ -1,25 +1,26 @@
+[gd_scene load_steps=5 format=2]
 
-[gd_scene load_steps=4 format=2]
-
-[ext_resource path="res://menus/file_system/file/file.tscn" type="PackedScene" id=1]
+[ext_resource path="res://windows/file_system/file/file.tscn" type="PackedScene" id=1]
 [ext_resource path="res://programs/Walls/wall1.tres" type="Resource" id=2]
 [ext_resource path="res://programs/Breakers/breaker2.tres" type="Resource" id=3]
+[ext_resource path="res://programs/Hybrids/pooh_bear.tres" type="Resource" id=4]
 
 [node name="FileSystem" type="ColorRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -677.0
 margin_bottom = -271.0
-color = Color( 0.00784314, 0.733333, 0.309804, 1 )
+color = Color( 1, 1, 1, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="DepthOne" type="VBoxContainer" parent="."]
-margin_left = 38.0
-margin_top = 45.0
-margin_right = 78.0
-margin_bottom = 129.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -232.0
+custom_constants/separation = 0
+alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -28,18 +29,20 @@ __meta__ = {
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 0.0
-margin_right = 40.0
-margin_bottom = 25.0
+margin_right = 347.0
+margin_bottom = 39.0
 file_name = "file_one"
-encrypted = false
+programs = [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 4 ) ]
 
 [node name="File2" parent="DepthOne" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 29.0
-margin_right = 40.0
-margin_bottom = 54.0
+margin_top = 39.0
+margin_right = 347.0
+margin_bottom = 78.0
 file_name = "file_two"
+decrypted_text = "ngl im a little worried what will happen if i can't dig through these files before the tracer finishes. some other hackers have gone dark lately; l00ser and m1zzy both haven't been heard from in weeks and im finding some of their hash-keys embedded in these files... looks like they might have been here before me...
+- \"r3x\""
 id = 1
 bit_reward = 10
 programs = [ ExtResource( 2 ) ]
@@ -47,9 +50,9 @@ programs = [ ExtResource( 2 ) ]
 [node name="File3" parent="DepthOne" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 58.0
-margin_right = 40.0
-margin_bottom = 84.0
+margin_top = 78.0
+margin_right = 347.0
+margin_bottom = 117.0
 file_name = "suck_my_ass"
 id = 2
 bit_reward = 15
