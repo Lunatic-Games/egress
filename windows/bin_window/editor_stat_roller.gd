@@ -1,4 +1,4 @@
-extends VBoxContainer
+extends HBoxContainer
 
 
 export(String) var stat_name

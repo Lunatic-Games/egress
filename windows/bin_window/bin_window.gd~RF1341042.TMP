@@ -25,8 +25,8 @@ var max_points = 0
 func _ready():
 	# Set up transition buttons
 	$Main/Rows/NewButton.connect("pressed", self, "new_button")
-	$EditCosmetics/NextButton.connect("button_down", self, "next_button")
-	$EditStats/DoneButton.connect("button_down", self, "done_button")
+	$EditCosmetics/Columns/TypeSelect/VBoxContainer/NextButton.connect("button_down", self, "next_button")
+	$EditStats/Rows/DoneButton.connect("button_down", self, "done_button")
 	$EditCosmetics/Columns/Rows/NameEdit.connect("text_changed", self, "handle_text_edit_change")
 	
 	# Set up color buttons
@@ -49,7 +49,7 @@ func _ready():
 
 	# Set up stat buttons
 	max_points = 5 # Get from hacker.gd
-	for roller in $EditStats/Rows/StatRows.get_children():
+	for roller in $EditStats/Rows/GroupColumns/StatColumns.get_children():
 		roller.max_value = max_points
 		roller.connect("update_stat", self, "read_roller", [roller])
 
@@ -77,7 +77,7 @@ func update_editors():
 	update_rollers()
 
 func reset_rollers(copy_in_edit=false):
-	for roller in $EditStats/Rows/StatRows.get_children():
+	for roller in $EditStats/Rows/GroupColumns/StatColumns.get_children():
 		roller.reset()
 		if (copy_in_edit):
 			roller.set_value(program_in_edit.get(roller.stat_name))
@@ -85,12 +85,12 @@ func reset_rollers(copy_in_edit=false):
 func update_rollers():
 	var total = program_in_edit.total()
 	var assigned = 0
-	for roller in $EditStats/Rows/StatRows.get_children():
+	for roller in $EditStats/Rows/GroupColumns/StatColumns.get_children():
 		assigned += roller.cur_value
-	for roller in $EditStats/Rows/StatRows.get_children():
+	for roller in $EditStats/Rows/GroupColumns/StatColumns.get_children():
 		roller.max_value = max_points
 		roller.remaining = max_points - assigned
-	$EditStats/Rows/Points/Counter.text = str(max_points - assigned)
+		#print(roller.stat_name, ", Roller: ", roller.cur_value, ", Program: ", program_in_edit.get(roller.stat_name))
 
 # Transition buttons
 func new_button():
@@ -149,8 +149,22 @@ func type_button(type):
 	if program_in_edit:
 		program_in_edit.type = type.to_lower()
 
-func handle_text_edit_change(new_text):
-	text_edit_content = new_text
+func handle_text_edit_change():
+	var new_text = $EditCosmetics/Columns/Rows/NameEdit.text
+	if new_text.find("\n"):
+		new_text = new_text.replace("\n")
+		$EditCosmetics/Columns/Rows/NameEdit.text = new_text
+		return
+	if new_text.find("\t"):
+		new_text = new_text.replace("\t")
+		$EditCosmetics/Columns/Rows/NameEdit.text = new_text
+		return
+	if new_text.length() >= TEXT_EDIT_CHAR_LIMIT:
+		var cursor_column = $EditCosmetics/Columns/Rows/NameEdit.cursor_get_column()
+		$EditCosmetics/Columns/Rows/NameEdit.text = text_edit_content
+		$EditCosmetics/Columns/Rows/NameEdit.cursor_set_column(cursor_column - 1)
+	else:
+		text_edit_content = new_text
 
 func read_roller(roller):
 	var stat = roller.stat_name
