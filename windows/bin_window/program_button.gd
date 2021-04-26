@@ -10,9 +10,9 @@ func init(program_struct):
 	p = program_struct
 	$HBoxContainer/ProgramShader.modulate = p.color
 	$HBoxContainer/NameLabel.text = p.name
-	$HBoxContainer/EditButton.connect("button_down", self, "edit_button")
-	$HBoxContainer/EgressButton.connect("button_down", self, "egress_button")
-	$HBoxContainer/IngressButton.connect("button_down", self, "ingress_button")
+	var _ret = $HBoxContainer/EditButton.connect("button_down", self, "edit_button")
+	_ret = $HBoxContainer/EgressButton.connect("button_down", self, "egress_button")
+	_ret = $HBoxContainer/IngressButton.connect("button_down", self, "ingress_button")
 
 
 func edit_button():
@@ -29,8 +29,14 @@ func egress_button():
 func ingress_button():
 	if ($HBoxContainer/IngressButton.pressed):
 		#print("Dequeueing [", p.name, "] from ingress...")
-		pass
-		# DEQUEUE DEFENDER HERE
+		ingress.dequeue_defender(p)
 	else:
 		#print("Queueing [", p.name, "] to ingress...")
 		ingress.defenders.push_back(p)
+
+func reset_egress_button():
+	pass
+	
+func reset_ingress_button(program):
+	if (program.name == p.name):
+		$HBoxContainer/IngressButton.pressed = false
