@@ -159,10 +159,3 @@ func read_roller(roller):
 	#print("STAT: ", stat, " DIFF: ", diff, " VAL: ", value)
 	update_rollers()
 	program_in_edit.set(stat, value)
-
-# Queue buttons
-func dequeue_program_egress(p):
-	pass
-	
-func dequeue_program_ingress(p):
-	pass
