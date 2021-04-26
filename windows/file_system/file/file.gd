@@ -3,6 +3,7 @@ extends Control
 export (String) var file_name
 export (String, MULTILINE) var decrypted_text
 export (bool) var encrypted = false
+export (bool) var directory = false
 export (int) var id
 export (int) var bit_reward = 0
 
@@ -10,6 +11,7 @@ export (int) var bit_reward = 0
 export (Array, Resource) var programs
 
 onready var egress_queue = get_tree().get_nodes_in_group("egress")[0]
+onready var file_system = get_tree().get_nodes_in_group("file_system")[0]
 
 var opened = false
 
@@ -31,8 +33,12 @@ func _on_Button_pressed():
 		egress_queue.begin_hack()
 
 	elif (!encrypted):
-		get_tree().call_group("file_viewer", "view", file_name + ".decrypted",
-			decrypted_text)
+		
+		if (directory):
+			file_system.go_deeper()
+		else:
+			get_tree().call_group("file_viewer", "view", file_name + ".decrypted",
+				decrypted_text)
 
 
 func check_id(id):

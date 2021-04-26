@@ -1,21 +1,29 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://windows/file_system/file/file.tscn" type="PackedScene" id=1]
 [ext_resource path="res://programs/Walls/wall1.tres" type="Resource" id=2]
 [ext_resource path="res://programs/Breakers/breaker2.tres" type="Resource" id=3]
 [ext_resource path="res://programs/Hybrids/pooh_bear.tres" type="Resource" id=4]
+[ext_resource path="res://programs/Breakers/breaker1.tres" type="Resource" id=5]
+[ext_resource path="res://windows/file_system/file_systems.gd" type="Script" id=6]
+[ext_resource path="res://programs/Walls/h4nk.tres" type="Resource" id=7]
 
-[node name="FileSystem" type="ColorRect"]
+[node name="FileSystem" type="ColorRect" groups=[
+"file_system",
+]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -677.0
 margin_bottom = -271.0
 color = Color( 1, 1, 1, 0 )
+script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DepthOne" type="VBoxContainer" parent="."]
+[node name="DepthOne" type="VBoxContainer" parent="." groups=[
+"directories",
+]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_bottom = -232.0
@@ -30,30 +38,121 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 0.0
 margin_right = 347.0
-margin_bottom = 39.0
-file_name = "file_one"
-programs = [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 4 ) ]
+margin_bottom = 48.0
+file_name = "t00ts"
+decrypted_text = "Read my signatures for advice I made it pretty deep. Left some messages to help you."
+bit_reward = 10
+programs = [ ExtResource( 2 ) ]
 
-[node name="File2" parent="DepthOne" instance=ExtResource( 1 )]
+[node name="File4" parent="DepthOne" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 48.0
+margin_right = 347.0
+margin_bottom = 97.0
+file_name = "index_0 <dpr>"
+directory = true
+id = 1
+bit_reward = 15
+programs = [ ExtResource( 2 ), ExtResource( 5 ) ]
+
+[node name="DepthTwo" type="VBoxContainer" parent="." groups=[
+"directories",
+]]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -212.0
+custom_constants/separation = 0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="File" parent="DepthTwo" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 0.0
+margin_right = 347.0
+margin_bottom = 39.0
+file_name = "suck3r"
+decrypted_text = "HA, hope you liked h4nk!"
+id = 2
+bit_reward = 25
+programs = [ ExtResource( 7 ) ]
+
+[node name="File3" parent="DepthTwo" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 39.0
 margin_right = 347.0
 margin_bottom = 78.0
-file_name = "file_two"
-decrypted_text = "ngl im a little worried what will happen if i can't dig through these files before the tracer finishes. some other hackers have gone dark lately; l00ser and m1zzy both haven't been heard from in weeks and im finding some of their hash-keys embedded in these files... looks like they might have been here before me...
-- \"r3x\""
-id = 1
-bit_reward = 10
-programs = [ ExtResource( 2 ) ]
+file_name = "gov_secret"
+decrypted_text = "Potato's are a super fruit."
+id = 3
+bit_reward = 15
+programs = [ ExtResource( 3 ), ExtResource( 2 ) ]
 
-[node name="File3" parent="DepthOne" instance=ExtResource( 1 )]
+[node name="File4" parent="DepthTwo" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 78.0
 margin_right = 347.0
 margin_bottom = 117.0
-file_name = "suck_my_ass"
-id = 2
-bit_reward = 15
-programs = [ ExtResource( 2 ), ExtResource( 2 ), ExtResource( 3 ) ]
+file_name = "trials <dpr>"
+directory = true
+id = 4
+bit_reward = 20
+programs = [ ExtResource( 2 ), ExtResource( 5 ) ]
+
+[node name="DepthTwo2" type="VBoxContainer" parent="." groups=[
+"directories",
+]]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -212.0
+custom_constants/separation = 0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="File" parent="DepthTwo2" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 0.0
+margin_right = 347.0
+margin_bottom = 39.0
+file_name = "tootsie"
+decrypted_text = "Some programs do better against others. If you have a visualizer, you might notice it."
+id = 5
+bit_reward = 5
+programs = [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 4 ) ]
+
+[node name="File3" parent="DepthTwo2" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 39.0
+margin_right = 347.0
+margin_bottom = 78.0
+file_name = "grandmas_recipe"
+decrypted_text = "Strawberry Jam
+- 5 pounds strawberry
+- 2 cups sugar
+- tablespoons of honey
+- 8 limes"
+encrypted = false
+id = 6
+
+[node name="File4" parent="DepthTwo2" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 78.0
+margin_right = 347.0
+margin_bottom = 117.0
+file_name = "meadows <dpr>"
+directory = true
+id = 7
+bit_reward = 20
+programs = [ ExtResource( 2 ), ExtResource( 5 ) ]

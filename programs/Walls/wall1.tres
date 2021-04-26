@@ -10,5 +10,6 @@ integrity = 8
 max_integrity = 8
 attack_rate = 2.5
 attack_value = 1
+recharge_rate = 0
 type = "wall"
 color = Color( 0.603922, 0.784314, 0.992157, 1 )
