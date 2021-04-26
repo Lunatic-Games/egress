@@ -22,6 +22,7 @@ onready var distress_particles = preload("res://assets/particles/distress_partic
 
 
 signal decrypted
+signal defeated_program(program)
 
 
 func _process(delta):
@@ -62,6 +63,7 @@ func break_attacker():
 func defender_defeated():
 	$Attacker.visible = false
 	$AttackerAttackTimer.stop()
+	emit_signal("defeated_program", current_defender)
 	current_defender = null
 
 
