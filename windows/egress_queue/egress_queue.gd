@@ -153,6 +153,15 @@ func queue_defender(program, id, bits_gained):
 	defenders.push_back(program)
 
 
+func queue_attacker(program):
+	attackers.push_back(program)
+	return attackers.size()
+
+func dequeue_attacker(program):
+	var index = attackers.find(program)
+	attackers.remove(index)
+
+
 
 func is_free():
 	return ! hack_underway
