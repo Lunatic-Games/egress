@@ -1,9 +1,9 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/ui/VT323-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://menus/menu_label.tscn" type="PackedScene" id=2]
 [ext_resource path="res://menus/menu_button.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/sfx/clack.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/music/the_thick_of_it_simple.wav" type="AudioStream" id=4]
 [ext_resource path="res://menus/main_menu/main_menu.gd" type="Script" id=5]
 [ext_resource path="res://shaders/screen_shader.tscn" type="PackedScene" id=6]
 [ext_resource path="res://shaders/program_shader.tscn" type="PackedScene" id=7]
@@ -21,6 +21,91 @@ region_rect = Rect2( 0, 0, 0, 4 )
 [sub_resource type="StyleBoxEmpty" id=3]
 
 [sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="DynamicFont" id=5]
+size = 24
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=7]
+resource_name = "default"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("OutroBackground:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Music:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -10.0 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "outro"
+tracks/0/type = "value"
+tracks/0/path = NodePath("OutroBackground:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("OutroBackground/Label:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ "", ".", "..", "..." ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Music:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ -10.0, -15.0, -25.0, -80.0 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "outro_ended"
+} ]
+}
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -157,19 +242,50 @@ margin_right = 974.0
 margin_bottom = 173.0
 text = "Terminate"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 4 )
-volume_db = -10.0
-pitch_scale = 0.9
-autoplay = true
-bus = "Music"
-
 [node name="ProgramShader" parent="." instance=ExtResource( 7 )]
 modulate = Color( 0.776471, 0.564706, 0.0470588, 1 )
 margin_left = 64.0
 margin_right = 364.0
 
 [node name="Mouse" parent="." instance=ExtResource( 9 )]
+
+[node name="OutroBackground" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0784314, 0.0588235, 0.027451, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="OutroBackground"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -15.0
+margin_top = -12.5
+margin_right = 15.0
+margin_bottom = 12.5
+rect_min_size = Vector2( 30, 0 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 4 )
+volume_db = -10.0
+autoplay = true
+bus = "Music"
+
+[node name="OutroPlayer" type="AnimationPlayer" parent="."]
+pause_mode = 2
+autoplay = "default"
+anims/default = SubResource( 7 )
+anims/outro = SubResource( 6 )
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/BeginButton" to="." method="_on_BeginButton_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/ConfigButton" to="." method="_on_ConfigButton_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/ConfigContainer/VBoxContainer/FullscreenButton" to="." method="_on_FullscreenButton_pressed"]

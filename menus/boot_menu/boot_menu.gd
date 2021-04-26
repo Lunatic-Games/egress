@@ -35,7 +35,9 @@ const people_output = """
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	yield(blink(2), "completed")
+	play_sfx(1.1)
 	yield(type_line("initialize \n", 0.5), "completed")
+	$FanSFX.play()
 	yield(add_line("intializing", 0.75), "completed")
 	yield(type_line("...\n", 0.5), "completed")
 	yield(add_line(fdisk_output, 1.0), "completed")
@@ -48,7 +50,9 @@ func _ready():
 	yield(get_tree().create_timer(0.5), "timeout")
 	yield(add_line("LG:/> "), "completed")
 	yield(blink(3), "completed")
+	play_sfx(0.3, 1.1)
 	yield(type_line("run main_menu\n", 0.5), "completed")
+	$FanSFX/AnimationPlayer.play("fade_out")
 	yield(type_line("...\n", 1.0), "completed")
 	var _ret = get_tree().change_scene("res://menus/main_menu/main_menu.tscn")
 
@@ -66,6 +70,7 @@ func type_line(string, end_delay=0.0):
 		$MarginContainer/MenuLabel.text += character
 		disable_scrollbar()
 		yield(get_tree().create_timer(type_delay), "timeout")
+	
 	yield(get_tree().create_timer(end_delay), "timeout")
 
 
@@ -78,3 +83,11 @@ func add_line(string, end_delay=0.0):
 func disable_scrollbar():
 	$MarginContainer/MenuLabel.get_child(0).modulate.a = 0
 	$MarginContainer/MenuLabel.get_child(0).mouse_filter = MOUSE_FILTER_IGNORE
+
+func play_sfx(time, second_time=0.0):
+	$TypingSFX.play()
+	yield(get_tree().create_timer(time), "timeout")
+	$TypingSFX.stop()
+	if second_time != 0.0:
+		play_sfx(second_time)
+	

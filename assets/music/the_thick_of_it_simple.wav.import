@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/the_thick_of_it_simple.wav-e07daa0fe83827b4108ea64be0d624a3.sample"
+
+[deps]
+
+source_file="res://assets/music/the_thick_of_it_simple.wav"
+dest_files=[ "res://.import/the_thick_of_it_simple.wav-e07daa0fe83827b4108ea64be0d624a3.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

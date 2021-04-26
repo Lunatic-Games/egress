@@ -40,7 +40,7 @@ margin_top = 0.0
 margin_right = 347.0
 margin_bottom = 48.0
 file_name = "t00ts"
-decrypted_text = "Read my signatures for advice I made it pretty deep. Left some messages to help you."
+decrypted_text = "Read my signatures for advice. I made it pretty deep. Left some messages to help you."
 bit_reward = 10
 programs = [ ExtResource( 2 ) ]
 

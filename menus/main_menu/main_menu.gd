@@ -28,8 +28,12 @@ func _on_VolumeSlider_value_changed(value):
 
 
 func _on_BeginButton_pressed():
-	var _ret = get_tree().change_scene("res://game.tscn")
+	get_tree().paused = true
+	$OutroPlayer.play("outro")
 
+func outro_ended():
+	get_tree().paused = false
+	var _ret = get_tree().change_scene("res://game.tscn")
 
 func _on_ConfigButton_pressed():
 	config_container.visible = !config_container.visible

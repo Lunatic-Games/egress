@@ -1,12 +1,29 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://shaders/screen_shader.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/ui/VT323-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/sfx/clack.wav" type="AudioStream" id=3]
 [ext_resource path="res://menus/boot_menu/boot_menu.gd" type="Script" id=4]
+[ext_resource path="res://assets/sfx/fan.wav" type="AudioStream" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
 font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6, 0.8, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, -15.0, -30.0, -80.0 ]
+}
 
 [node name="BootMenu" type="Control"]
 anchor_right = 1.0
@@ -38,3 +55,13 @@ custom_fonts/normal_font = SubResource( 1 )
 custom_colors/default_color = Color( 0.945098, 0.705882, 0.129412, 1 )
 text = "LG:/> "
 scroll_following = true
+
+[node name="TypingSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+bus = "SFX"
+
+[node name="FanSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FanSFX"]
+anims/fade_out = SubResource( 2 )
