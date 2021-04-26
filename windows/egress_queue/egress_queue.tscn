@@ -1,8 +1,7 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://windows/egress_queue/egress_queue.gd" type="Script" id=1]
 [ext_resource path="res://assets/ui/VT323-Regular.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://icon.png" type="Texture" id=3]
 [ext_resource path="res://programs/Breakers/breaker1.tres" type="Resource" id=4]
 [ext_resource path="res://shaders/program_shader.tscn" type="PackedScene" id=5]
 
@@ -229,12 +228,6 @@ attackers = [ ExtResource( 4 ) ]
 [node name="Defender" type="Node2D" parent="."]
 position = Vector2( 578.5, 163 )
 
-[node name="DefenderSprite_old" type="Sprite" parent="Defender"]
-visible = false
-modulate = Color( 0.345098, 0.819608, 0.929412, 1 )
-scale = Vector2( 1e-05, 1e-05 )
-texture = ExtResource( 3 )
-
 [node name="DefenderSprite" parent="Defender" instance=ExtResource( 5 )]
 self_modulate = Color( 1, 1, 1, 0 )
 margin_left = -126.0
@@ -259,12 +252,6 @@ __meta__ = {
 
 [node name="Attacker" type="Node2D" parent="."]
 position = Vector2( -150, 153 )
-
-[node name="AttackerSprite_old" type="Sprite" parent="Attacker"]
-visible = false
-modulate = Color( 0.670588, 0.160784, 0.160784, 1 )
-scale = Vector2( 1e-05, 1e-05 )
-texture = ExtResource( 3 )
 
 [node name="AttackerSprite" parent="Attacker" instance=ExtResource( 5 )]
 margin_left = -125.086
