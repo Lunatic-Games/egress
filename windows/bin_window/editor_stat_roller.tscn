@@ -1,35 +1,78 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://windows/bin_window/editor_stat_roller.gd" type="Script" id=1]
 [ext_resource path="res://assets/ui/VT323-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://windows/bin_window/background_style.tres" type="StyleBox" id=3]
+[ext_resource path="res://windows/bin_window/background_style_highlighted.tres" type="StyleBox" id=4]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
+size = 22
 font_data = ExtResource( 2 )
 
-[node name="Roller" type="VBoxContainer"]
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="DynamicFont" id=5]
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="DynamicFont" id=6]
+font_data = ExtResource( 2 )
+
+[node name="Roller" type="HBoxContainer"]
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 margin_top = -31.0
-margin_bottom = 31.0
+margin_bottom = -8.0
 grow_vertical = 2
+custom_constants/separation = 5
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Up" type="Button" parent="."]
-margin_right = 1024.0
-margin_bottom = 20.0
-
-[node name="Counter" type="Label" parent="."]
-margin_top = 24.0
-margin_right = 1024.0
-margin_bottom = 41.0
-custom_fonts/font = SubResource( 1 )
-text = "0"
+[node name="Label" type="Label" parent="."]
+margin_right = 36.0
+margin_bottom = 23.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
+text = "Stat"
 
 [node name="Down" type="Button" parent="."]
-margin_top = 45.0
-margin_right = 1024.0
-margin_bottom = 65.0
+margin_left = 41.0
+margin_right = 66.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 25, 0 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 3 )
+custom_styles/focus = SubResource( 4 )
+custom_styles/normal = ExtResource( 3 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.0784314, 0.0588235, 0.027451, 1 )
+custom_colors/font_color_hover = Color( 0.0784314, 0.0588235, 0.027451, 1 )
+custom_colors/font_color_pressed = Color( 0.0784314, 0.0588235, 0.027451, 1 )
+text = "<"
+
+[node name="Counter" type="Label" parent="."]
+margin_left = 71.0
+margin_right = 80.0
+margin_bottom = 23.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
+text = "0"
+
+[node name="Up" type="Button" parent="."]
+margin_left = 85.0
+margin_right = 110.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 25, 0 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 3 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/normal = ExtResource( 3 )
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0.0784314, 0.0588235, 0.027451, 1 )
+custom_colors/font_color_hover = Color( 0.0784314, 0.0588235, 0.027451, 1 )
+custom_colors/font_color_pressed = Color( 0.0784314, 0.0588235, 0.027451, 1 )
+text = ">"

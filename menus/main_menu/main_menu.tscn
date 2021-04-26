@@ -170,7 +170,6 @@ margin_left = 64.0
 margin_right = 364.0
 
 [node name="Mouse" parent="." instance=ExtResource( 9 )]
-
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/BeginButton" to="." method="_on_BeginButton_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/ConfigButton" to="." method="_on_ConfigButton_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/ConfigContainer/VBoxContainer/FullscreenButton" to="." method="_on_FullscreenButton_pressed"]

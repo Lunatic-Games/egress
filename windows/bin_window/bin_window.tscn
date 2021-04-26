@@ -1,23 +1,89 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://windows/bin_window/bin_window.gd" type="Script" id=1]
 [ext_resource path="res://assets/ui/VT323-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://windows/bin_window/editor_stat_roller.tscn" type="PackedScene" id=3]
+[ext_resource path="res://windows/bin_window/background_style.tres" type="StyleBox" id=4]
+[ext_resource path="res://windows/bin_window/background_style_highlighted.tres" type="StyleBox" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=9]
 
 [sub_resource type="DynamicFont" id=1]
+size = 24
 font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=24]
+bg_color = Color( 0.741176, 0.52549, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=25]
+
+[sub_resource type="StyleBoxFlat" id=26]
+
+[sub_resource type="StyleBoxFlat" id=23]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 8
+border_color = Color( 0.407843, 0.290196, 0, 1 )
+
+[sub_resource type="Theme" id=22]
+VScrollBar/icons/decrement = null
+VScrollBar/icons/decrement_highlight = null
+VScrollBar/icons/increment = null
+VScrollBar/icons/increment_highlight = null
+VScrollBar/styles/grabber = SubResource( 24 )
+VScrollBar/styles/grabber_highlight = SubResource( 25 )
+VScrollBar/styles/grabber_pressed = SubResource( 26 )
+VScrollBar/styles/scroll = SubResource( 23 )
+VScrollBar/styles/scroll_focus = null
+
+[sub_resource type="StyleBoxEmpty" id=11]
+
+[sub_resource type="StyleBoxFlat" id=12]
+bg_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
+border_width_left = 10
+border_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
 
 [sub_resource type="DynamicFont" id=2]
+size = 20
 font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=29]
+size = 24
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=19]
+bg_color = Color( 0.447059, 0.317647, 0, 1 )
+
+[sub_resource type="StyleBoxEmpty" id=13]
 
 [sub_resource type="DynamicFont" id=3]
+size = 24
 font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=17]
+bg_color = Color( 0.447059, 0.317647, 0, 1 )
+
+[sub_resource type="StyleBoxEmpty" id=14]
 
 [sub_resource type="DynamicFont" id=4]
+size = 24
 font_data = ExtResource( 2 )
 
+[sub_resource type="StyleBoxFlat" id=18]
+bg_color = Color( 0.447059, 0.317647, 0, 1 )
+
+[sub_resource type="StyleBoxEmpty" id=15]
+
 [sub_resource type="DynamicFont" id=5]
+size = 24
 font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxEmpty" id=20]
+
+[sub_resource type="DynamicFont" id=27]
+size = 24
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxEmpty" id=28]
 
 [node name="BinWindow" type="Control" groups=[
 "BinWindowController",
@@ -30,35 +96,52 @@ __meta__ = {
 }
 
 [node name="Main" type="Control" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_top = 10.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Rows" type="VBoxContainer" parent="Main"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="NewButton" type="Button" parent="Main/Rows"]
-margin_right = 1024.0
-margin_bottom = 23.0
+margin_left = 437.0
+margin_right = 587.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 150, 0 )
+size_flags_horizontal = 4
+custom_styles/hover = ExtResource( 5 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = SubResource( 9 )
+custom_styles/normal = ExtResource( 4 )
 custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.0784314, 0.0588235, 0.027451, 1 )
+custom_colors/font_color_hover = Color( 0.0784314, 0.0588235, 0.027451, 1 )
+custom_colors/font_color_pressed = Color( 0.0784314, 0.0588235, 0.027451, 1 )
 text = "NEW"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Main/Rows"]
-margin_top = 27.0
+margin_top = 29.0
 margin_right = 1024.0
-margin_bottom = 600.0
+margin_bottom = 590.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = SubResource( 22 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ProgramList" type="VBoxContainer" parent="Main/Rows/ScrollContainer"]
-custom_constants/separation = 60
+custom_constants/separation = 20
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -67,14 +150,7 @@ __meta__ = {
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-
-[node name="NextButton" type="Button" parent="EditCosmetics"]
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = -23.0
-custom_fonts/font = SubResource( 1 )
-text = "NEXT"
+margin_top = 5.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -83,39 +159,40 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_bottom = -33.0
+custom_constants/separation = 20
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Rows" type="VBoxContainer" parent="EditCosmetics/Columns"]
-margin_right = 625.0
-margin_bottom = 567.0
+margin_right = 615.0
+margin_bottom = 562.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="NameEdit" type="TextEdit" parent="EditCosmetics/Columns/Rows"]
-margin_right = 625.0
-margin_bottom = 38.0
+[node name="NameEdit" type="LineEdit" parent="EditCosmetics/Columns/Rows"]
+margin_right = 615.0
+margin_bottom = 37.0
 rect_min_size = Vector2( 0, 28 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_styles/focus = SubResource( 11 )
+custom_styles/normal = SubResource( 12 )
 custom_fonts/font = SubResource( 2 )
+custom_colors/cursor_color = Color( 0.0784314, 0.0588235, 0.027451, 1 )
+custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0.0784314, 0.0588235, 0.027451, 1 )
+max_length = 12
+selecting_enabled = false
+caret_blink = true
 
 [node name="ColorSelect" type="Control" parent="EditCosmetics/Columns/Rows"]
-margin_top = 42.0
-margin_right = 625.0
-margin_bottom = 567.0
+margin_top = 41.0
+margin_right = 615.0
+margin_bottom = 562.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 13.71
-
-[node name="ColorRect" type="ColorRect" parent="EditCosmetics/Columns/Rows/ColorSelect"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0.262745, 0.262745, 0.262745, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="EditCosmetics/Columns/Rows/ColorSelect"]
 anchor_top = 0.5
@@ -130,149 +207,207 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="EditCosmetics/Columns/Rows/ColorSelect/VBoxContainer"]
-margin_right = 625.0
+margin_right = 615.0
 margin_bottom = 40.0
 custom_constants/separation = 10
 
 [node name="Orange" type="Button" parent="EditCosmetics/Columns/Rows/ColorSelect/VBoxContainer/HBoxContainer" groups=[
 "ColorButton",
 ]]
-margin_right = 148.0
+margin_right = 146.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 40, 40 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
+toggle_mode = true
 
-[node name="Yellow" type="Button" parent="EditCosmetics/Columns/Rows/ColorSelect/VBoxContainer/HBoxContainer" groups=[
+[node name="Orangered" type="Button" parent="EditCosmetics/Columns/Rows/ColorSelect/VBoxContainer/HBoxContainer" groups=[
 "ColorButton",
 ]]
-margin_left = 158.0
-margin_right = 307.0
+margin_left = 156.0
+margin_right = 302.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 40, 40 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
+toggle_mode = true
 
 [node name="Green" type="Button" parent="EditCosmetics/Columns/Rows/ColorSelect/VBoxContainer/HBoxContainer" groups=[
 "ColorButton",
 ]]
-margin_left = 317.0
-margin_right = 466.0
+margin_left = 312.0
+margin_right = 458.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 40, 40 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
+toggle_mode = true
 
 [node name="Blue" type="Button" parent="EditCosmetics/Columns/Rows/ColorSelect/VBoxContainer/HBoxContainer" groups=[
 "ColorButton",
 ]]
-margin_left = 476.0
-margin_right = 625.0
+margin_left = 468.0
+margin_right = 615.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 40, 40 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
+toggle_mode = true
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="EditCosmetics/Columns/Rows/ColorSelect/VBoxContainer"]
 margin_top = 60.0
-margin_right = 625.0
+margin_right = 615.0
 margin_bottom = 100.0
 custom_constants/separation = 10
 
 [node name="White" type="Button" parent="EditCosmetics/Columns/Rows/ColorSelect/VBoxContainer/HBoxContainer2" groups=[
 "ColorButton",
 ]]
-margin_right = 148.0
+margin_right = 146.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 40, 40 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
+toggle_mode = true
 
-[node name="Pink" type="Button" parent="EditCosmetics/Columns/Rows/ColorSelect/VBoxContainer/HBoxContainer2" groups=[
+[node name="Orchid" type="Button" parent="EditCosmetics/Columns/Rows/ColorSelect/VBoxContainer/HBoxContainer2" groups=[
 "ColorButton",
 ]]
-margin_left = 158.0
-margin_right = 307.0
+margin_left = 156.0
+margin_right = 302.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 40, 40 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
+toggle_mode = true
 
 [node name="Red" type="Button" parent="EditCosmetics/Columns/Rows/ColorSelect/VBoxContainer/HBoxContainer2" groups=[
 "ColorButton",
 ]]
-margin_left = 317.0
-margin_right = 466.0
+margin_left = 312.0
+margin_right = 458.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 40, 40 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
+toggle_mode = true
 
-[node name="Purple" type="Button" parent="EditCosmetics/Columns/Rows/ColorSelect/VBoxContainer/HBoxContainer2" groups=[
+[node name="Royalblue" type="Button" parent="EditCosmetics/Columns/Rows/ColorSelect/VBoxContainer/HBoxContainer2" groups=[
 "ColorButton",
 ]]
-margin_left = 476.0
-margin_right = 625.0
+margin_left = 468.0
+margin_right = 615.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 40, 40 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
+toggle_mode = true
 
 [node name="TypeSelect" type="Control" parent="EditCosmetics/Columns"]
-margin_left = 629.0
+margin_left = 635.0
 margin_right = 1024.0
-margin_bottom = 567.0
+margin_bottom = 562.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.63
-
-[node name="ColorRect" type="ColorRect" parent="EditCosmetics/Columns/TypeSelect"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0.262745, 0.262745, 0.262745, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="EditCosmetics/Columns/TypeSelect"]
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_top = -10.0
-margin_bottom = 10.0
+margin_top = -68.0
+margin_bottom = 62.0
 grow_vertical = 2
-custom_constants/separation = 20
+custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Label" type="Label" parent="EditCosmetics/Columns/TypeSelect/VBoxContainer"]
+margin_right = 389.0
+margin_bottom = 25.0
+custom_fonts/font = SubResource( 29 )
+custom_colors/font_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
+text = "Type"
+align = 1
+
 [node name="Breaker" type="Button" parent="EditCosmetics/Columns/TypeSelect/VBoxContainer" groups=[
 "TypeButton",
 ]]
-margin_right = 395.0
-margin_bottom = 23.0
+margin_top = 35.0
+margin_right = 389.0
+margin_bottom = 60.0
+custom_styles/hover = ExtResource( 5 )
+custom_styles/pressed = SubResource( 19 )
+custom_styles/focus = SubResource( 13 )
+custom_styles/normal = ExtResource( 4 )
 custom_fonts/font = SubResource( 3 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0.0784314, 0.0588235, 0.027451, 1 )
+custom_colors/font_color_hover = Color( 0.0784314, 0.0588235, 0.027451, 1 )
+custom_colors/font_color_pressed = Color( 0.0784314, 0.0588235, 0.027451, 1 )
+toggle_mode = true
 text = "Breaker"
 
 [node name="Wall" type="Button" parent="EditCosmetics/Columns/TypeSelect/VBoxContainer" groups=[
 "TypeButton",
 ]]
-margin_top = 43.0
-margin_right = 395.0
-margin_bottom = 66.0
+margin_top = 70.0
+margin_right = 389.0
+margin_bottom = 95.0
+custom_styles/hover = ExtResource( 5 )
+custom_styles/pressed = SubResource( 17 )
+custom_styles/focus = SubResource( 14 )
+custom_styles/normal = ExtResource( 4 )
 custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.0784314, 0.0588235, 0.027451, 1 )
+custom_colors/font_color_hover = Color( 0.0784314, 0.0588235, 0.027451, 1 )
+custom_colors/font_color_pressed = Color( 0.0784314, 0.0588235, 0.027451, 1 )
+toggle_mode = true
 text = "Wall"
 
 [node name="Hybrid" type="Button" parent="EditCosmetics/Columns/TypeSelect/VBoxContainer" groups=[
 "TypeButton",
 ]]
-margin_top = 86.0
-margin_right = 395.0
-margin_bottom = 109.0
+margin_top = 105.0
+margin_right = 389.0
+margin_bottom = 130.0
+custom_styles/hover = ExtResource( 5 )
+custom_styles/pressed = SubResource( 18 )
+custom_styles/focus = SubResource( 15 )
+custom_styles/normal = ExtResource( 4 )
 custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.0784314, 0.0588235, 0.027451, 1 )
+custom_colors/font_color_hover = Color( 0.0784314, 0.0588235, 0.027451, 1 )
+custom_colors/font_color_pressed = Color( 0.0784314, 0.0588235, 0.027451, 1 )
+toggle_mode = true
 text = "Hybrid"
 
+[node name="NextButton" type="Button" parent="EditCosmetics"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -62.5
+margin_top = -26.0
+margin_right = 62.5
+margin_bottom = -1.0
+custom_styles/hover = ExtResource( 5 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = SubResource( 20 )
+custom_styles/normal = ExtResource( 4 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0.0784314, 0.0588235, 0.027451, 1 )
+custom_colors/font_color_hover = Color( 0.0784314, 0.0588235, 0.027451, 1 )
+custom_colors/font_color_pressed = Color( 0.0784314, 0.0588235, 0.027451, 1 )
+text = "NEXT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="EditStats" type="Control" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 
@@ -283,71 +418,158 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GroupColumns" type="HBoxContainer" parent="EditStats/Rows"]
+[node name="Points" type="HBoxContainer" parent="EditStats/Rows"]
 margin_right = 1024.0
-margin_bottom = 65.0
+margin_bottom = 25.0
 
-[node name="PointsRows" type="VBoxContainer" parent="EditStats/Rows/GroupColumns"]
-margin_bottom = 65.0
+[node name="Label" type="Label" parent="EditStats/Rows/Points"]
+margin_right = 130.0
+margin_bottom = 25.0
+custom_fonts/font = SubResource( 27 )
+custom_colors/font_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
+text = "Points left: "
 
-[node name="PointsTitle" type="Label" parent="EditStats/Rows/GroupColumns/PointsRows"]
-margin_bottom = 14.0
+[node name="Counter" type="Label" parent="EditStats/Rows/Points"]
+margin_left = 134.0
+margin_right = 144.0
+margin_bottom = 25.0
+custom_fonts/font = SubResource( 27 )
+custom_colors/font_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
+text = "0"
 
-[node name="PointsCounter" type="Label" parent="EditStats/Rows/GroupColumns/PointsRows"]
-margin_top = 18.0
-margin_bottom = 32.0
-
-[node name="StatColumns" type="HBoxContainer" parent="EditStats/Rows/GroupColumns"]
-margin_left = 4.0
-margin_right = 64.0
-margin_bottom = 65.0
+[node name="StatRows" type="VBoxContainer" parent="EditStats/Rows"]
+margin_top = 29.0
+margin_right = 1024.0
+margin_bottom = 133.0
 grow_horizontal = 0
 
-[node name="IntegrityRoller" parent="EditStats/Rows/GroupColumns/StatColumns" instance=ExtResource( 3 )]
+[node name="IntegrityRoller" parent="EditStats/Rows/StatRows" instance=ExtResource( 3 )]
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 0.0
-margin_right = 12.0
-margin_bottom = 65.0
+margin_right = 1024.0
+margin_bottom = 23.0
 stat_name = "integrity"
 
-[node name="SpeedRoller" parent="EditStats/Rows/GroupColumns/StatColumns" instance=ExtResource( 3 )]
+[node name="Label" parent="EditStats/Rows/StatRows/IntegrityRoller" index="0"]
+margin_right = 99.0
+text = "Integrity: "
+
+[node name="Down" parent="EditStats/Rows/StatRows/IntegrityRoller" index="1"]
+margin_left = 104.0
+margin_right = 129.0
+
+[node name="Counter" parent="EditStats/Rows/StatRows/IntegrityRoller" index="2"]
+margin_left = 134.0
+margin_right = 143.0
+
+[node name="Up" parent="EditStats/Rows/StatRows/IntegrityRoller" index="3"]
+margin_left = 148.0
+margin_right = 173.0
+
+[node name="SpeedRoller" parent="EditStats/Rows/StatRows" instance=ExtResource( 3 )]
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 16.0
-margin_top = 0.0
-margin_right = 28.0
-margin_bottom = 65.0
+margin_top = 27.0
+margin_right = 1024.0
+margin_bottom = 50.0
 stat_name = "attack_rate"
 
-[node name="PowerRoller" parent="EditStats/Rows/GroupColumns/StatColumns" instance=ExtResource( 3 )]
+[node name="Label" parent="EditStats/Rows/StatRows/SpeedRoller" index="0"]
+margin_right = 99.0
+text = "Speed:     "
+
+[node name="Down" parent="EditStats/Rows/StatRows/SpeedRoller" index="1"]
+margin_left = 104.0
+margin_right = 129.0
+
+[node name="Counter" parent="EditStats/Rows/StatRows/SpeedRoller" index="2"]
+margin_left = 134.0
+margin_right = 143.0
+
+[node name="Up" parent="EditStats/Rows/StatRows/SpeedRoller" index="3"]
+margin_left = 148.0
+margin_right = 173.0
+
+[node name="PowerRoller" parent="EditStats/Rows/StatRows" instance=ExtResource( 3 )]
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 32.0
-margin_top = 0.0
-margin_right = 44.0
-margin_bottom = 65.0
+margin_top = 54.0
+margin_right = 1024.0
+margin_bottom = 77.0
 stat_name = "attack_value"
 
-[node name="RateRoller" parent="EditStats/Rows/GroupColumns/StatColumns" instance=ExtResource( 3 )]
+[node name="Label" parent="EditStats/Rows/StatRows/PowerRoller" index="0"]
+margin_right = 99.0
+text = "Power:     "
+
+[node name="Down" parent="EditStats/Rows/StatRows/PowerRoller" index="1"]
+margin_left = 104.0
+margin_right = 129.0
+
+[node name="Counter" parent="EditStats/Rows/StatRows/PowerRoller" index="2"]
+margin_left = 134.0
+margin_right = 143.0
+
+[node name="Up" parent="EditStats/Rows/StatRows/PowerRoller" index="3"]
+margin_left = 148.0
+margin_right = 173.0
+
+[node name="RateRoller" parent="EditStats/Rows/StatRows" instance=ExtResource( 3 )]
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 48.0
-margin_top = 0.0
-margin_right = 60.0
-margin_bottom = 65.0
+margin_top = 81.0
+margin_right = 1024.0
+margin_bottom = 104.0
 stat_name = "recharge_rate"
 
-[node name="DoneButton" type="Button" parent="EditStats/Rows"]
-margin_top = 69.0
-margin_right = 1024.0
-margin_bottom = 92.0
+[node name="Label" parent="EditStats/Rows/StatRows/RateRoller" index="0"]
+margin_right = 99.0
+text = "Rate:      "
+
+[node name="Down" parent="EditStats/Rows/StatRows/RateRoller" index="1"]
+margin_left = 104.0
+margin_right = 129.0
+
+[node name="Counter" parent="EditStats/Rows/StatRows/RateRoller" index="2"]
+margin_left = 134.0
+margin_right = 143.0
+
+[node name="Up" parent="EditStats/Rows/StatRows/RateRoller" index="3"]
+margin_left = 148.0
+margin_right = 173.0
+
+[node name="DoneButton" type="Button" parent="EditStats"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -62.5
+margin_top = -26.0
+margin_right = 62.5
+margin_bottom = -6.0
+size_flags_horizontal = 4
+custom_styles/hover = ExtResource( 5 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = SubResource( 28 )
+custom_styles/normal = ExtResource( 4 )
 custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.0784314, 0.0588235, 0.027451, 1 )
+custom_colors/font_color_hover = Color( 0.0784314, 0.0588235, 0.027451, 1 )
+custom_colors/font_color_pressed = Color( 0.0784314, 0.0588235, 0.027451, 1 )
 text = "DONE"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[editable path="EditStats/Rows/StatRows/IntegrityRoller"]
+
+[editable path="EditStats/Rows/StatRows/SpeedRoller"]
+
+[editable path="EditStats/Rows/StatRows/PowerRoller"]
+
+[editable path="EditStats/Rows/StatRows/RateRoller"]

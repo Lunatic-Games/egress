@@ -17,7 +17,9 @@ func edit_button():
 	controller.edit_program(p, true)
 	
 func egress_button():
-	print("Moving [", p.type, "] program [", p.name, "] to egress...")
+	var egress = get_tree().get_nodes_in_group("egress")[0]
+	egress.queue_attacker(p)
 	
 func ingress_button():
-	print("Moving [", p.type, "] program [", p.name, "] to ingress...")
+	var ingress = get_tree().get_nodes_in_group("ingress")[0]
+	ingress.defenders.push_back(p)
