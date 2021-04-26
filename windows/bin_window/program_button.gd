@@ -21,7 +21,7 @@ func init(program_struct):
 
 func edit_button():
 	if (allow_edit):
-		$AudioStreamPlayer.play()
+		$UiStreamPlayer.play()
 		controller.edit_program(p, true)
 	
 func egress_button():
@@ -31,7 +31,7 @@ func egress_button():
 			egress.dequeue_attacker(p)
 			deployed = false
 			allow_edit = true
-			$AudioStreamPlayer.play()
+			$UiStreamPlayer.play()
 		else:
 			$HBoxContainer/EgressButton.pressed = false
 	else:
@@ -40,7 +40,7 @@ func egress_button():
 			egress.queue_attacker(p)
 			deployed = true
 			allow_edit = false
-			$AudioStreamPlayer.play()
+			$LoadStreamPlayer.play()
 		else:
 			$HBoxContainer/EgressButton.pressed = true
 func ingress_button():
@@ -50,7 +50,7 @@ func ingress_button():
 			ingress.dequeue_defender(p)
 			deployed = false
 			allow_edit = true
-			$AudioStreamPlayer.play()
+			$UiStreamPlayer.play()
 		else:
 			$HBoxContainer/IngressButton.pressed = false
 	else:
@@ -59,7 +59,7 @@ func ingress_button():
 			ingress.defenders.push_back(p)
 			deployed = true
 			allow_edit = false
-			$AudioStreamPlayer.play()
+			$LoadStreamPlayer.play()
 		else:
 			$HBoxContainer/IngressButton.pressed = true
 

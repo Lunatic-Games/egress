@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://windows/bin_window/program_button.gd" type="Script" id=1]
 [ext_resource path="res://shaders/program_shader.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://windows/bin_window/background_style.tres" type="StyleBox" id=4]
 [ext_resource path="res://windows/bin_window/background_style_highlighted.tres" type="StyleBox" id=5]
 [ext_resource path="res://assets/sfx/ui_pressed.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/sfx/load_program.wav" type="AudioStream" id=7]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -154,5 +155,8 @@ text = "RECHARGING..."
 align = 1
 valign = 1
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="UiStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
+
+[node name="LoadStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
