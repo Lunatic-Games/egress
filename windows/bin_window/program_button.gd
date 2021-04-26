@@ -78,3 +78,4 @@ func _do_recharge():
 	$HBoxContainer/IngressButton.pressed = false
 	$HBoxContainer/EgressButton.pressed = false
 	allow_edit = true
+	deployed = false
