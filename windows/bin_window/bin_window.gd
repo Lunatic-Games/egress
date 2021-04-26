@@ -24,10 +24,10 @@ var max_points = 0
 
 func _ready():
 	# Set up transition buttons
-	$Main/Rows/NewButton.connect("pressed", self, "new_button")
-	$EditCosmetics/NextButton.connect("button_down", self, "next_button")
-	$EditStats/DoneButton.connect("button_down", self, "done_button")
-	$EditCosmetics/Columns/Rows/NameEdit.connect("text_changed", self, "handle_text_edit_change")
+	var _ret = $Main/Rows/NewButton.connect("pressed", self, "new_button")
+	_ret = $EditCosmetics/NextButton.connect("button_down", self, "next_button")
+	_ret = $EditStats/DoneButton.connect("button_down", self, "done_button")
+	_ret = $EditCosmetics/Columns/Rows/NameEdit.connect("text_changed", self, "handle_text_edit_change")
 	
 	# Set up color buttons
 	for button in get_tree().get_nodes_in_group("ColorButton"):
@@ -51,11 +51,11 @@ func _ready():
 	max_points = Hacker.total_points
 	for roller in $EditStats/Rows/StatRows.get_children():
 		roller.max_value = max_points
-		roller.connect("update_stat", self, "read_roller", [roller])
+		_ret = roller.connect("update_stat", self, "read_roller", [roller])
 
 	# Connect ingress button
 	for program in $Main/Rows/ScrollContainer/ProgramList.get_children():
-		var _ret = program.ingress.connect("defeated_program", program, "reset_ingress_button")
+		_ret = program.ingress.connect("defeated_program", program, "reset_ingress_button")
 
 	transition_to("main")
 

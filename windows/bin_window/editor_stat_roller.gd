@@ -9,8 +9,8 @@ export(int) var max_value
 signal update_stat(stat_name, cur_value)
 
 func _ready():
-	$Up.connect("button_down", self, "up_button")
-	$Down.connect("button_down", self, "down_button")
+	var _ret = $Up.connect("button_down", self, "up_button")
+	_ret = $Down.connect("button_down", self, "down_button")
 	
 func up_button():
 	if (cur_value < max_value && remaining > 0):
