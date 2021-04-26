@@ -21,6 +21,8 @@ func init(program_struct):
 func edit_button():
 	if (allow_edit):
 		controller.edit_program(p, true)
+	else:
+		_do_recharge()
 	
 func egress_button():
 	if ($HBoxContainer/EgressButton.pressed):
