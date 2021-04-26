@@ -33,3 +33,6 @@ func set(prop, value):
 		attack_value = value
 	elif (prop == "recharge_rate"):
 		recharge_rate = value
+
+func total():
+	return integrity + attack_rate + attack_value + recharge_rate

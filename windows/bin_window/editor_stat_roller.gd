@@ -23,3 +23,13 @@ func down_button():
 		cur_value -= 1
 		$Counter.text = String(cur_value)
 		emit_signal("update_stat")
+		
+func set_value(val):
+	cur_value = val
+	$Counter.text = String(cur_value)
+
+func reset():
+	cur_value = 0
+	remaining = 0
+	max_value = 0
+	$Counter.text = "0"

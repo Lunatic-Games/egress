@@ -14,7 +14,7 @@ func init(program_struct):
 
 
 func edit_button():
-	controller.edit_program(p)
+	controller.edit_program(p, true)
 	
 func egress_button():
 	print("Moving [", p.type, "] program [", p.name, "] to egress...")
