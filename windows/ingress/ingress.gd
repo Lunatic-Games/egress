@@ -215,6 +215,8 @@ func spawn_attack_particles(n, color, attacker, defender):
 	for i in range(current_attacker.attack_value * 2):
 		var particle = attack_particle.instance()
 		attacker.add_child(particle)
+		particle.min_height /= 2
+		particle.max_height /= 2
 		particle.global_position = attacker.global_position
 		particle.destination = defender.global_position
 		particle.begin(flip_particle)
