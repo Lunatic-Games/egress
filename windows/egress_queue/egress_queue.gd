@@ -20,8 +20,11 @@ var winner_decided = false
 signal decrypted
 
 
+func _ready():
+	$Defender.visible = false
+	$Attacker.visible = false
+
 func _process(delta):
-	
 	# If a hack is happening
 	if (hack_underway && !winner_decided  && !($HackSuccessful.is_playing() || $HackFailed.is_playing())):
 		
