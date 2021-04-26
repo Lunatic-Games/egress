@@ -17,9 +17,19 @@ func edit_button():
 	controller.edit_program(p, true)
 	
 func egress_button():
-	var egress = get_tree().get_nodes_in_group("egress")[0]
-	egress.queue_attacker(p)
+	if ($HBoxContainer/EgressButton.pressed):
+		#print("Dequeueing [", p.name, "] from egress...")
+		controller.dequeue_program_egress(p)
+	else:
+		#print("Queueing [", p.name, "] to egress...")
+		var egress = get_tree().get_nodes_in_group("egress")[0]
+		egress.queue_attacker(p)
 	
 func ingress_button():
-	var ingress = get_tree().get_nodes_in_group("ingress")[0]
-	ingress.defenders.push_back(p)
+	if ($HBoxContainer/IngressButton.pressed):
+		#print("Dequeueing [", p.name, "] from ingress...")
+		controller.dequeue_program_ingress(p)
+	else:
+		#print("Queueing [", p.name, "] to ingress...")
+		var ingress = get_tree().get_nodes_in_group("ingress")[0]
+		ingress.defenders.push_back(p)

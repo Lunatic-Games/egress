@@ -6,10 +6,9 @@
 [ext_resource path="res://windows/bin_window/background_style.tres" type="StyleBox" id=4]
 [ext_resource path="res://windows/bin_window/background_style_highlighted.tres" type="StyleBox" id=5]
 
-[sub_resource type="StyleBoxEmpty" id=4]
+[sub_resource type="StyleBoxEmpty" id=1]
 
-[sub_resource type="Animation" id=1]
-resource_name = "rect_rotate"
+[sub_resource type="Animation" id=2]
 length = 16.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rect_rotation")
@@ -24,11 +23,11 @@ tracks/0/keys = {
 "values": [ 0.0, 360.0 ]
 }
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=3]
 size = 22
 font_data = ExtResource( 3 )
 
-[sub_resource type="StyleBoxEmpty" id=3]
+[sub_resource type="StyleBoxEmpty" id=4]
 
 [sub_resource type="StyleBoxEmpty" id=5]
 
@@ -61,7 +60,7 @@ margin_bottom = 50.0
 rect_min_size = Vector2( 45, 40 )
 custom_styles/hover = ExtResource( 5 )
 custom_styles/pressed = ExtResource( 4 )
-custom_styles/focus = SubResource( 4 )
+custom_styles/focus = SubResource( 1 )
 custom_styles/normal = ExtResource( 4 )
 custom_colors/font_color = Color( 0.0784314, 0.0588235, 0.027451, 1 )
 custom_colors/font_color_hover = Color( 0.0784314, 0.0588235, 0.027451, 1 )
@@ -82,7 +81,7 @@ rect_pivot_offset = Vector2( 25, 25 )
 
 [node name="SpinAnimation" type="AnimationPlayer" parent="HBoxContainer/ProgramShader"]
 autoplay = "rect_rotate"
-anims/rect_rotate = SubResource( 1 )
+anims/rect_rotate = SubResource( 2 )
 
 [node name="NameLabel" type="Label" parent="HBoxContainer"]
 margin_left = 444.0
@@ -90,7 +89,7 @@ margin_top = 13.0
 margin_right = 554.0
 margin_bottom = 36.0
 rect_min_size = Vector2( 110, 0 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
 text = "Program"
 
@@ -100,11 +99,12 @@ margin_right = 624.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 60, 40 )
 custom_styles/hover = ExtResource( 5 )
-custom_styles/focus = SubResource( 3 )
+custom_styles/focus = SubResource( 4 )
 custom_styles/normal = ExtResource( 4 )
 custom_colors/font_color = Color( 0.0784314, 0.0588235, 0.027451, 1 )
 custom_colors/font_color_hover = Color( 0.0784314, 0.0588235, 0.027451, 1 )
 custom_colors/font_color_pressed = Color( 0.0784314, 0.0588235, 0.027451, 1 )
+toggle_mode = true
 text = "Egress"
 
 [node name="IngressButton" type="Button" parent="HBoxContainer"]
@@ -119,4 +119,5 @@ custom_styles/normal = ExtResource( 4 )
 custom_colors/font_color = Color( 0.0784314, 0.0588235, 0.027451, 1 )
 custom_colors/font_color_hover = Color( 0.0784314, 0.0588235, 0.027451, 1 )
 custom_colors/font_color_pressed = Color( 0.0784314, 0.0588235, 0.027451, 1 )
+toggle_mode = true
 text = "Ingress"
