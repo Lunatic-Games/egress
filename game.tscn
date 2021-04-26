@@ -19,11 +19,11 @@ font_data = ExtResource( 9 )
 size = 32
 font_data = ExtResource( 9 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=3]
 size = 64
 font_data = ExtResource( 9 )
 
-[sub_resource type="Shader" id=3]
+[sub_resource type="Shader" id=4]
 code = "shader_type canvas_item;
 
 uniform float radius = 8.0;
@@ -48,8 +48,8 @@ void fragment() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id=4]
-shader = SubResource( 3 )
+[sub_resource type="ShaderMaterial" id=5]
+shader = SubResource( 4 )
 shader_param/radius = 8.0
 shader_param/step_size = 4.0
 shader_param/sd = 10.0
@@ -158,7 +158,7 @@ margin_left = -166.0
 margin_top = 100.0
 margin_right = 171.0
 margin_bottom = 232.0
-custom_fonts/normal_font = SubResource( 5 )
+custom_fonts/normal_font = SubResource( 3 )
 bbcode_enabled = true
 bbcode_text = "[center]By DOS, I made it in!"
 text = "By DOS, I made it in!"
@@ -176,8 +176,6 @@ margin_left = -87.3394
 margin_top = -192.0
 margin_right = 76.6606
 margin_bottom = -137.0
-custom_colors/font_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
-custom_colors/font_color_hover = Color( 0.945098, 0.705882, 0.129412, 1 )
 text = "MAIN MENU"
 
 [node name="GameOverOverlay" type="ColorRect" parent="." groups=[
@@ -220,7 +218,7 @@ margin_left = -380.5
 margin_top = 54.0
 margin_right = 380.5
 margin_bottom = 186.0
-custom_fonts/normal_font = SubResource( 5 )
+custom_fonts/normal_font = SubResource( 3 )
 bbcode_enabled = true
 bbcode_text = "[center]They traced my location chip"
 text = "They traced my location chip"
@@ -238,14 +236,12 @@ margin_left = -87.3394
 margin_top = -192.0
 margin_right = 76.6606
 margin_bottom = -137.0
-custom_colors/font_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
-custom_colors/font_color_hover = Color( 0.945098, 0.705882, 0.129412, 1 )
 text = "MAIN MENU"
 
 [node name="ScreenShader" parent="." instance=ExtResource( 3 )]
 
 [node name="ColorRect" parent="ScreenShader/GlowShader" index="0"]
-material = SubResource( 4 )
+material = SubResource( 5 )
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 pause_mode = 2

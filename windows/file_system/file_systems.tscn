@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://windows/file_system/file/file.tscn" type="PackedScene" id=1]
 [ext_resource path="res://programs/Walls/wall1.tres" type="Resource" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://programs/Breakers/breaker1.tres" type="Resource" id=5]
 [ext_resource path="res://windows/file_system/file_systems.gd" type="Script" id=6]
 [ext_resource path="res://programs/Walls/h4nk.tres" type="Resource" id=7]
-[ext_resource path="res://programs/Breakers/player_killer.tres" type="Resource" id=8]
 [ext_resource path="res://windows/file_system/file/final_file.tscn" type="PackedScene" id=9]
 
 [node name="FileSystem" type="ColorRect" groups=[
@@ -43,8 +42,9 @@ margin_right = 347.0
 margin_bottom = 48.0
 file_name = "t00ts"
 decrypted_text = "I rigged this file to give you 100 bits. Enough to upgrade your program. You'll get less from other files."
+encrypted = true
 bit_reward = 10
-programs = [ ExtResource( 2 ), ExtResource( 8 ) ]
+programs = [ ExtResource( 2 ), ExtResource( 5 ) ]
 
 [node name="File4" parent="DepthOne" instance=ExtResource( 1 )]
 anchor_right = 0.0
@@ -53,6 +53,7 @@ margin_top = 48.0
 margin_right = 347.0
 margin_bottom = 97.0
 file_name = "index_0"
+encrypted = true
 directory = true
 id = 1
 bit_reward = 15
@@ -79,6 +80,7 @@ margin_right = 347.0
 margin_bottom = 39.0
 file_name = "suck3r"
 decrypted_text = "HA, hope you liked h4nk!"
+encrypted = true
 id = 2
 programs = [ ExtResource( 7 ) ]
 
@@ -90,6 +92,7 @@ margin_right = 347.0
 margin_bottom = 78.0
 file_name = "gov_secret"
 decrypted_text = "Potato's are a super fruit."
+encrypted = true
 id = 3
 bit_reward = 15
 programs = [ ExtResource( 3 ), ExtResource( 2 ) ]
@@ -101,6 +104,7 @@ margin_top = 78.0
 margin_right = 347.0
 margin_bottom = 117.0
 file_name = "trials"
+encrypted = true
 directory = true
 id = 4
 bit_reward = 20
@@ -127,6 +131,7 @@ margin_right = 347.0
 margin_bottom = 39.0
 file_name = "tootsie"
 decrypted_text = "Some programs do better against others. If you have a visualizer, you might notice it."
+encrypted = true
 id = 5
 bit_reward = 5
 programs = [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 4 ) ]
@@ -143,7 +148,6 @@ decrypted_text = "Strawberry Jam
 - 2 cups sugar
 - tablespoons of honey
 - 8 limes"
-encrypted = false
 id = 6
 
 [node name="File4" parent="DepthThree" instance=ExtResource( 1 )]
@@ -153,6 +157,7 @@ margin_top = 78.0
 margin_right = 347.0
 margin_bottom = 117.0
 file_name = "meadows"
+encrypted = true
 directory = true
 id = 7
 bit_reward = 20
