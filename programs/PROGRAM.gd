@@ -27,13 +27,13 @@ func get(prop):
 
 func set(prop, value):
 	if (prop == "integrity"):
-		integrity = value
+		integrity = (5*value) + 10
 	elif (prop == "attack_rate"):
-		attack_rate = value
+		attack_rate = 3 - (value/4)
 	elif (prop == "attack_value"):
-		attack_value = value
+		attack_value = (3*value) + 3
 	elif (prop == "recharge_rate"):
-		recharge_rate = value
+		recharge_rate = 7 - (value/2)
 
 func total():
 	return integrity + attack_rate + attack_value + recharge_rate
