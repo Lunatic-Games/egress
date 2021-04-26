@@ -40,7 +40,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 0.0
 margin_right = 347.0
-margin_bottom = 58.0
+margin_bottom = 48.0
 file_name = "t00ts"
 decrypted_text = "I rigged this file to give you 100 bits. Enough to upgrade your program. You'll get less from other files."
 bit_reward = 10
@@ -49,9 +49,9 @@ programs = [ ExtResource( 2 ), ExtResource( 8 ) ]
 [node name="File4" parent="DepthOne" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 58.0
+margin_top = 48.0
 margin_right = 347.0
-margin_bottom = 117.0
+margin_bottom = 97.0
 file_name = "index_0"
 directory = true
 id = 1
@@ -161,6 +161,7 @@ programs = [ ExtResource( 2 ), ExtResource( 5 ) ]
 [node name="DepthFour" type="VBoxContainer" parent="." groups=[
 "directories",
 ]]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_bottom = -39.0
