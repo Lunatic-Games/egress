@@ -27,8 +27,8 @@ func begin(flipped=false):
 
 func _physics_process(delta):
 	passed_time += delta
+	if passed_time > time:
+		queue_free()
 	var ratio = min(passed_time, time) / time
 	var offset = tangent * trajectory.interpolate(ratio) * height
 	global_position = start.linear_interpolate(destination, ratio) + offset
-	if ratio >= 1.0:
-		queue_free()

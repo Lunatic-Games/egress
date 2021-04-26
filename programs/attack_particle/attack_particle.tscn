@@ -12,26 +12,26 @@ _data = [ Vector2( 0, 0 ), 0.0, 5.75394, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 [sub_resource type="Curve" id=3]
 _data = [ Vector2( 0, 0 ), 0.0, 6.02455, 0, 0, Vector2( 0.12234, 0.896591 ), 0.598182, 0.598182, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="Gradient" id=7]
+[sub_resource type="Gradient" id=4]
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0.282353 )
 
-[sub_resource type="GradientTexture" id=8]
-gradient = SubResource( 7 )
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
 
-[sub_resource type="Curve" id=5]
+[sub_resource type="Curve" id=6]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=6]
-curve = SubResource( 5 )
+[sub_resource type="CurveTexture" id=7]
+curve = SubResource( 6 )
 
-[sub_resource type="ParticlesMaterial" id=4]
+[sub_resource type="ParticlesMaterial" id=8]
 flag_disable_z = true
 gravity = Vector3( 0, 0, 0 )
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 0.7
-scale_curve = SubResource( 6 )
-color_ramp = SubResource( 8 )
+scale_curve = SubResource( 7 )
+color_ramp = SubResource( 5 )
 
 [node name="AttackParticle" type="Sprite"]
 position = Vector2( 260.411, 255.921 )
@@ -46,7 +46,7 @@ destination = Vector2( 800, 255 )
 [node name="Particles2D" type="Particles2D" parent="."]
 amount = 16
 local_coords = false
-process_material = SubResource( 4 )
+process_material = SubResource( 8 )
 texture = ExtResource( 1 )
 
 [node name="Tween" type="Tween" parent="."]
