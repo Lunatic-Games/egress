@@ -104,6 +104,7 @@ custom_styles/normal = ExtResource( 4 )
 custom_colors/font_color = Color( 0.0784314, 0.0588235, 0.027451, 1 )
 custom_colors/font_color_hover = Color( 0.0784314, 0.0588235, 0.027451, 1 )
 custom_colors/font_color_pressed = Color( 0.0784314, 0.0588235, 0.027451, 1 )
+toggle_mode = true
 text = "Egress"
 
 [node name="IngressButton" type="Button" parent="HBoxContainer"]
@@ -118,4 +119,5 @@ custom_styles/normal = ExtResource( 4 )
 custom_colors/font_color = Color( 0.0784314, 0.0588235, 0.027451, 1 )
 custom_colors/font_color_hover = Color( 0.0784314, 0.0588235, 0.027451, 1 )
 custom_colors/font_color_pressed = Color( 0.0784314, 0.0588235, 0.027451, 1 )
+toggle_mode = true
 text = "Ingress"

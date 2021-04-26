@@ -48,10 +48,14 @@ func _ready():
 		button.connect("button_down", self, "type_button", [button.name])
 
 	# Set up stat buttons
-	max_points = 5 # Get from hacker.gd
+	max_points = Hacker.total_points
 	for roller in $EditStats/Rows/StatRows.get_children():
 		roller.max_value = max_points
 		roller.connect("update_stat", self, "read_roller", [roller])
+
+	# Connect ingress button
+	for program in $Main/Rows/ScrollContainer/ProgramList.get_children():
+		var _ret = program.ingress.connect("defeated_program", program, "reset_ingress_button")
 
 	transition_to("main")
 
@@ -72,6 +76,7 @@ func update_list():
 	text_edit_content = ""
 
 func update_editors():
+	max_points = Hacker.total_points
 	text_edit_content = program_in_edit.name
 	$EditCosmetics/Columns/Rows/NameEdit.text = text_edit_content
 	update_rollers()
