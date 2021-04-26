@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://windows/window_controller.gd" type="Script" id=1]
 [ext_resource path="res://windows/window_base.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://menus/pause_menu/pause_menu.tscn" type="PackedScene" id=7]
 [ext_resource path="res://game.gd" type="Script" id=8]
 [ext_resource path="res://assets/ui/VT323-Regular.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://menus/tutorial_popup/tutorial_popup.tscn" type="PackedScene" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
@@ -109,6 +110,242 @@ pause_mode = 2
 
 [node name="FileViewer" parent="WindowController" instance=ExtResource( 4 )]
 
+[node name="BinTutorial" parent="WindowController" instance=ExtResource( 10 )]
+margin_right = 0.0
+margin_bottom = 0.0
+mouse_filter = 2
+
+[node name="ColorRect" parent="WindowController/BinTutorial" index="4"]
+margin_left = 401.5
+margin_top = 425.0
+margin_right = 731.5
+margin_bottom = 554.0
+
+[node name="MenuLabel" parent="WindowController/BinTutorial/ColorRect/MarginContainer" index="0"]
+margin_right = 318.0
+margin_bottom = 117.0
+text = "/bin/ keeps track of your programs. Select \"new\" to create a new program"
+
+[node name="ProgramEditTutorial" parent="WindowController" instance=ExtResource( 10 )]
+margin_right = 0.0
+margin_bottom = 0.0
+mouse_filter = 2
+
+[node name="ColorRect" parent="WindowController/ProgramEditTutorial" index="4"]
+margin_left = 402.0
+margin_top = 416.676
+margin_right = 746.0
+margin_bottom = 576.676
+
+[node name="MenuLabel" parent="WindowController/ProgramEditTutorial/ColorRect/MarginContainer" index="0"]
+margin_right = 332.0
+margin_bottom = 149.0
+text = "Here you can edit your program name, color, and type. Certain types are more effective against others. Press \"Next\" to continue."
+
+[node name="StatEditTutorial" parent="WindowController" instance=ExtResource( 10 )]
+margin_right = 0.0
+margin_bottom = 0.0
+mouse_filter = 2
+
+[node name="ColorRect" parent="WindowController/StatEditTutorial" index="4"]
+margin_left = 402.0
+margin_top = 425.0
+margin_right = 746.0
+margin_bottom = 567.0
+
+[node name="MenuLabel" parent="WindowController/StatEditTutorial/ColorRect/MarginContainer" index="0"]
+margin_right = 332.0
+margin_bottom = 130.0
+text = "Here you can modify the attributes of your program. Press \"Done\" to continue."
+
+[node name="QueueTutorial" parent="WindowController" instance=ExtResource( 10 )]
+margin_right = 0.0
+margin_bottom = 0.0
+mouse_filter = 2
+
+[node name="Cover1" parent="WindowController/QueueTutorial" index="0"]
+margin_bottom = 453.0
+
+[node name="Cover2" parent="WindowController/QueueTutorial" index="1"]
+margin_top = 453.0
+margin_right = 248.0
+margin_bottom = 600.0
+
+[node name="Cover3" parent="WindowController/QueueTutorial" index="2"]
+margin_left = 306.0
+margin_top = 453.0
+
+[node name="Cover4" parent="WindowController/QueueTutorial" index="3"]
+visible = true
+margin_left = 248.0
+margin_top = 507.0
+margin_right = 306.0
+margin_bottom = 600.0
+
+[node name="ColorRect" parent="WindowController/QueueTutorial" index="4"]
+margin_left = 402.0
+margin_top = 425.0
+margin_right = 761.0
+margin_bottom = 582.0
+
+[node name="MenuLabel" parent="WindowController/QueueTutorial/ColorRect/MarginContainer" index="0"]
+margin_right = 347.0
+margin_bottom = 145.0
+text = "You can then place this program as an attacker, \"egress\", or defender, \"ingress\". Place this program into the egress queue."
+
+[node name="DecryptTutorial" parent="WindowController" instance=ExtResource( 10 )]
+margin_right = 0.0
+margin_bottom = 0.0
+mouse_filter = 2
+
+[node name="Cover1" parent="WindowController/DecryptTutorial" index="0"]
+margin_right = 18.0
+margin_bottom = 600.0
+
+[node name="Cover2" parent="WindowController/DecryptTutorial" index="1"]
+margin_left = 18.0
+margin_top = 1.0
+margin_right = 240.0
+margin_bottom = 41.0
+
+[node name="Cover3" parent="WindowController/DecryptTutorial" index="2"]
+margin_left = 240.0
+margin_top = 1.0
+margin_right = 1027.0
+margin_bottom = 601.0
+
+[node name="Cover4" parent="WindowController/DecryptTutorial" index="3"]
+visible = true
+margin_left = 18.0
+margin_top = 88.0
+margin_right = 240.0
+margin_bottom = 600.0
+
+[node name="ColorRect" parent="WindowController/DecryptTutorial" index="4"]
+margin_left = 16.4419
+margin_top = 105.368
+margin_right = 360.442
+margin_bottom = 247.368
+
+[node name="MenuLabel" parent="WindowController/DecryptTutorial/ColorRect/MarginContainer" index="0"]
+margin_right = 332.0
+margin_bottom = 130.0
+text = "Now try to decrypt this file."
+
+[node name="BattleTutorial" parent="WindowController" instance=ExtResource( 10 )]
+margin_right = 0.0
+margin_bottom = 0.0
+mouse_filter = 2
+
+[node name="Cover1" parent="WindowController/BattleTutorial" index="0"]
+margin_right = 401.0
+margin_bottom = 600.0
+
+[node name="Cover2" parent="WindowController/BattleTutorial" index="1"]
+margin_left = 400.0
+margin_top = 0.0
+margin_right = 1025.0
+margin_bottom = 48.0
+
+[node name="Cover3" parent="WindowController/BattleTutorial" index="2"]
+margin_left = 401.0
+margin_top = 362.0
+margin_bottom = 601.0
+
+[node name="Cover4" parent="WindowController/BattleTutorial" index="3"]
+visible = true
+margin_left = 981.0
+margin_top = 48.0
+margin_right = 1023.0
+margin_bottom = 361.0
+
+[node name="ColorRect" parent="WindowController/BattleTutorial" index="4"]
+margin_left = 40.6569
+margin_top = 115.0
+margin_right = 377.657
+margin_bottom = 281.0
+
+[node name="MenuLabel" parent="WindowController/BattleTutorial/ColorRect/MarginContainer" index="0"]
+margin_right = 325.0
+margin_bottom = 154.0
+text = "Programs added to the Egress queue will attack in the order they are added. The right side represents the defending programs."
+
+[node name="IngressTutorial" parent="WindowController" instance=ExtResource( 10 )]
+margin_right = 0.0
+margin_bottom = 0.0
+mouse_filter = 2
+
+[node name="Cover1" parent="WindowController/IngressTutorial" index="0"]
+margin_right = 401.0
+margin_bottom = 600.0
+
+[node name="Cover2" parent="WindowController/IngressTutorial" index="1"]
+margin_left = 401.0
+margin_top = 0.0
+margin_right = 1025.0
+margin_bottom = 371.0
+
+[node name="Cover3" parent="WindowController/IngressTutorial" index="2"]
+margin_left = 401.0
+margin_top = 592.0
+margin_bottom = 601.0
+
+[node name="Cover4" parent="WindowController/IngressTutorial" index="3"]
+visible = true
+margin_left = 1017.0
+margin_top = 371.0
+margin_right = 1024.0
+margin_bottom = 592.0
+
+[node name="ColorRect" parent="WindowController/IngressTutorial" index="4"]
+margin_left = 51.2515
+margin_top = 392.579
+margin_right = 388.251
+margin_bottom = 558.579
+
+[node name="MenuLabel" parent="WindowController/IngressTutorial/ColorRect/MarginContainer" index="0"]
+margin_right = 325.0
+margin_bottom = 154.0
+text = "The Ingress window shows viruses that are attacking you on the right. You may want to leave defenders there to prevent being traced."
+
+[node name="ReadTutorial" parent="WindowController" instance=ExtResource( 10 )]
+visible = true
+mouse_filter = 2
+
+[node name="Cover1" parent="WindowController/ReadTutorial" index="0"]
+margin_right = 18.0
+margin_bottom = 600.0
+
+[node name="Cover2" parent="WindowController/ReadTutorial" index="1"]
+margin_left = 18.0
+margin_top = 1.0
+margin_right = 240.0
+margin_bottom = 41.0
+
+[node name="Cover3" parent="WindowController/ReadTutorial" index="2"]
+margin_left = 240.0
+margin_top = 1.0
+margin_right = 1027.0
+margin_bottom = 601.0
+
+[node name="Cover4" parent="WindowController/ReadTutorial" index="3"]
+visible = true
+margin_left = 18.0
+margin_top = 88.0
+margin_right = 240.0
+margin_bottom = 600.0
+
+[node name="ColorRect" parent="WindowController/ReadTutorial" index="4"]
+margin_left = 16.4419
+margin_top = 105.368
+margin_right = 360.442
+margin_bottom = 247.368
+
+[node name="MenuLabel" parent="WindowController/ReadTutorial/ColorRect/MarginContainer" index="0"]
+margin_right = 332.0
+margin_bottom = 130.0
+text = "Decrypted files may contain useful information. After a successful Egress, click on a file to read it."
+
 [node name="ScreenShader" parent="." instance=ExtResource( 3 )]
 
 [node name="ColorRect" parent="ScreenShader/GlowShader" index="0"]
@@ -124,5 +361,23 @@ bus = "Music"
 [node name="PauseMenu" parent="." instance=ExtResource( 7 )]
 
 [editable path="WindowController/Ingress"]
+
 [editable path="WindowController/Bin"]
+
+[editable path="WindowController/BinTutorial"]
+
+[editable path="WindowController/ProgramEditTutorial"]
+
+[editable path="WindowController/StatEditTutorial"]
+
+[editable path="WindowController/QueueTutorial"]
+
+[editable path="WindowController/DecryptTutorial"]
+
+[editable path="WindowController/BattleTutorial"]
+
+[editable path="WindowController/IngressTutorial"]
+
+[editable path="WindowController/ReadTutorial"]
+
 [editable path="ScreenShader"]

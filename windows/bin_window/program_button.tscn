@@ -58,6 +58,7 @@ margin_left = 329.0
 margin_right = 374.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 45, 40 )
+focus_mode = 0
 custom_styles/hover = ExtResource( 5 )
 custom_styles/pressed = ExtResource( 4 )
 custom_styles/focus = SubResource( 1 )
@@ -93,11 +94,14 @@ custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
 text = "Program"
 
-[node name="EgressButton" type="Button" parent="HBoxContainer"]
+[node name="EgressButton" type="Button" parent="HBoxContainer" groups=[
+"insert_egress_button",
+]]
 margin_left = 564.0
 margin_right = 624.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 60, 40 )
+focus_mode = 0
 custom_styles/hover = ExtResource( 5 )
 custom_styles/focus = SubResource( 4 )
 custom_styles/normal = ExtResource( 4 )
@@ -112,6 +116,7 @@ margin_left = 634.0
 margin_right = 694.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 60, 40 )
+focus_mode = 0
 custom_styles/hover = ExtResource( 5 )
 custom_styles/pressed = ExtResource( 4 )
 custom_styles/focus = SubResource( 5 )
