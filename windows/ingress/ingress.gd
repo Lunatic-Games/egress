@@ -1,7 +1,6 @@
 extends ColorRect
 
-export (Array, Resource) var attackers = []
-export (Array, Resource) var defenders = []
+
 export (float) var hacker_dmg_reduction = 3.5
 
 var TYPE_MULTIPLIER = 2.5
@@ -9,19 +8,20 @@ var TYPE_MULTIPLIER = 2.5
 var defender_stats = {}
 var attacker_stats = {}
 
-
 onready var current_attacker
 onready var current_defender
 onready var hack_underway = false
 onready var defender_index = 0
 onready var attacker_index = 0
+onready var attackers = []
+onready  var defenders = []
 
 onready var attack_particle = preload("res://programs/attack_particle/attack_particle.tscn")
 onready var distress_particles = preload("res://assets/particles/distress_particles.tscn")
 
-
 signal decrypted
 signal defeated_program(program)
+signal dequeued_program(program)
 
 
 func _process(delta):
@@ -110,6 +110,21 @@ func queue_defender(program, id):
 	defenders.push_back(program)
 
 
+func dequeue_defender(program):
+	if program in defenders:
+		var index = defenders.find(program)
+		defenders.remove(program)
+	elif current_defender.name == program.name:
+		
+		$Attacker.visible = false
+		$AttackerAttackTimer.stop()
+		emit_signal("dequeued_program", current_defender)
+		current_defender = null
+		
+		# Progress to the next defender
+		if (defenders.size() > 0):
+			instance_defender(defenders.pop_front())
+
 
 func is_free():
 	return ! hack_underway
@@ -132,6 +147,7 @@ func _on_DefenderAttackTimer_timeout():
 			type_adv = true
 		else:
 			damage = current_attacker.attack_value
+		
 		# Wait a given delay 1 second
 		yield(get_tree().create_timer(0.45), "timeout")
 		

@@ -54,6 +54,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Attacker:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [sub_resource type="Animation" id=5]
 tracks/0/type = "value"
@@ -91,6 +103,18 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Defender:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -236,7 +260,6 @@ margin_right = 124.0
 margin_bottom = 124.0
 
 [node name="DefenderName" type="RichTextLabel" parent="Defender"]
-self_modulate = Color( 1, 1, 1, 0 )
 margin_left = -108.488
 margin_top = 120.224
 margin_right = 117.512
@@ -281,9 +304,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -136.5
-margin_top = -147.0
+margin_top = -164.0
 margin_right = 136.5
-margin_bottom = 147.0
+margin_bottom = 130.0
 custom_fonts/normal_font = SubResource( 2 )
 bbcode_enabled = true
 bbcode_text = "[shake][center]DENIED[/center][/shake]"
@@ -300,9 +323,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -134.0
-margin_top = -147.0
+margin_top = -164.0
 margin_right = 134.0
-margin_bottom = 147.0
+margin_bottom = 130.0
 custom_fonts/normal_font = SubResource( 2 )
 custom_colors/default_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
 bbcode_enabled = true

@@ -15,14 +15,18 @@ onready var attack_particle = preload("res://programs/attack_particle/attack_par
 onready var distress_particles = preload("res://assets/particles/distress_particles.tscn")
 onready var ingress = get_tree().get_nodes_in_group('ingress')[0]
 
+var winner_decided = false
 
 signal decrypted
 
 
+func _ready():
+	$Defender.visible = false
+	$Attacker.visible = false
+
 func _process(delta):
-	
 	# If a hack is happening
-	if (hack_underway && ! ($HackSuccessful.is_playing() || $HackFailed.is_playing())):
+	if (hack_underway && !winner_decided  && !($HackSuccessful.is_playing() || $HackFailed.is_playing())):
 		
 		# Check to break a defending program
 		if (current_defender.integrity <= 0):
@@ -34,7 +38,7 @@ func _process(delta):
 
 
 func begin_hack():
-	
+	winner_decided = false
 	hack_underway = true
 	defender_index = 0
 	attacker_index = 0
@@ -42,7 +46,6 @@ func begin_hack():
 	# If there are no attackers
 	if (attackers.size() <= 0):
 		hack_failed()
-		
 	else:
 		# TODO CLEAR THE ATTACKER AND DEFENDER
 		instance_attacker(attackers[attacker_index])
@@ -78,10 +81,18 @@ func hack_successful(host_file, bits_gained):
 	emit_signal("decrypted", host_file)
 	
 	# Stop attacking
+	winner_decided = true
 	$DefenderAttackTimer.stop()
 	$AttackerAttackTimer.stop()
 	
-	print("Playing hack_success")
+	for particle in get_tree().get_nodes_in_group("attack_particle"):
+		if $Defender.is_a_parent_of(particle):
+			particle.fade()
+	
+	yield(get_tree().create_timer(1.5), "timeout")
+	$Defender.visible = false
+	$Attacker.visible = false
+	
 	$AccessGranted/BitsGained.bbcode_text = "[shake][center]+" + String(bits_gained) + " bits![/center][/shake]"
 	$HackSuccessful.play("hack_success")
 	Hacker.gain_bits(bits_gained)
@@ -97,8 +108,19 @@ func defender_defeated():
 func hack_failed():
 	
 	# Reset the programs
+	winner_decided = true
 	$DefenderAttackTimer.stop()
 	$AttackerAttackTimer.stop()
+	
+	print("FAILED")
+	for particle in get_tree().get_nodes_in_group("attack_particle"):
+		if $Attacker.is_a_parent_of(particle):
+			particle.fade()
+	
+	yield(get_tree().create_timer(1.5), "timeout")
+	
+	$Attacker.visible = false
+	$Defender.visible = false
 	
 	$HackFailed.play("hack_failed")
 
@@ -119,8 +141,9 @@ func instance_defender(program):
 		$Defender/DefenderSprite.modulate = program.color
 		$Defender/DefenderName.bbcode_text = "[center][shake]" + String(program.name)
 		$DefenderAttackTimer.start(program.attack_rate)
+		$Defender.visible = false
 		$DefenderAnimator.play('load_program')
-		$Defender.visible = true
+		
 		
 		current_defender = defenders[defender_index].duplicate()
 	
@@ -140,8 +163,8 @@ func instance_attacker(program):
 	$Attacker/AttackerName.bbcode_text = "[center][shake]" + String(program.name)
 	$AttackerAttackTimer.start(program.attack_rate)
 	
+	$Attacker.visible = false
 	$AttackerAnimator.play('load_program')
-	$Attacker.visible = true
 	
 	current_attacker = attackers[attacker_index].duplicate()
 
@@ -159,8 +182,6 @@ func queue_attacker(program):
 func dequeue_attacker(program):
 	var index = attackers.find(program)
 	attackers.remove(index)
-
-
 
 func is_free():
 	return !hack_underway
@@ -184,7 +205,10 @@ func _on_DefenderAttackTimer_timeout():
 	
 	
 	# Wait a given delay 1 second
-	yield(get_tree().create_timer(0.45), "timeout")
+	
+	yield(get_tree().create_timer(0.55), "timeout")
+	if $DefenderAttackTimer.is_stopped():
+		return
 	
 	# Damage the attacker
 	if (attacker_index < attackers.size()):
@@ -216,7 +240,9 @@ func _on_AttackerAttackTimer_timeout():
 		damage = current_attacker.attack_value
 
 	# Wait a given delay 1 second
-	yield(get_tree().create_timer(0.45), "timeout")
+	yield(get_tree().create_timer(0.55), "timeout")
+	if $AttackerAttackTimer.is_stopped():
+		return
 	
 	# Damage the defender after waiting
 	if (defender_index < defenders.size()):

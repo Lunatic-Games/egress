@@ -32,3 +32,9 @@ func _physics_process(delta):
 	var ratio = min(passed_time, time) / time
 	var offset = tangent * trajectory.interpolate(ratio) * height
 	global_position = start.linear_interpolate(destination, ratio) + offset
+
+
+func fade():
+	$Tween.interpolate_property(self, "modulate", modulate,
+		Color(modulate.r, modulate.g, modulate.b, 0.0), 0.3)
+	$Tween.start()
