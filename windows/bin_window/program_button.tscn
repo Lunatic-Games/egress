@@ -126,6 +126,7 @@ toggle_mode = true
 text = "Ingress"
 
 [node name="RechargeOverlay" type="ColorRect" parent="."]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
