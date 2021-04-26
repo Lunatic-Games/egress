@@ -1,0 +1,106 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://menus/menu_button.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/ui/VT323-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://windows/file_system/file/file.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=3]
+length = 1.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Button/Bits:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 0.5, 0.501 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1, 1 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Button/Bits:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1, 0.5, 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 2.83163, 1.88776 ), Vector2( 2.83163, -23.5969 ), Vector2( 8.4949, -22.653 ), Vector2( 14.1582, -16.9898 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Button/Bits:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Button/Bits:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[node name="FinalFile" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -1.0
+margin_right = -752.0
+margin_bottom = -562.0
+rect_min_size = Vector2( 0, 39 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+file_name = "top_secret"
+encrypted = true
+
+[node name="Button" parent="." instance=ExtResource( 1 )]
+margin_right = 181.0
+margin_bottom = 39.0
+custom_fonts/font = SubResource( 1 )
+text = "File_name.txt"
+
+[node name="Bits" type="RichTextLabel" parent="Button"]
+self_modulate = Color( 1, 1, 1, 0.5 )
+margin_left = 2.83163
+margin_top = 1.88776
+margin_right = 422.832
+margin_bottom = 41.8878
+rect_scale = Vector2( 1e-05, 1e-05 )
+custom_fonts/normal_font = SubResource( 2 )
+bbcode_enabled = true
+bbcode_text = "100 bits gained"
+text = "100 bits gained"
+fit_content_height = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/gain_bits = SubResource( 3 )
+
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
