@@ -11,8 +11,7 @@ onready var hack_underway = false
 onready var defender_index = 0
 onready var attacker_index = 0
 
-onready var attacker_bullets = preload("res://assets/particles/attacker_particles.tscn")
-onready var defender_bullets = preload("res://assets/particles/defender_particles.tscn")
+onready var attack_particle = preload("res://programs/attack_particle/attack_particle.tscn")
 onready var distress_particles = preload("res://assets/particles/distress_particles.tscn")
 onready var ingress = get_tree().get_nodes_in_group('ingress')[0]
 
@@ -155,17 +154,18 @@ func queue_defender(program, id, bits_gained):
 
 
 func is_free():
-	return ! hack_underway
+	return !hack_underway
 
 
 # attack the current attacker
 func _on_DefenderAttackTimer_timeout():
 	
 	# Spawn bullet generator
-	var bullets = defender_bullets.instance()
-	bullets.emitting = true
-	bullets.amount = current_defender.attack_value
-	$Defender.add_child(bullets)
+	for i in current_defender.attack_value:
+		var particle = attack_particle.instance()
+		$Defender.add_child(particle)
+		particle.global_position = $Defender.global_position
+		particle.destination = $Attacker.global_position
 	
 	
 	# Calculate the damage to be done
@@ -198,10 +198,11 @@ func _on_DefenderAttackTimer_timeout():
 func _on_AttackerAttackTimer_timeout():
 
 	# Spawn bullet generator
-	var bullets = attacker_bullets.instance()
-	bullets.emitting = true
-	bullets.amount = current_attacker.attack_value
-	$Attacker.add_child(bullets)
+	for i in range(current_attacker.attack_value):
+		var particle = attack_particle.instance()
+		$Attacker.add_child(particle)
+		particle.global_position = $Attacker.global_position
+		particle.destination = $Defender.global_position
 	
 	# Calculate the damage to be done
 	var damage
