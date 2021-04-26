@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://windows/window_controller.gd" type="Script" id=1]
 [ext_resource path="res://windows/window_base.tscn" type="PackedScene" id=2]
@@ -8,8 +8,13 @@
 [ext_resource path="res://assets/music/the_thick_of_it_simple.wav" type="AudioStream" id=6]
 [ext_resource path="res://menus/pause_menu/pause_menu.tscn" type="PackedScene" id=7]
 [ext_resource path="res://game.gd" type="Script" id=8]
+[ext_resource path="res://assets/ui/VT323-Regular.ttf" type="DynamicFontData" id=9]
 
-[sub_resource type="Shader" id=1]
+[sub_resource type="DynamicFont" id=1]
+size = 20
+font_data = ExtResource( 9 )
+
+[sub_resource type="Shader" id=2]
 code = "shader_type canvas_item;
 
 uniform float radius = 8.0;
@@ -34,8 +39,8 @@ void fragment() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 1 )
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
 shader_param/radius = 8.0
 shader_param/step_size = 4.0
 shader_param/sd = 10.0
@@ -80,6 +85,22 @@ margin_bottom = 591.0
 win_name = "/bin/"
 source_path = "res://windows/bin_window/bin_window.tscn"
 
+[node name="ProgramCount" type="Label" parent="WindowController/Bin" groups=[
+"program_count",
+]]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -117.0
+margin_top = 8.0
+margin_right = -53.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 100, 0 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Programs: 0/5"
+align = 2
+
 [node name="CanvasLayer" type="CanvasLayer" parent="WindowController"]
 layer = 0
 
@@ -91,7 +112,7 @@ pause_mode = 2
 [node name="ScreenShader" parent="." instance=ExtResource( 3 )]
 
 [node name="ColorRect" parent="ScreenShader/GlowShader" index="0"]
-material = SubResource( 2 )
+material = SubResource( 3 )
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
@@ -101,5 +122,9 @@ autoplay = true
 bus = "Music"
 
 [node name="PauseMenu" parent="." instance=ExtResource( 7 )]
+
+[editable path="WindowController/Ingress"]
+
+[editable path="WindowController/Bin"]
 
 [editable path="ScreenShader"]

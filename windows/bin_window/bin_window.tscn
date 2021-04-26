@@ -6,84 +6,84 @@
 [ext_resource path="res://windows/bin_window/background_style.tres" type="StyleBox" id=4]
 [ext_resource path="res://windows/bin_window/background_style_highlighted.tres" type="StyleBox" id=5]
 
-[sub_resource type="StyleBoxEmpty" id=9]
+[sub_resource type="StyleBoxEmpty" id=1]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 size = 24
 font_data = ExtResource( 2 )
 
-[sub_resource type="StyleBoxFlat" id=24]
+[sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.741176, 0.52549, 0, 1 )
 
-[sub_resource type="StyleBoxFlat" id=25]
+[sub_resource type="StyleBoxFlat" id=4]
 
-[sub_resource type="StyleBoxFlat" id=26]
+[sub_resource type="StyleBoxFlat" id=5]
 
-[sub_resource type="StyleBoxFlat" id=23]
+[sub_resource type="StyleBoxFlat" id=6]
 bg_color = Color( 0, 0, 0, 1 )
 border_width_left = 8
 border_color = Color( 0.407843, 0.290196, 0, 1 )
 
-[sub_resource type="Theme" id=22]
+[sub_resource type="Theme" id=7]
 VScrollBar/icons/decrement = null
 VScrollBar/icons/decrement_highlight = null
 VScrollBar/icons/increment = null
 VScrollBar/icons/increment_highlight = null
-VScrollBar/styles/grabber = SubResource( 24 )
-VScrollBar/styles/grabber_highlight = SubResource( 25 )
-VScrollBar/styles/grabber_pressed = SubResource( 26 )
-VScrollBar/styles/scroll = SubResource( 23 )
+VScrollBar/styles/grabber = SubResource( 3 )
+VScrollBar/styles/grabber_highlight = SubResource( 4 )
+VScrollBar/styles/grabber_pressed = SubResource( 5 )
+VScrollBar/styles/scroll = SubResource( 6 )
 VScrollBar/styles/scroll_focus = null
 
-[sub_resource type="StyleBoxEmpty" id=11]
+[sub_resource type="StyleBoxEmpty" id=8]
 
-[sub_resource type="StyleBoxFlat" id=12]
+[sub_resource type="StyleBoxFlat" id=9]
 bg_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
 border_width_left = 10
 border_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=10]
 size = 20
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=29]
+[sub_resource type="DynamicFont" id=11]
 size = 24
 font_data = ExtResource( 2 )
 
-[sub_resource type="StyleBoxFlat" id=19]
+[sub_resource type="StyleBoxFlat" id=12]
 bg_color = Color( 0.447059, 0.317647, 0, 1 )
 
 [sub_resource type="StyleBoxEmpty" id=13]
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=14]
 size = 24
 font_data = ExtResource( 2 )
 
-[sub_resource type="StyleBoxFlat" id=17]
+[sub_resource type="StyleBoxFlat" id=15]
 bg_color = Color( 0.447059, 0.317647, 0, 1 )
 
-[sub_resource type="StyleBoxEmpty" id=14]
+[sub_resource type="StyleBoxEmpty" id=16]
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=17]
 size = 24
 font_data = ExtResource( 2 )
 
 [sub_resource type="StyleBoxFlat" id=18]
 bg_color = Color( 0.447059, 0.317647, 0, 1 )
 
-[sub_resource type="StyleBoxEmpty" id=15]
+[sub_resource type="StyleBoxEmpty" id=19]
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=20]
 size = 24
 font_data = ExtResource( 2 )
 
-[sub_resource type="StyleBoxEmpty" id=20]
+[sub_resource type="StyleBoxEmpty" id=21]
 
-[sub_resource type="DynamicFont" id=27]
+[sub_resource type="DynamicFont" id=22]
 size = 24
 font_data = ExtResource( 2 )
 
-[sub_resource type="StyleBoxEmpty" id=28]
+[sub_resource type="StyleBoxEmpty" id=23]
 
 [node name="BinWindow" type="Control" groups=[
 "BinWindowController",
@@ -118,9 +118,9 @@ rect_min_size = Vector2( 150, 0 )
 size_flags_horizontal = 4
 custom_styles/hover = ExtResource( 5 )
 custom_styles/pressed = ExtResource( 4 )
-custom_styles/focus = SubResource( 9 )
+custom_styles/focus = SubResource( 1 )
 custom_styles/normal = ExtResource( 4 )
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.0784314, 0.0588235, 0.027451, 1 )
 custom_colors/font_color_hover = Color( 0.0784314, 0.0588235, 0.027451, 1 )
 custom_colors/font_color_pressed = Color( 0.0784314, 0.0588235, 0.027451, 1 )
@@ -135,7 +135,7 @@ margin_right = 1024.0
 margin_bottom = 590.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = SubResource( 22 )
+theme = SubResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -176,9 +176,9 @@ margin_bottom = 37.0
 rect_min_size = Vector2( 0, 28 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/focus = SubResource( 11 )
-custom_styles/normal = SubResource( 12 )
-custom_fonts/font = SubResource( 2 )
+custom_styles/focus = SubResource( 8 )
+custom_styles/normal = SubResource( 9 )
+custom_fonts/font = SubResource( 10 )
 custom_colors/cursor_color = Color( 0.0784314, 0.0588235, 0.027451, 1 )
 custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
 custom_colors/font_color = Color( 0.0784314, 0.0588235, 0.027451, 1 )
@@ -326,7 +326,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="EditCosmetics/Columns/TypeSelect/VBoxContainer"]
 margin_right = 389.0
 margin_bottom = 25.0
-custom_fonts/font = SubResource( 29 )
+custom_fonts/font = SubResource( 11 )
 custom_colors/font_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
 text = "Type"
 align = 1
@@ -338,10 +338,10 @@ margin_top = 35.0
 margin_right = 389.0
 margin_bottom = 60.0
 custom_styles/hover = ExtResource( 5 )
-custom_styles/pressed = SubResource( 19 )
+custom_styles/pressed = SubResource( 12 )
 custom_styles/focus = SubResource( 13 )
 custom_styles/normal = ExtResource( 4 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 14 )
 custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
 custom_colors/font_color = Color( 0.0784314, 0.0588235, 0.027451, 1 )
 custom_colors/font_color_hover = Color( 0.0784314, 0.0588235, 0.027451, 1 )
@@ -356,10 +356,10 @@ margin_top = 70.0
 margin_right = 389.0
 margin_bottom = 95.0
 custom_styles/hover = ExtResource( 5 )
-custom_styles/pressed = SubResource( 17 )
-custom_styles/focus = SubResource( 14 )
+custom_styles/pressed = SubResource( 15 )
+custom_styles/focus = SubResource( 16 )
 custom_styles/normal = ExtResource( 4 )
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 17 )
 custom_colors/font_color = Color( 0.0784314, 0.0588235, 0.027451, 1 )
 custom_colors/font_color_hover = Color( 0.0784314, 0.0588235, 0.027451, 1 )
 custom_colors/font_color_pressed = Color( 0.0784314, 0.0588235, 0.027451, 1 )
@@ -374,9 +374,9 @@ margin_right = 389.0
 margin_bottom = 130.0
 custom_styles/hover = ExtResource( 5 )
 custom_styles/pressed = SubResource( 18 )
-custom_styles/focus = SubResource( 15 )
+custom_styles/focus = SubResource( 19 )
 custom_styles/normal = ExtResource( 4 )
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 20 )
 custom_colors/font_color = Color( 0.0784314, 0.0588235, 0.027451, 1 )
 custom_colors/font_color_hover = Color( 0.0784314, 0.0588235, 0.027451, 1 )
 custom_colors/font_color_pressed = Color( 0.0784314, 0.0588235, 0.027451, 1 )
@@ -394,9 +394,9 @@ margin_right = 62.5
 margin_bottom = -1.0
 custom_styles/hover = ExtResource( 5 )
 custom_styles/pressed = ExtResource( 4 )
-custom_styles/focus = SubResource( 20 )
+custom_styles/focus = SubResource( 21 )
 custom_styles/normal = ExtResource( 4 )
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
 custom_colors/font_color = Color( 0.0784314, 0.0588235, 0.027451, 1 )
 custom_colors/font_color_hover = Color( 0.0784314, 0.0588235, 0.027451, 1 )
@@ -425,7 +425,7 @@ margin_bottom = 25.0
 [node name="Label" type="Label" parent="EditStats/Rows/Points"]
 margin_right = 130.0
 margin_bottom = 25.0
-custom_fonts/font = SubResource( 27 )
+custom_fonts/font = SubResource( 22 )
 custom_colors/font_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
 text = "Points left: "
 
@@ -433,7 +433,7 @@ text = "Points left: "
 margin_left = 134.0
 margin_right = 144.0
 margin_bottom = 25.0
-custom_fonts/font = SubResource( 27 )
+custom_fonts/font = SubResource( 22 )
 custom_colors/font_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
 text = "0"
 
@@ -555,9 +555,9 @@ margin_bottom = -6.0
 size_flags_horizontal = 4
 custom_styles/hover = ExtResource( 5 )
 custom_styles/pressed = ExtResource( 4 )
-custom_styles/focus = SubResource( 28 )
+custom_styles/focus = SubResource( 23 )
 custom_styles/normal = ExtResource( 4 )
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.0784314, 0.0588235, 0.027451, 1 )
 custom_colors/font_color_hover = Color( 0.0784314, 0.0588235, 0.027451, 1 )
 custom_colors/font_color_pressed = Color( 0.0784314, 0.0588235, 0.027451, 1 )

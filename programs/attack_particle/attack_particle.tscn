@@ -33,7 +33,9 @@ scale = 0.7
 scale_curve = SubResource( 7 )
 color_ramp = SubResource( 5 )
 
-[node name="AttackParticle" type="Sprite"]
+[node name="AttackParticle" type="Sprite" groups=[
+"attack_particle",
+]]
 position = Vector2( 260.411, 255.921 )
 texture = ExtResource( 1 )
 script = ExtResource( 2 )

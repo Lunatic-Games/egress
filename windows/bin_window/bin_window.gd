@@ -109,6 +109,8 @@ func new_button():
 	p.name = "Program" + str(program_list.size())
 	#Add program to list and begin editing it
 	program_list.append(p)
+	get_tree().set_group("program_count", "text", "Programs: " 
+		+ str(program_list.size()) + "/" + str(MAX_PROGRAMS))
 	edit_program(p)
 
 func next_button():

@@ -2,7 +2,7 @@ extends ColorRect
 
 const BAR_HEIGHT = 30
 const BAR_MARGIN = 4
-const TEXT_MARGIN = Vector2(8, 8)
+const TEXT_MARGIN = Vector2(12, 8)
 
 export(String) var win_name
 export(String, FILE, "*.tscn") var source_path
