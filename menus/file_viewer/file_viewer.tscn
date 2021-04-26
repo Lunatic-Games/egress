@@ -119,4 +119,5 @@ custom_styles/focus = SubResource( 3 )
 custom_fonts/font = SubResource( 4 )
 text = "Close"
 arrow_char = false
+
 [connection signal="pressed" from="Background/CloseButton" to="." method="_on_CloseButton_pressed"]

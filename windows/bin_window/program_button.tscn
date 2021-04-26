@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://windows/bin_window/program_button.gd" type="Script" id=1]
 [ext_resource path="res://shaders/program_shader.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/ui/VT323-Regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://windows/bin_window/background_style.tres" type="StyleBox" id=4]
 [ext_resource path="res://windows/bin_window/background_style_highlighted.tres" type="StyleBox" id=5]
+[ext_resource path="res://assets/sfx/ui_pressed.wav" type="AudioStream" id=6]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -152,3 +153,6 @@ custom_fonts/font = SubResource( 6 )
 text = "RECHARGING..."
 align = 1
 valign = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
