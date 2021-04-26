@@ -124,7 +124,5 @@ bus = "Music"
 [node name="PauseMenu" parent="." instance=ExtResource( 7 )]
 
 [editable path="WindowController/Ingress"]
-
 [editable path="WindowController/Bin"]
-
 [editable path="ScreenShader"]

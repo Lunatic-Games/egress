@@ -21,6 +21,7 @@ onready var distress_particles = preload("res://assets/particles/distress_partic
 
 signal decrypted
 signal defeated_program(program)
+signal dequeued_program(program)
 
 
 func _process(delta):
@@ -108,6 +109,21 @@ func queue_defender(program, id):
 	program.host_file = id
 	defenders.push_back(program)
 
+
+func dequeue_defender(program):
+	if program in defenders:
+		var index = defenders.find(program)
+		defenders.remove(program)
+	elif current_defender.name == program.name:
+		
+		$Attacker.visible = false
+		$AttackerAttackTimer.stop()
+		emit_signal("dequeued_program", current_defender)
+		current_defender = null
+		
+		# Progress to the next defender
+		if (defenders.size() > 0):
+			instance_defender(defenders.pop_front())
 
 
 func is_free():
