@@ -26,8 +26,9 @@ func _ready():
 
 func _process(delta):
 	# If a hack is happening
+	if $VirusDetectedAnimator.is_playing():
+		return
 	if (hack_underway && !winner_decided  && !($HackSuccessful.is_playing() || $HackFailed.is_playing())):
-		
 		# Check to break a defending program
 		if (current_defender.integrity <= 0):
 			break_defender()
@@ -40,6 +41,11 @@ func _process(delta):
 func begin_hack():
 	winner_decided = false
 	hack_underway = true
+	for defender in defenders:
+		if defender.trap:
+			$VirusDetectedAnimator.play("virus_detected")
+			yield($VirusDetectedAnimator, "animation_finished")
+			break
 	defender_index = 0
 	attacker_index = 0
 	

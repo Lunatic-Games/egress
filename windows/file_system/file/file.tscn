@@ -101,5 +101,4 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/gain_bits = SubResource( 3 )
-
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

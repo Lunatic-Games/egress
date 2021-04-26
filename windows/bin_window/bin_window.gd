@@ -7,7 +7,7 @@ const COLOR_REF = {
 	"Orange": Color.orange,
 	"Orangered": Color.orangered,
 	"Green": Color.lawngreen,
-	"Blue": Color.blue,
+	"Blue": Color.aqua,
 	"White": Color.white,
 	"Orchid": Color.orchid,
 	"Red": Color.red,
@@ -34,9 +34,9 @@ func _ready():
 		var normal_style = StyleBoxFlat.new()
 		var hovered_style = StyleBoxFlat.new()
 		var pressed_style = StyleBoxFlat.new()
-		normal_style.bg_color = COLOR_REF[button.name]
-		hovered_style.bg_color = COLOR_REF[button.name].lightened(0.15)
-		pressed_style.bg_color = COLOR_REF[button.name].darkened(0.3)
+		normal_style.bg_color = COLOR_REF[button.name].darkened(0.5)
+		hovered_style.bg_color = COLOR_REF[button.name].darkened(0.2)
+		pressed_style.bg_color = COLOR_REF[button.name]
 		button.set("custom_styles/normal", normal_style)
 		button.set("custom_styles/hover", hovered_style)
 		button.set("custom_styles/pressed", pressed_style)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://windows/egress_queue/egress_queue.gd" type="Script" id=1]
 [ext_resource path="res://assets/ui/VT323-Regular.ttf" type="DynamicFontData" id=2]
@@ -231,6 +231,22 @@ tracks/3/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
+[sub_resource type="Animation" id=8]
+resource_name = "virus_detected"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("VirusDetected:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5, 0.7, 0.9, 1.1, 1.6, 1.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.784314 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.784314 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
 [node name="EgressQueue" type="ColorRect" groups=[
 "egress",
 ]]
@@ -253,7 +269,6 @@ attackers = [ ExtResource( 4 ) ]
 position = Vector2( 578.5, 163 )
 
 [node name="DefenderSprite" parent="Defender" instance=ExtResource( 5 )]
-self_modulate = Color( 1, 1, 1, 0 )
 margin_left = -126.0
 margin_top = -126.0
 margin_right = 124.0
@@ -296,6 +311,27 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="VirusDetected" type="RichTextLabel" parent="."]
+modulate = Color( 0.776471, 0.564706, 0.0470588, 1 )
+self_modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = -194.0
+margin_right = 200.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 400, 0 )
+custom_fonts/normal_font = SubResource( 2 )
+bbcode_enabled = true
+bbcode_text = "[shake][center]VIRUS DETECTED[/center][/shake]"
+text = "VIRUS DETECTED"
+fit_content_height = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="AccessDenied" type="RichTextLabel" parent="."]
 modulate = Color( 0.776471, 0.564706, 0.0470588, 1 )
 self_modulate = Color( 1, 1, 1, 0 )
@@ -304,9 +340,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -136.5
-margin_top = -164.0
+margin_top = -169.0
 margin_right = 136.5
-margin_bottom = 130.0
+margin_bottom = 125.0
 custom_fonts/normal_font = SubResource( 2 )
 bbcode_enabled = true
 bbcode_text = "[shake][center]DENIED[/center][/shake]"
@@ -367,6 +403,9 @@ anims/hack_success = SubResource( 6 )
 
 [node name="HackFailed" type="AnimationPlayer" parent="."]
 anims/hack_failed = SubResource( 7 )
+
+[node name="VirusDetectedAnimator" type="AnimationPlayer" parent="."]
+anims/virus_detected = SubResource( 8 )
 [connection signal="timeout" from="DefenderAttackTimer" to="." method="_on_DefenderAttackTimer_timeout"]
 [connection signal="timeout" from="AttackerAttackTimer" to="." method="_on_AttackerAttackTimer_timeout"]
 [connection signal="animation_finished" from="HackSuccessful" to="." method="_on_HackSuccessful_animation_finished"]
