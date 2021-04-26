@@ -367,6 +367,7 @@ anims/hack_success = SubResource( 6 )
 
 [node name="HackFailed" type="AnimationPlayer" parent="."]
 anims/hack_failed = SubResource( 7 )
+
 [connection signal="timeout" from="DefenderAttackTimer" to="." method="_on_DefenderAttackTimer_timeout"]
 [connection signal="timeout" from="AttackerAttackTimer" to="." method="_on_AttackerAttackTimer_timeout"]
 [connection signal="animation_finished" from="HackSuccessful" to="." method="_on_HackSuccessful_animation_finished"]
