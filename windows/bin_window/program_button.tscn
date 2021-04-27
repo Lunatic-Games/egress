@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://windows/bin_window/program_button.gd" type="Script" id=1]
 [ext_resource path="res://shaders/program_shader.tscn" type="PackedScene" id=2]
@@ -29,7 +29,13 @@ tracks/0/keys = {
 size = 22
 font_data = ExtResource( 3 )
 
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.509804, 0.364706, 0, 1 )
+
 [sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.509804, 0.364706, 0, 1 )
 
 [sub_resource type="StyleBoxEmpty" id=5]
 
@@ -109,6 +115,7 @@ margin_bottom = 50.0
 rect_min_size = Vector2( 60, 40 )
 focus_mode = 0
 custom_styles/hover = ExtResource( 5 )
+custom_styles/pressed = SubResource( 7 )
 custom_styles/focus = SubResource( 4 )
 custom_styles/normal = ExtResource( 4 )
 custom_colors/font_color = Color( 0.0784314, 0.0588235, 0.027451, 1 )
@@ -124,7 +131,7 @@ margin_bottom = 50.0
 rect_min_size = Vector2( 60, 40 )
 focus_mode = 0
 custom_styles/hover = ExtResource( 5 )
-custom_styles/pressed = ExtResource( 4 )
+custom_styles/pressed = SubResource( 8 )
 custom_styles/focus = SubResource( 5 )
 custom_styles/normal = ExtResource( 4 )
 custom_colors/font_color = Color( 0.0784314, 0.0588235, 0.027451, 1 )
