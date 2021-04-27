@@ -55,5 +55,6 @@ margin_bottom = 114.0
 custom_styles/focus = SubResource( 1 )
 custom_fonts/font = SubResource( 2 )
 text = "Exit"
+
 [connection signal="pressed" from="VBoxContainer/ContinueButton" to="." method="_on_ContinueButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_ExitButton_pressed"]

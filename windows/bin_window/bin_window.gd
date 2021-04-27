@@ -20,7 +20,8 @@ onready var program_res = load("res://programs/PROGRAM.gd")
 var program_list = []
 var text_edit_content = ""
 var program_in_edit = null
-var max_points = 0
+var max_points = 10
+var cur_points = 10
 
 func _ready():
 	# Set up transition buttons
@@ -48,7 +49,7 @@ func _ready():
 		button.connect("button_down", self, "type_button", [button.name])
 
 	# Set up stat buttons
-	max_points = Hacker.total_points
+	cur_points = Hacker.total_points
 	for roller in $EditStats/Rows/StatRows.get_children():
 		roller.max_value = max_points
 		roller.connect("update_stat", self, "read_roller", [roller])

@@ -76,7 +76,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" parent="." instance=ExtResource( 3 )]
+[node name="Button" parent="." groups=[
+"file_button",
+] instance=ExtResource( 3 )]
 margin_right = 181.0
 margin_bottom = 39.0
 custom_fonts/font = SubResource( 1 )

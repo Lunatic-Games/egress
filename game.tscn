@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://windows/window_controller.gd" type="Script" id=1]
 [ext_resource path="res://windows/window_base.tscn" type="PackedScene" id=2]
@@ -9,21 +9,26 @@
 [ext_resource path="res://menus/pause_menu/pause_menu.tscn" type="PackedScene" id=7]
 [ext_resource path="res://game.gd" type="Script" id=8]
 [ext_resource path="res://assets/ui/VT323-Regular.ttf" type="DynamicFontData" id=9]
-[ext_resource path="res://menus/menu_button.tscn" type="PackedScene" id=10]
+[ext_resource path="res://menus/tutorial_popup/tutorial_popup.tscn" type="PackedScene" id=10]
+[ext_resource path="res://menus/menu_button.tscn" type="PackedScene" id=11]
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
 font_data = ExtResource( 9 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 32
+size = 100
 font_data = ExtResource( 9 )
 
 [sub_resource type="DynamicFont" id=3]
-size = 64
+size = 32
 font_data = ExtResource( 9 )
 
-[sub_resource type="Shader" id=4]
+[sub_resource type="DynamicFont" id=4]
+size = 32
+font_data = ExtResource( 9 )
+
+[sub_resource type="Shader" id=5]
 code = "shader_type canvas_item;
 
 uniform float radius = 8.0;
@@ -48,8 +53,8 @@ void fragment() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id=5]
-shader = SubResource( 4 )
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 5 )
 shader_param/radius = 8.0
 shader_param/step_size = 4.0
 shader_param/sd = 10.0
@@ -57,11 +62,9 @@ shader_param/additive_strength = 14.0
 shader_param/center_strength = 1.0
 
 [node name="Game" type="Node2D"]
-pause_mode = 2
 script = ExtResource( 8 )
 
 [node name="WindowController" type="Node2D" parent="."]
-pause_mode = 1
 script = ExtResource( 1 )
 
 [node name="Ingress" parent="WindowController" instance=ExtResource( 2 )]
@@ -71,6 +74,10 @@ margin_right = 1017.0
 margin_bottom = 595.0
 win_name = "ingress_tracker.vis"
 source_path = "res://windows/ingress/ingress.tscn"
+
+[node name="WindowName" parent="WindowController/Ingress" index="1" groups=[
+"ingress_window_title",
+]]
 
 [node name="Egress" parent="WindowController" instance=ExtResource( 2 )]
 margin_left = 400.293
@@ -120,128 +127,392 @@ pause_mode = 2
 
 [node name="FileViewer" parent="WindowController" instance=ExtResource( 4 )]
 
-[node name="WinOverlay" type="ColorRect" parent="." groups=[
+[node name="BinTutorial" parent="WindowController" instance=ExtResource( 10 )]
+margin_right = 0.0
+margin_bottom = 0.0
+mouse_filter = 2
+
+[node name="ColorRect" parent="WindowController/BinTutorial" index="4"]
+margin_left = 401.5
+margin_top = 425.0
+margin_right = 731.5
+margin_bottom = 554.0
+
+[node name="MenuLabel" parent="WindowController/BinTutorial/ColorRect/MarginContainer" index="0"]
+margin_right = 318.0
+margin_bottom = 117.0
+text = "/bin/ keeps track of your programs. Select \"new\" to create a new program"
+
+[node name="ProgramEditTutorial" parent="WindowController" instance=ExtResource( 10 )]
+margin_right = 0.0
+margin_bottom = 0.0
+mouse_filter = 2
+
+[node name="ColorRect" parent="WindowController/ProgramEditTutorial" index="4"]
+margin_left = 402.0
+margin_top = 416.676
+margin_right = 746.0
+margin_bottom = 576.676
+
+[node name="MenuLabel" parent="WindowController/ProgramEditTutorial/ColorRect/MarginContainer" index="0"]
+margin_right = 332.0
+margin_bottom = 149.0
+text = "Here you can edit your program name, color, and type. Certain types are more effective against others. Press \"Next\" to continue."
+
+[node name="StatEditTutorial" parent="WindowController" instance=ExtResource( 10 )]
+margin_right = 0.0
+margin_bottom = 0.0
+mouse_filter = 2
+
+[node name="ColorRect" parent="WindowController/StatEditTutorial" index="4"]
+margin_left = 402.0
+margin_top = 425.0
+margin_right = 746.0
+margin_bottom = 567.0
+
+[node name="MenuLabel" parent="WindowController/StatEditTutorial/ColorRect/MarginContainer" index="0"]
+margin_right = 332.0
+margin_bottom = 130.0
+text = "Here you can modify the attributes of your program. Press \"Done\" to continue."
+
+[node name="QueueTutorial" parent="WindowController" instance=ExtResource( 10 )]
+margin_right = 0.0
+margin_bottom = 0.0
+mouse_filter = 2
+
+[node name="Cover1" parent="WindowController/QueueTutorial" index="0"]
+margin_bottom = 453.0
+
+[node name="Cover2" parent="WindowController/QueueTutorial" index="1"]
+margin_top = 453.0
+margin_right = 248.0
+margin_bottom = 600.0
+
+[node name="Cover3" parent="WindowController/QueueTutorial" index="2"]
+margin_left = 306.0
+margin_top = 453.0
+
+[node name="Cover4" parent="WindowController/QueueTutorial" index="3"]
+visible = true
+margin_left = 248.0
+margin_top = 507.0
+margin_right = 306.0
+margin_bottom = 600.0
+
+[node name="ColorRect" parent="WindowController/QueueTutorial" index="4"]
+margin_left = 402.0
+margin_top = 425.0
+margin_right = 761.0
+margin_bottom = 582.0
+
+[node name="MenuLabel" parent="WindowController/QueueTutorial/ColorRect/MarginContainer" index="0"]
+margin_right = 347.0
+margin_bottom = 145.0
+text = "You can then place this program as an attacker, \"egress\", or defender, \"ingress\". Place this program into the egress queue."
+
+[node name="DecryptTutorial" parent="WindowController" instance=ExtResource( 10 )]
+margin_right = 0.0
+margin_bottom = 0.0
+mouse_filter = 2
+
+[node name="Cover1" parent="WindowController/DecryptTutorial" index="0"]
+margin_right = 18.0
+margin_bottom = 600.0
+
+[node name="Cover2" parent="WindowController/DecryptTutorial" index="1"]
+margin_left = 18.0
+margin_top = 1.0
+margin_right = 240.0
+margin_bottom = 41.0
+
+[node name="Cover3" parent="WindowController/DecryptTutorial" index="2"]
+margin_left = 240.0
+margin_top = 1.0
+margin_right = 1027.0
+margin_bottom = 601.0
+
+[node name="Cover4" parent="WindowController/DecryptTutorial" index="3"]
+visible = true
+margin_left = 18.0
+margin_top = 88.0
+margin_right = 240.0
+margin_bottom = 600.0
+
+[node name="ColorRect" parent="WindowController/DecryptTutorial" index="4"]
+margin_left = 16.4419
+margin_top = 105.368
+margin_right = 360.442
+margin_bottom = 247.368
+
+[node name="MenuLabel" parent="WindowController/DecryptTutorial/ColorRect/MarginContainer" index="0"]
+margin_right = 332.0
+margin_bottom = 130.0
+text = "Now try to decrypt this file."
+
+[node name="BattleTutorial" parent="WindowController" instance=ExtResource( 10 )]
+margin_right = 0.0
+margin_bottom = 0.0
+mouse_filter = 2
+
+[node name="Cover1" parent="WindowController/BattleTutorial" index="0"]
+margin_right = 401.0
+margin_bottom = 600.0
+
+[node name="Cover2" parent="WindowController/BattleTutorial" index="1"]
+margin_left = 400.0
+margin_top = 0.0
+margin_right = 1025.0
+margin_bottom = 48.0
+
+[node name="Cover3" parent="WindowController/BattleTutorial" index="2"]
+margin_left = 401.0
+margin_top = 362.0
+margin_bottom = 601.0
+
+[node name="Cover4" parent="WindowController/BattleTutorial" index="3"]
+visible = true
+margin_left = 981.0
+margin_top = 48.0
+margin_right = 1023.0
+margin_bottom = 361.0
+
+[node name="ColorRect" parent="WindowController/BattleTutorial" index="4"]
+margin_left = 40.6569
+margin_top = 115.0
+margin_right = 377.657
+margin_bottom = 281.0
+
+[node name="MenuLabel" parent="WindowController/BattleTutorial/ColorRect/MarginContainer" index="0"]
+margin_right = 325.0
+margin_bottom = 154.0
+text = "Programs added to the Egress queue will attack in the order they are added. The right side represents the defending programs."
+
+[node name="IngressTutorial" parent="WindowController" instance=ExtResource( 10 )]
+margin_right = 0.0
+margin_bottom = 0.0
+mouse_filter = 2
+
+[node name="Cover1" parent="WindowController/IngressTutorial" index="0"]
+margin_right = 401.0
+margin_bottom = 600.0
+
+[node name="Cover2" parent="WindowController/IngressTutorial" index="1"]
+margin_left = 401.0
+margin_top = 0.0
+margin_right = 1025.0
+margin_bottom = 371.0
+
+[node name="Cover3" parent="WindowController/IngressTutorial" index="2"]
+margin_left = 401.0
+margin_top = 592.0
+margin_bottom = 601.0
+
+[node name="Cover4" parent="WindowController/IngressTutorial" index="3"]
+visible = true
+margin_left = 1017.0
+margin_top = 371.0
+margin_right = 1024.0
+margin_bottom = 592.0
+
+[node name="ColorRect" parent="WindowController/IngressTutorial" index="4"]
+margin_left = 51.2515
+margin_top = 392.579
+margin_right = 388.251
+margin_bottom = 558.579
+
+[node name="MenuLabel" parent="WindowController/IngressTutorial/ColorRect/MarginContainer" index="0"]
+margin_right = 324.0
+margin_bottom = 153.0
+text = "The Ingress window shows viruses that are attacking you on the right. You may want to leave defenders there to prevent being traced."
+
+[node name="ReadTutorial" parent="WindowController" instance=ExtResource( 10 )]
+mouse_filter = 2
+
+[node name="Cover1" parent="WindowController/ReadTutorial" index="0"]
+margin_right = 18.0
+margin_bottom = 600.0
+
+[node name="Cover2" parent="WindowController/ReadTutorial" index="1"]
+margin_left = 18.0
+margin_top = 1.0
+margin_right = 240.0
+margin_bottom = 41.0
+
+[node name="Cover3" parent="WindowController/ReadTutorial" index="2"]
+margin_left = 240.0
+margin_top = 1.0
+margin_right = 1027.0
+margin_bottom = 601.0
+
+[node name="Cover4" parent="WindowController/ReadTutorial" index="3"]
+visible = true
+margin_left = 18.0
+margin_top = 88.0
+margin_right = 240.0
+margin_bottom = 600.0
+
+[node name="ColorRect" parent="WindowController/ReadTutorial" index="4"]
+margin_left = 16.4419
+margin_top = 105.368
+margin_right = 360.442
+margin_bottom = 247.368
+
+[node name="MenuLabel" parent="WindowController/ReadTutorial/ColorRect/MarginContainer" index="0"]
+margin_right = 332.0
+margin_bottom = 130.0
+text = "Decrypted files may contain useful information. After a successful Egress, click on a file to read it."
+
+[node name="WinOverlay" type="ColorRect" parent="WindowController" groups=[
 "win",
 ]]
 visible = false
-margin_right = 1024.0
-margin_bottom = 618.0
-color = Color( 0, 0, 0, 0.803922 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 1024, 600 )
+color = Color( 0, 0, 0, 0.85098 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RichTextLabel" type="RichTextLabel" parent="WinOverlay"]
-modulate = Color( 0.945098, 0.705882, 0.129412, 1 )
+[node name="RichTextLabel3" type="RichTextLabel" parent="WindowController/WinOverlay"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -143.308
-margin_top = -29.6426
-margin_right = 169.692
-margin_bottom = 72.3574
+margin_left = -510.0
+margin_top = -176.0
+margin_right = 511.0
+margin_bottom = -78.0
 custom_fonts/normal_font = SubResource( 2 )
+custom_colors/default_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
 bbcode_enabled = true
-bbcode_text = "[center]With these access codes I can take down the [shake]Iron Fist"
-text = "With these access codes I can take down the Iron Fist"
-fit_content_height = true
+bbcode_text = "[center]Victory"
+text = "Victory"
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="WinOverlay"]
-modulate = Color( 0.945098, 0.705882, 0.129412, 1 )
+[node name="RichTextLabel" type="RichTextLabel" parent="WindowController/WinOverlay"]
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-margin_left = -166.0
-margin_top = 100.0
-margin_right = 171.0
-margin_bottom = 232.0
+anchor_bottom = 0.5
+margin_left = -511.0
+margin_top = -20.0
+margin_right = 510.0
+margin_bottom = 54.0
 custom_fonts/normal_font = SubResource( 3 )
+custom_colors/default_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
+bbcode_enabled = true
+bbcode_text = "[center]With these access codes I can take down the
+[shake]Iron Fist"
+text = "With these access codes I can take down the
+Iron Fist"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="WindowController/WinOverlay"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -510.0
+margin_top = -62.551
+margin_right = 511.0
+margin_bottom = 33.449
+custom_fonts/normal_font = SubResource( 4 )
+custom_colors/default_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
 bbcode_enabled = true
 bbcode_text = "[center]By DOS, I made it in!"
 text = "By DOS, I made it in!"
-fit_content_height = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MenuButton" parent="WinOverlay" instance=ExtResource( 10 )]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -87.3394
-margin_top = -192.0
-margin_right = 76.6606
-margin_bottom = -137.0
-text = "MAIN MENU"
-
-[node name="GameOverOverlay" type="ColorRect" parent="." groups=[
-"lose",
-]]
-visible = false
-margin_right = 1024.0
-margin_bottom = 618.0
-color = Color( 0, 0, 0, 0.803922 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="RichTextLabel" type="RichTextLabel" parent="GameOverOverlay"]
-modulate = Color( 0.945098, 0.705882, 0.129412, 1 )
+[node name="MainMenu" parent="WindowController/WinOverlay" instance=ExtResource( 11 )]
+pause_mode = 2
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -268.0
-margin_top = -151.0
-margin_right = 268.0
-margin_bottom = -49.0
-custom_fonts/normal_font = SubResource( 2 )
-bbcode_enabled = true
-bbcode_text = "[center]They will hunt me until the end of the earth...
-Better start running."
-text = "They will hunt me until the end of the earth...
-Better start running."
-fit_content_height = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+margin_left = -91.5
+margin_top = 78.5
+margin_right = 91.5
+margin_bottom = 133.5
+text = "Main Menu"
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="GameOverOverlay"]
-modulate = Color( 0.945098, 0.705882, 0.129412, 1 )
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -380.5
-margin_top = 54.0
-margin_right = 380.5
-margin_bottom = 186.0
-custom_fonts/normal_font = SubResource( 3 )
-bbcode_enabled = true
-bbcode_text = "[center]They traced my location chip"
-text = "They traced my location chip"
-fit_content_height = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MenuButton" parent="GameOverOverlay" instance=ExtResource( 10 )]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+[node name="GameoverOverlay" type="ColorRect" parent="WindowController" groups=[
+"lose",
+]]
+visible = false
+anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -87.3394
-margin_top = -192.0
-margin_right = 76.6606
-margin_bottom = -137.0
-text = "MAIN MENU"
+rect_min_size = Vector2( 1024, 600 )
+color = Color( 0, 0, 0, 0.85098 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="WindowController/GameoverOverlay"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -510.0
+margin_top = -176.0
+margin_right = 511.0
+margin_bottom = -78.0
+custom_fonts/normal_font = SubResource( 2 )
+custom_colors/default_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
+bbcode_enabled = true
+bbcode_text = "[center]Gameover"
+text = "Gameover"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="WindowController/GameoverOverlay"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -510.0
+margin_top = -62.551
+margin_right = 511.0
+margin_bottom = 33.449
+custom_fonts/normal_font = SubResource( 4 )
+custom_colors/default_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
+bbcode_enabled = true
+bbcode_text = "[center]They traced my location chip
+They will hunt me until the end of the earth...
+Better start running"
+text = "They traced my location chip
+They will hunt me until the end of the earth...
+Better start running"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TryAgain" parent="WindowController/GameoverOverlay" instance=ExtResource( 11 )]
+pause_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -91.5
+margin_top = 78.5
+margin_right = 91.5
+margin_bottom = 133.5
+text = "Try again"
 
 [node name="ScreenShader" parent="." instance=ExtResource( 3 )]
 
 [node name="ColorRect" parent="ScreenShader/GlowShader" index="0"]
-material = SubResource( 5 )
+material = SubResource( 6 )
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
@@ -252,9 +523,17 @@ bus = "Music"
 
 [node name="PauseMenu" parent="." instance=ExtResource( 7 )]
 
-[connection signal="pressed" from="WinOverlay/MenuButton" to="." method="_on_MenuButton_pressed"]
-[connection signal="pressed" from="GameOverOverlay/MenuButton" to="." method="_on_MenuButton_pressed"]
+[connection signal="pressed" from="WindowController/WinOverlay/MainMenu" to="." method="_on_MainMenu_pressed"]
+[connection signal="pressed" from="WindowController/GameoverOverlay/TryAgain" to="." method="_on_TryAgain_pressed"]
 
 [editable path="WindowController/Ingress"]
 [editable path="WindowController/Bin"]
+[editable path="WindowController/BinTutorial"]
+[editable path="WindowController/ProgramEditTutorial"]
+[editable path="WindowController/StatEditTutorial"]
+[editable path="WindowController/QueueTutorial"]
+[editable path="WindowController/DecryptTutorial"]
+[editable path="WindowController/BattleTutorial"]
+[editable path="WindowController/IngressTutorial"]
+[editable path="WindowController/ReadTutorial"]
 [editable path="ScreenShader"]
