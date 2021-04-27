@@ -33,7 +33,7 @@ func gain_bits(bits):
 func gain_trace(trace):
 	self.trace += trace
 	var ingress_label = get_tree().get_nodes_in_group("ingress_window_title")[0]
-	ingress_label.text = "ingress_tracker.vis - trace " + str(int(trace)) + "%"
+	ingress_label.text = "ingress_tracker.vis - trace " + str(int(100 * self.trace / max_trace)) + "%"
 	if (self.trace >= max_trace):
 		lose_game()
 

@@ -26,7 +26,7 @@ region_rect = Rect2( 0, 0, 0, 4 )
 size = 24
 font_data = ExtResource( 1 )
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=6]
 resource_name = "default"
 length = 0.001
 tracks/0/type = "value"
@@ -54,8 +54,7 @@ tracks/1/keys = {
 "values": [ -10.0 ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "outro"
+[sub_resource type="Animation" id=7]
 tracks/0/type = "value"
 tracks/0/path = NodePath("OutroBackground:visible")
 tracks/0/interp = 1
@@ -150,7 +149,7 @@ align = 0
 [node name="Buttons" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 149.0
 margin_right = 974.0
-margin_bottom = 322.0
+margin_bottom = 263.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -237,6 +236,7 @@ width = 4.0
 default_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
 
 [node name="TerminateButton" parent="MarginContainer/VBoxContainer/Buttons" instance=ExtResource( 3 )]
+visible = false
 margin_top = 118.0
 margin_right = 974.0
 margin_bottom = 173.0
@@ -284,8 +284,8 @@ bus = "Music"
 [node name="OutroPlayer" type="AnimationPlayer" parent="."]
 pause_mode = 2
 autoplay = "default"
-anims/default = SubResource( 7 )
-anims/outro = SubResource( 6 )
+anims/default = SubResource( 6 )
+anims/outro = SubResource( 7 )
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/BeginButton" to="." method="_on_BeginButton_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/ConfigButton" to="." method="_on_ConfigButton_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/ConfigContainer/VBoxContainer/FullscreenButton" to="." method="_on_FullscreenButton_pressed"]
