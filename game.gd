@@ -67,3 +67,13 @@ func next_tutorial(current_overlay, next_overlay, tutorial_name):
 		next_tutorial($WindowController/IngressTutorial, 
 			$WindowController/ReadTutorial, "read")
 
+
+
+func _on_MainMenu_pressed():
+	get_tree().paused = false
+	get_tree().change_scene("res://menus/main_menu/main_menu.tscn")
+
+
+func _on_TryAgain_pressed():
+	get_tree().paused = false
+	get_tree().change_scene("res://game.tscn")

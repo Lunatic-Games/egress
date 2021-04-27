@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://windows/window_controller.gd" type="Script" id=1]
 [ext_resource path="res://windows/window_base.tscn" type="PackedScene" id=2]
@@ -10,9 +10,22 @@
 [ext_resource path="res://game.gd" type="Script" id=8]
 [ext_resource path="res://assets/ui/VT323-Regular.ttf" type="DynamicFontData" id=9]
 [ext_resource path="res://menus/tutorial_popup/tutorial_popup.tscn" type="PackedScene" id=10]
+[ext_resource path="res://menus/menu_button.tscn" type="PackedScene" id=11]
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 100
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 32
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 32
 font_data = ExtResource( 9 )
 
 [sub_resource type="Shader" id=2]
@@ -309,7 +322,6 @@ margin_bottom = 153.0
 text = "The Ingress window shows viruses that are attacking you on the right. You may want to leave defenders there to prevent being traced."
 
 [node name="ReadTutorial" parent="WindowController" instance=ExtResource( 10 )]
-visible = true
 mouse_filter = 2
 
 [node name="Cover1" parent="WindowController/ReadTutorial" index="0"]
@@ -346,6 +358,152 @@ margin_right = 332.0
 margin_bottom = 130.0
 text = "Decrypted files may contain useful information. After a successful Egress, click on a file to read it."
 
+[node name="WinOverlay" type="ColorRect" parent="WindowController" groups=[
+"win",
+]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 1024, 600 )
+color = Color( 0, 0, 0, 0.85098 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="WindowController/WinOverlay"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -510.0
+margin_top = -176.0
+margin_right = 511.0
+margin_bottom = -78.0
+custom_fonts/normal_font = SubResource( 6 )
+custom_colors/default_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
+bbcode_enabled = true
+bbcode_text = "[center]Victory"
+text = "Victory"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="WindowController/WinOverlay"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -511.0
+margin_top = -20.0
+margin_right = 510.0
+margin_bottom = 54.0
+custom_fonts/normal_font = SubResource( 5 )
+custom_colors/default_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
+bbcode_enabled = true
+bbcode_text = "[center]With these access codes I can take down the 
+[shake]Iron Fist"
+text = "With these access codes I can take down the 
+Iron Fist"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="WindowController/WinOverlay"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -510.0
+margin_top = -62.551
+margin_right = 511.0
+margin_bottom = 33.449
+custom_fonts/normal_font = SubResource( 4 )
+custom_colors/default_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
+bbcode_enabled = true
+bbcode_text = "[center]By DOS, I made it in!"
+text = "By DOS, I made it in!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainMenu" parent="WindowController/WinOverlay" instance=ExtResource( 11 )]
+pause_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -91.5
+margin_top = 78.5
+margin_right = 91.5
+margin_bottom = 133.5
+text = "Main Menu"
+
+[node name="GameoverOverlay" type="ColorRect" parent="WindowController" groups=[
+"lose",
+]]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 1024, 600 )
+color = Color( 0, 0, 0, 0.85098 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="WindowController/GameoverOverlay"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -510.0
+margin_top = -176.0
+margin_right = 511.0
+margin_bottom = -78.0
+custom_fonts/normal_font = SubResource( 6 )
+custom_colors/default_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
+bbcode_enabled = true
+bbcode_text = "[center]Gameover"
+text = "Gameover"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="WindowController/GameoverOverlay"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -510.0
+margin_top = -62.551
+margin_right = 511.0
+margin_bottom = 33.449
+custom_fonts/normal_font = SubResource( 4 )
+custom_colors/default_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
+bbcode_enabled = true
+bbcode_text = "[center]They traced my location chip
+They will hunt me until the end of the earth...
+Better start running"
+text = "They traced my location chip
+They will hunt me until the end of the earth...
+Better start running"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TryAgain" parent="WindowController/GameoverOverlay" instance=ExtResource( 11 )]
+pause_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -91.5
+margin_top = 78.5
+margin_right = 91.5
+margin_bottom = 133.5
+text = "Try again"
+
 [node name="ScreenShader" parent="." instance=ExtResource( 3 )]
 
 [node name="ColorRect" parent="ScreenShader/GlowShader" index="0"]
@@ -359,6 +517,8 @@ autoplay = true
 bus = "Music"
 
 [node name="PauseMenu" parent="." instance=ExtResource( 7 )]
+[connection signal="pressed" from="WindowController/WinOverlay/MainMenu" to="." method="_on_MainMenu_pressed"]
+[connection signal="pressed" from="WindowController/GameoverOverlay/TryAgain" to="." method="_on_TryAgain_pressed"]
 
 [editable path="WindowController/Ingress"]
 
