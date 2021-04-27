@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://windows/bin_window/program_button.gd" type="Script" id=1]
 [ext_resource path="res://shaders/program_shader.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/ui/VT323-Regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://windows/bin_window/background_style.tres" type="StyleBox" id=4]
 [ext_resource path="res://windows/bin_window/background_style_highlighted.tres" type="StyleBox" id=5]
+[ext_resource path="res://assets/sfx/ui_pressed.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/sfx/load_program.wav" type="AudioStream" id=7]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -126,3 +128,37 @@ custom_colors/font_color_hover = Color( 0.0784314, 0.0588235, 0.027451, 1 )
 custom_colors/font_color_pressed = Color( 0.0784314, 0.0588235, 0.027451, 1 )
 toggle_mode = true
 text = "Ingress"
+
+[node name="RechargeOverlay" type="ColorRect" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -27.5
+margin_right = 512.0
+margin_bottom = 27.5
+grow_horizontal = 2
+rect_min_size = Vector2( 1024, 50 )
+size_flags_horizontal = 7
+size_flags_vertical = 7
+color = Color( 0, 0, 0, 0.8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="RechargeOverlay"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+custom_fonts/font = SubResource( 6 )
+text = "RECHARGING..."
+align = 1
+valign = 1
+
+[node name="UiStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
+[node name="LoadStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
