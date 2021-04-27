@@ -75,6 +75,10 @@ margin_bottom = 595.0
 win_name = "ingress_tracker.vis"
 source_path = "res://windows/ingress/ingress.tscn"
 
+[node name="WindowName" parent="WindowController/Ingress" index="1" groups=[
+"ingress_window_title",
+]]
+
 [node name="Egress" parent="WindowController" instance=ExtResource( 2 )]
 margin_left = 400.293
 margin_top = 6.46448
