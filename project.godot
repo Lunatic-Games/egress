@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Egress"
-run/main_scene="res://game.tscn"
+run/main_scene="res://menus/boot_menu/boot_menu.tscn"
 config/icon="res://assets/images/icon.png"
 
 [autoload]
