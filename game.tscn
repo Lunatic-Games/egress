@@ -405,9 +405,9 @@ margin_bottom = 54.0
 custom_fonts/normal_font = SubResource( 3 )
 custom_colors/default_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
 bbcode_enabled = true
-bbcode_text = "[center]With these access codes I can take down the 
+bbcode_text = "[center]With these access codes I can take down the
 [shake]Iron Fist"
-text = "With these access codes I can take down the 
+text = "With these access codes I can take down the
 Iron Fist"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -522,27 +522,18 @@ autoplay = true
 bus = "Music"
 
 [node name="PauseMenu" parent="." instance=ExtResource( 7 )]
+
 [connection signal="pressed" from="WindowController/WinOverlay/MainMenu" to="." method="_on_MainMenu_pressed"]
 [connection signal="pressed" from="WindowController/GameoverOverlay/TryAgain" to="." method="_on_TryAgain_pressed"]
 
 [editable path="WindowController/Ingress"]
-
 [editable path="WindowController/Bin"]
-
 [editable path="WindowController/BinTutorial"]
-
 [editable path="WindowController/ProgramEditTutorial"]
-
 [editable path="WindowController/StatEditTutorial"]
-
 [editable path="WindowController/QueueTutorial"]
-
 [editable path="WindowController/DecryptTutorial"]
-
 [editable path="WindowController/BattleTutorial"]
-
 [editable path="WindowController/IngressTutorial"]
-
 [editable path="WindowController/ReadTutorial"]
-
 [editable path="ScreenShader"]

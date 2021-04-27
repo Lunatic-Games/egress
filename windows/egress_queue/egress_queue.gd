@@ -227,6 +227,10 @@ func _on_DefenderAttackTimer_timeout():
 			stress.emitting = true
 			stress.modulate = current_attacker.color
 			$Attacker.add_child(stress)
+			$Attacker/Crit.play()
+		
+	if (!type_adv):
+		$Attacker/Damage.play()
 
 
 # Attack the current defender
@@ -262,6 +266,10 @@ func _on_AttackerAttackTimer_timeout():
 			stress.emitting = true
 			stress.modulate = current_defender.color
 			$Defender.add_child(stress)
+			$Attacker/Crit.play()
+	
+	if (!type_adv):
+		$Attacker/Damage.play()
 
 
 # Copied for engress and ingress

@@ -12,4 +12,4 @@ attack_rate = 0.5
 attack_value = 1
 recharge_rate = 0
 type = "hybrid"
-color = Color( 0.14902, 0.0352941, 0.0156863, 1 )
+color = Color( 0.654902, 0.176471, 0.0941176, 1 )
