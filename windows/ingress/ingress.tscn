@@ -250,5 +250,8 @@ anims/load_program = SubResource( 4 )
 
 [node name="Damaged" type="AnimationPlayer" parent="."]
 anims/player_damaged = SubResource( 5 )
+
+[node name="PlayerDamaged" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
 [connection signal="timeout" from="DefenderAttackTimer" to="." method="_on_DefenderAttackTimer_timeout"]
 [connection signal="timeout" from="AttackerAttackTimer" to="." method="_on_AttackerAttackTimer_timeout"]
