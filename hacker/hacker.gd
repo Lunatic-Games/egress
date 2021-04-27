@@ -17,7 +17,7 @@ onready var strong_against = {
 onready var trace = 0.0
 onready var max_trace = 100.0
 onready var bits = 0
-onready var total_points = 10
+onready var total_points = 12
 onready var bits_per_point = 100
 onready var bits_segment = 0
 

@@ -29,17 +29,17 @@ tracks/0/keys = {
 size = 22
 font_data = ExtResource( 3 )
 
-[sub_resource type="StyleBoxFlat" id=7]
-bg_color = Color( 0.509804, 0.364706, 0, 1 )
-
-[sub_resource type="StyleBoxEmpty" id=4]
-
-[sub_resource type="StyleBoxFlat" id=8]
+[sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.509804, 0.364706, 0, 1 )
 
 [sub_resource type="StyleBoxEmpty" id=5]
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.509804, 0.364706, 0, 1 )
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
+[sub_resource type="DynamicFont" id=8]
 size = 32
 font_data = ExtResource( 3 )
 
@@ -115,8 +115,8 @@ margin_bottom = 50.0
 rect_min_size = Vector2( 60, 40 )
 focus_mode = 0
 custom_styles/hover = ExtResource( 5 )
-custom_styles/pressed = SubResource( 7 )
-custom_styles/focus = SubResource( 4 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/focus = SubResource( 5 )
 custom_styles/normal = ExtResource( 4 )
 custom_colors/font_color = Color( 0.0784314, 0.0588235, 0.027451, 1 )
 custom_colors/font_color_hover = Color( 0.0784314, 0.0588235, 0.027451, 1 )
@@ -131,8 +131,8 @@ margin_bottom = 50.0
 rect_min_size = Vector2( 60, 40 )
 focus_mode = 0
 custom_styles/hover = ExtResource( 5 )
-custom_styles/pressed = SubResource( 8 )
-custom_styles/focus = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/focus = SubResource( 7 )
 custom_styles/normal = ExtResource( 4 )
 custom_colors/font_color = Color( 0.0784314, 0.0588235, 0.027451, 1 )
 custom_colors/font_color_hover = Color( 0.0784314, 0.0588235, 0.027451, 1 )
@@ -162,7 +162,7 @@ anchor_bottom = 1.0
 margin_left = 24.0
 margin_right = 24.0
 grow_horizontal = 2
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 8 )
 custom_colors/font_color = Color( 0.87451, 0.678431, 0.2, 1 )
 text = "RECHARGING..."
 align = 1

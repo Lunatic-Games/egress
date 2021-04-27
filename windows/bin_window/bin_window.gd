@@ -77,7 +77,7 @@ func update_list():
 	text_edit_content = ""
 
 func update_editors():
-	max_points = Hacker.total_points
+	cur_points = Hacker.total_points
 	text_edit_content = program_in_edit.name
 	$EditCosmetics/Columns/Rows/NameEdit.text = text_edit_content
 	update_rollers()
@@ -95,8 +95,9 @@ func update_rollers():
 		assigned += roller.cur_value
 	for roller in $EditStats/Rows/StatRows.get_children():
 		roller.max_value = max_points
-		roller.remaining = max_points - assigned
-	$EditStats/Rows/Points/Counter.text = str(max_points - assigned)
+		roller.remaining = cur_points - assigned
+		print()
+	$EditStats/Rows/Points/Counter.text = str(cur_points - assigned)
 
 # Transition buttons
 func new_button():
