@@ -7,7 +7,7 @@ Units: sectors of 1 * 512 = 512 bytes
 Sector size (logical/physical): 512 bytes / 512 bytes
 I/O size (minimum/optimal): 512 bytes / 512 bytes
 Disklabel type: gpt
-Disk identifier: LUDAM-DARE-48
+Disk identifier: LUDUM-DARE-48
 
 Device         Start       End   Sectors   Size Type
 /dev/sda1       2048    206847    204800   100M EFI System
