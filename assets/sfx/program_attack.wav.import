@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/program_attack.wav-93e1614278e7cc8ee89837cd563cf905.sample"
+
+[deps]
+
+source_file="res://assets/sfx/program_attack.wav"
+dest_files=[ "res://.import/program_attack.wav-93e1614278e7cc8ee89837cd563cf905.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
