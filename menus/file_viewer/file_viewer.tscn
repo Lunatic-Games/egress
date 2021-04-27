@@ -1,9 +1,17 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/ui/VT323-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://menus/file_viewer/file_viewer.gd" type="Script" id=2]
 [ext_resource path="res://menus/menu_label.tscn" type="PackedScene" id=3]
 [ext_resource path="res://menus/menu_button.tscn" type="PackedScene" id=4]
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.0784314, 0.0588235, 0.027451, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 36
@@ -38,7 +46,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="Panel" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -48,15 +56,10 @@ margin_top = -275.0
 margin_right = 225.0
 margin_bottom = 275.0
 rect_min_size = Vector2( 450, 500 )
-color = Color( 0.0784314, 0.0588235, 0.027451, 1 )
+custom_styles/panel = SubResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Line2D" type="Line2D" parent="Background"]
-points = PoolVector2Array( 448, 0, 448, 550, 2, 550, 2, 0, 448, 0 )
-width = 4.0
-default_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
 
 [node name="MarginContainer" type="MarginContainer" parent="Background"]
 anchor_right = 1.0

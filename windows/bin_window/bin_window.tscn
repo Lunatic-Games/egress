@@ -111,7 +111,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="NewButton" type="Button" parent="Main/Rows"]
+[node name="NewButton" type="Button" parent="Main/Rows" groups=[
+"new_program_button",
+]]
 margin_left = 437.0
 margin_right = 587.0
 margin_bottom = 25.0
@@ -390,7 +392,9 @@ toggle_mode = true
 text = "Hybrid"
 script = ExtResource( 7 )
 
-[node name="NextButton" type="Button" parent="EditCosmetics"]
+[node name="NextButton" type="Button" parent="EditCosmetics" groups=[
+"next_edit_button",
+]]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -415,7 +419,6 @@ __meta__ = {
 }
 
 [node name="EditStats" type="Control" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 
@@ -559,7 +562,9 @@ margin_left = 148.0
 margin_right = 173.0
 script = ExtResource( 7 )
 
-[node name="DoneButton" type="Button" parent="EditStats"]
+[node name="DoneButton" type="Button" parent="EditStats" groups=[
+"program_edit_done_button",
+]]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -584,6 +589,9 @@ __meta__ = {
 }
 
 [editable path="EditStats/Rows/StatRows/IntegrityRoller"]
+
 [editable path="EditStats/Rows/StatRows/SpeedRoller"]
+
 [editable path="EditStats/Rows/StatRows/PowerRoller"]
+
 [editable path="EditStats/Rows/StatRows/RateRoller"]
