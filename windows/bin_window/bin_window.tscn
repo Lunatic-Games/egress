@@ -589,6 +589,9 @@ __meta__ = {
 }
 
 [editable path="EditStats/Rows/StatRows/IntegrityRoller"]
+
 [editable path="EditStats/Rows/StatRows/SpeedRoller"]
+
 [editable path="EditStats/Rows/StatRows/PowerRoller"]
+
 [editable path="EditStats/Rows/StatRows/RateRoller"]

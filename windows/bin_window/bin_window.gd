@@ -68,12 +68,23 @@ func edit_program(p, from_existing=false):
 	transition_to("cosmetics")
 
 func update_list():
-	for child in $Main/Rows/ScrollContainer/ProgramList.get_children():
-		$Main/Rows/ScrollContainer/ProgramList.remove_child(child)
-	for program in program_list:
+	var pressed_buttons = {}
+	for i in $Main/Rows/ScrollContainer/ProgramList.get_child_count():
+		var to_be_removed = $Main/Rows/ScrollContainer/ProgramList.get_child(i)
+		pressed_buttons[i] = [to_be_removed.get_node("HBoxContainer/EgressButton").pressed,
+			to_be_removed.get_node("HBoxContainer/IngressButton").pressed]
+	for entry in $Main/Rows/ScrollContainer/ProgramList.get_children():
+		$Main/Rows/ScrollContainer/ProgramList.remove_child(entry)
+	for i in program_list.size():
+		var program = program_list[i]
 		var entry = program_button_res.instance()
 		entry.init(program)
 		$Main/Rows/ScrollContainer/ProgramList.add_child(entry)
+		if pressed_buttons.has(i):
+			entry.get_node("HBoxContainer/EgressButton").pressed = pressed_buttons[i][0]
+			entry.get_node("HBoxContainer/IngressButton").pressed = pressed_buttons[i][1]
+			if pressed_buttons[i][0] or pressed_buttons[i][1]:
+				entry.deployed = true
 	text_edit_content = ""
 
 func update_editors():
