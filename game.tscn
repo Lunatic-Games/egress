@@ -16,11 +16,11 @@
 size = 20
 font_data = ExtResource( 9 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=2]
 size = 100
 font_data = ExtResource( 9 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=3]
 size = 32
 font_data = ExtResource( 9 )
 
@@ -28,7 +28,7 @@ font_data = ExtResource( 9 )
 size = 32
 font_data = ExtResource( 9 )
 
-[sub_resource type="Shader" id=2]
+[sub_resource type="Shader" id=5]
 code = "shader_type canvas_item;
 
 uniform float radius = 8.0;
@@ -53,8 +53,8 @@ void fragment() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id=3]
-shader = SubResource( 2 )
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 5 )
 shader_param/radius = 8.0
 shader_param/step_size = 4.0
 shader_param/sd = 10.0
@@ -379,7 +379,7 @@ margin_left = -510.0
 margin_top = -176.0
 margin_right = 511.0
 margin_bottom = -78.0
-custom_fonts/normal_font = SubResource( 6 )
+custom_fonts/normal_font = SubResource( 2 )
 custom_colors/default_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
 bbcode_enabled = true
 bbcode_text = "[center]Victory"
@@ -398,7 +398,7 @@ margin_left = -511.0
 margin_top = -20.0
 margin_right = 510.0
 margin_bottom = 54.0
-custom_fonts/normal_font = SubResource( 5 )
+custom_fonts/normal_font = SubResource( 3 )
 custom_colors/default_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
 bbcode_enabled = true
 bbcode_text = "[center]With these access codes I can take down the 
@@ -460,7 +460,7 @@ margin_left = -510.0
 margin_top = -176.0
 margin_right = 511.0
 margin_bottom = -78.0
-custom_fonts/normal_font = SubResource( 6 )
+custom_fonts/normal_font = SubResource( 2 )
 custom_colors/default_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
 bbcode_enabled = true
 bbcode_text = "[center]Gameover"
@@ -508,7 +508,7 @@ text = "Try again"
 [node name="ScreenShader" parent="." instance=ExtResource( 3 )]
 
 [node name="ColorRect" parent="ScreenShader/GlowShader" index="0"]
-material = SubResource( 3 )
+material = SubResource( 6 )
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 pause_mode = 2

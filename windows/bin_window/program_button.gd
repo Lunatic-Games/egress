@@ -43,6 +43,7 @@ func egress_button():
 			$LoadStreamPlayer.play()
 		else:
 			$HBoxContainer/EgressButton.pressed = true
+
 func ingress_button():
 	if ($HBoxContainer/IngressButton.pressed):
 		#print("Dequeueing [", p.name, "] from ingress...")
