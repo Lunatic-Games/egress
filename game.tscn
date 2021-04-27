@@ -405,9 +405,9 @@ margin_bottom = 54.0
 custom_fonts/normal_font = SubResource( 3 )
 custom_colors/default_color = Color( 0.776471, 0.564706, 0.0470588, 1 )
 bbcode_enabled = true
-bbcode_text = "[center]With these access codes I can take down the 
+bbcode_text = "[center]With these access codes I can take down the
 [shake]Iron Fist"
-text = "With these access codes I can take down the 
+text = "With these access codes I can take down the
 Iron Fist"
 __meta__ = {
 "_edit_use_anchors_": false

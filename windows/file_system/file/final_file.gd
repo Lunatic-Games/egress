@@ -33,12 +33,7 @@ func _on_Button_pressed():
 		egress_queue.begin_hack()
 
 	elif (!encrypted):
-
-		if (directory):
-			file_system.go_deeper()
-		else:
-			get_tree().call_group("file_viewer", "view", file_name + ".decrypted",
-				decrypted_text)
+		Hacker.win_game()
 
 
 func check_id(id):
@@ -54,9 +49,3 @@ func decrypt_file():
 	if (encrypted):
 		encrypted = false
 		$Button.text = $Button.text.substr(0, $Button.text.length() - 10) + ".decrypted"
-
-
-func score_bits():
-	$Button/Bits.bbcode_text = "[wave]" + String(bit_reward) + " bits gained"
-	$AnimationPlayer.play("gain_bits")
-	Hacker.gain_bits(bit_reward)

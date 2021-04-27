@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://windows/file_system/file/file.tscn" type="PackedScene" id=1]
 [ext_resource path="res://programs/Walls/wall1.tres" type="Resource" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://programs/Breakers/breaker1.tres" type="Resource" id=5]
 [ext_resource path="res://windows/file_system/file_systems.gd" type="Script" id=6]
 [ext_resource path="res://programs/Walls/h4nk.tres" type="Resource" id=7]
+[ext_resource path="res://windows/file_system/file/final_file.tscn" type="PackedScene" id=9]
 
 [node name="FileSystem" type="ColorRect" groups=[
 "file_system",
@@ -40,7 +41,8 @@ margin_top = 0.0
 margin_right = 347.0
 margin_bottom = 48.0
 file_name = "t00ts"
-decrypted_text = "Read my signatures for advice. I made it pretty deep. Left some messages to help you."
+decrypted_text = "I left files with cool tips. Make sure to decrypt any <dir> files to go deeper"
+encrypted = true
 bit_reward = 10
 programs = [ ExtResource( 2 ) ]
 
@@ -50,11 +52,12 @@ anchor_bottom = 0.0
 margin_top = 48.0
 margin_right = 347.0
 margin_bottom = 97.0
-file_name = "index_0 <dpr>"
+file_name = "index_0 <dir>"
+encrypted = true
 directory = true
 id = 1
 bit_reward = 15
-programs = [ ExtResource( 2 ) ]
+programs = [ ExtResource( 2 ), ExtResource( 2 ) ]
 
 [node name="DepthTwo" type="VBoxContainer" parent="." groups=[
 "directories",
@@ -69,16 +72,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="File" parent="DepthTwo" instance=ExtResource( 1 )]
+[node name="File4" parent="DepthTwo" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 0.0
+margin_top = 78.0
 margin_right = 347.0
-margin_bottom = 39.0
-file_name = "suck3r"
-decrypted_text = "HA, hope you liked h4nk!"
-id = 2
-programs = [ ExtResource( 7 ) ]
+margin_bottom = 117.0
+file_name = "trials <dir>"
+encrypted = true
+directory = true
+id = 4
+bit_reward = 20
+programs = [ ExtResource( 2 ), ExtResource( 5 ) ]
 
 [node name="File3" parent="DepthTwo" instance=ExtResource( 1 )]
 anchor_right = 0.0
@@ -86,23 +91,12 @@ anchor_bottom = 0.0
 margin_top = 39.0
 margin_right = 347.0
 margin_bottom = 78.0
-file_name = "gov_secret"
-decrypted_text = "Potato's are a super fruit."
+file_name = "t00ts"
+decrypted_text = "Got any points yet? Edit your programs to increase their stats."
+encrypted = true
 id = 3
-bit_reward = 15
-programs = [ ExtResource( 3 ), ExtResource( 2 ) ]
-
-[node name="File4" parent="DepthTwo" instance=ExtResource( 1 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 78.0
-margin_right = 347.0
-margin_bottom = 117.0
-file_name = "trials <dpr>"
-directory = true
-id = 4
-bit_reward = 20
-programs = [ ExtResource( 2 ), ExtResource( 5 ) ]
+bit_reward = 50
+programs = [ ExtResource( 3 ) ]
 
 [node name="DepthTwo2" type="VBoxContainer" parent="." groups=[
 "directories",
@@ -124,9 +118,10 @@ margin_top = 0.0
 margin_right = 347.0
 margin_bottom = 39.0
 file_name = "tootsie"
-decrypted_text = "Some programs do better against others. If you have a visualizer, you might notice it."
+decrypted_text = "Some programs do better against others. If you have a visualizer you might notice more particles."
+encrypted = true
 id = 5
-bit_reward = 5
+bit_reward = 25
 programs = [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 4 ) ]
 
 [node name="File3" parent="DepthTwo2" instance=ExtResource( 1 )]
@@ -141,8 +136,8 @@ decrypted_text = "Strawberry Jam
 - 2 cups sugar
 - tablespoons of honey
 - 8 limes"
-encrypted = false
 id = 6
+bit_reward = 5
 
 [node name="File4" parent="DepthTwo2" instance=ExtResource( 1 )]
 anchor_right = 0.0
@@ -150,8 +145,159 @@ anchor_bottom = 0.0
 margin_top = 78.0
 margin_right = 347.0
 margin_bottom = 117.0
-file_name = "meadows <dpr>"
+file_name = "meadow <dir>"
+encrypted = true
 directory = true
 id = 7
-bit_reward = 20
+bit_reward = 45
 programs = [ ExtResource( 2 ), ExtResource( 5 ) ]
+
+[node name="DepthFour" type="VBoxContainer" parent="." groups=[
+"directories",
+]]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -232.0
+custom_constants/separation = 0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="File" parent="DepthFour" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 0.0
+margin_right = 347.0
+margin_bottom = 39.0
+file_name = "t00ts"
+decrypted_text = "Watch out for viruses, they will try and trace you down. If they get 100% trace you are done for."
+id = 8
+bit_reward = 25
+
+[node name="File4" parent="DepthFour" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 39.0
+margin_right = 347.0
+margin_bottom = 78.0
+file_name = "big_fsh <dir>"
+encrypted = true
+directory = true
+id = 9
+bit_reward = 15
+programs = [ ExtResource( 2 ) ]
+
+[node name="File2" parent="DepthFour" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 78.0
+margin_right = 347.0
+margin_bottom = 117.0
+file_name = "suck3r"
+decrypted_text = "HA, hope you liked h4nk!"
+encrypted = true
+id = 10
+bit_reward = 100
+programs = [ ExtResource( 7 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 7 ) ]
+
+[node name="DepthFive" type="VBoxContainer" parent="." groups=[
+"directories",
+]]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -232.0
+custom_constants/separation = 0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="File" parent="DepthFive" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 0.0
+margin_right = 347.0
+margin_bottom = 48.0
+file_name = "r3x"
+decrypted_text = "ok this isnt good... looks like big bro added a tracer subroutine to the drives nand flash and i think they're trying to lock on me. i gotta be faster - \"r3x\""
+encrypted = true
+id = 11
+bit_reward = 30
+programs = [ ExtResource( 2 ), ExtResource( 5 ) ]
+
+[node name="File4" parent="DepthFive" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 48.0
+margin_right = 347.0
+margin_bottom = 97.0
+file_name = "deepr <dir>"
+encrypted = true
+directory = true
+id = 12
+bit_reward = 10
+programs = [ ExtResource( 2 ) ]
+
+[node name="DepthSix" type="VBoxContainer" parent="." groups=[
+"directories",
+]]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -232.0
+custom_constants/separation = 0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="File" parent="DepthSix" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 0.0
+margin_right = 347.0
+margin_bottom = 48.0
+file_name = "r3x"
+decrypted_text = "ok this isnt good... looks like big bro added a tracer subroutine to the drives nand flash and i think they're trying to lock on me. i gotta be faster - \"r3x\""
+encrypted = true
+id = 13
+bit_reward = 14
+programs = [ ExtResource( 4 ), ExtResource( 5 ) ]
+
+[node name="File4" parent="DepthSix" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 48.0
+margin_right = 347.0
+margin_bottom = 97.0
+file_name = "deepr <dir>"
+encrypted = true
+directory = true
+id = 12
+bit_reward = 15
+programs = [ ExtResource( 2 ) ]
+
+[node name="FinalDepth" type="VBoxContainer" parent="." groups=[
+"directories",
+]]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -39.0
+custom_constants/separation = 0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FinalFile" parent="FinalDepth" instance=ExtResource( 9 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 0.0
+margin_right = 347.0
+margin_bottom = 290.0
+id = 999999
+programs = [ ExtResource( 7 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 5 ) ]

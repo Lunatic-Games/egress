@@ -167,6 +167,10 @@ func _on_DefenderAttackTimer_timeout():
 					stress.emitting = true
 					stress.modulate = current_defender.color
 					$Attacker.add_child(stress)
+					$Attacker/Crit.play()
+				
+			if (! type_adv):
+				$Attacker/Damage.play()
 				
 		else:
 			player_damaged(damage)
@@ -208,6 +212,10 @@ func _on_AttackerAttackTimer_timeout():
 				stress.emitting = true
 				stress.modulate = current_attacker.color
 				$Defender.add_child(stress)
+				$Defender/Crit.play()
+			
+		if (! type_adv):
+			$Defender/Damage.play()
 
 
 func spawn_attack_particles(n, color, attacker, defender):
@@ -236,5 +244,10 @@ func scale_program(program, max_integrity, visualizer):
 
 func player_damaged(damage):
 	Hacker.gain_trace(float(damage) / float(hacker_dmg_reduction))
+	
+	# Play damage indicator
 	if (! $Damaged.is_playing()):
 		$Damaged.play("player_damaged")
+	
+	# Play damage audio
+	$PlayerDamaged.play()
