@@ -188,6 +188,11 @@ func queue_attacker(program):
 func dequeue_attacker(program):
 	var index = attackers.find(program)
 	attackers.remove(index)
+	
+	if (hack_underway):
+		current_attacker = null
+		break_attacker()
+	
 
 func is_free():
 	return !hack_underway
